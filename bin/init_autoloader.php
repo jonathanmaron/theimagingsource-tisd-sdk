@@ -1,8 +1,7 @@
 <?php
 
-$classMap       = include __DIR__ . '/../autoload_classmap.php';
-$classFilenames = array_values($classMap);
+$map = include __DIR__ . '/../autoload_classmap.php';
 
-foreach ($classFilenames as $classFilename) {
-    include_once $classFilename;
+foreach ($map as $filename) {
+    include_once $filename;
 }
