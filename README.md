@@ -1,4 +1,4 @@
-![The Imaging Source][http://www.theimagingsource.com/img/tis_logo.png]
+![The Imaging Source](http://www.theimagingsource.com/img/tis_logo.png)
 
 # The Imaging Source Downloads SDK
 
