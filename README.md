@@ -24,4 +24,8 @@ The Imaging Source produces a large number of downloadable files drivers, end-us
 * http://dl.theimagingsource.com/api/2.0/get-package-by-product-code-id/icwdmdcamtis/de_DE.json
 
 
+## Programming Samples
+
+The SDK ships with comprehensive samples illustrating all functionality. Please take a look in the `/bin` directory at `php demo-sdk.php` and `php demo-sdk-helper.php`.
+
 
