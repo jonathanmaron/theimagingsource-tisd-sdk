@@ -1,4 +1,4 @@
-![alt text]http://s1.www.theimagingsource.com/img/tis_logo.png "The Imaging Source"
+![alt text]http://www.theimagingsource.com/img/tis_logo.png "The Imaging Source"
 
 # The Imaging Source Downloads SDK
 
@@ -9,7 +9,7 @@ The Imaging Source produces a large number of downloadable files drivers, end-us
 
 ### Supported Locales
 
-* http://s1.dl.theimagingsource.com/api/2.0/locales.json
+* http://dl.theimagingsource.com/api/2.0/locales.json
 
 ### All Packages in "Downloads"
 
