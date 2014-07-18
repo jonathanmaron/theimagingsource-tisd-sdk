@@ -1,6 +1,6 @@
 {
     "name": "theimagingsource/Tisd",
-    "description": "Description of project tis-dl-sdk.",
+    "description": "The Imaging Source Downloads SDK",
     "type": "library",
     "version": "2.0",
     "authors": [
