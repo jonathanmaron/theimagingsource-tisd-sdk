@@ -1,0 +1,15 @@
+{
+    "name": "theimagingsource/Tisd",
+    "description": "Description of project tis-dl-sdk.",
+    "type": "library",
+    "version": "2.0",
+    "authors": [
+        {
+            "name": "The Imaging Source",
+            "email": "info@theimagingsource.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    }
+}
