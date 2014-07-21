@@ -7,25 +7,29 @@ The Imaging Source produces a large number of downloadable files (drivers, end-u
 
 ## Sample Endpoints
 
-### Supported Locales
+### Return all supported locales
 
 * http://dl.theimagingsource.com/api/2.0/locales.json
 
-### Meta Information and Statistics
+### Return meta information and statistics
 
 * http://dl.theimagingsource.com/api/2.0/meta/en_US.json
 
-### All Packages in "Downloads"
+### Return all packages in "Downloads"
 
 * http://dl.theimagingsource.com/api/2.0/packages/downloads/en_US.json
 
-### Specific Package Matching Unique ID
+### Return package matching product code ID
 
-* http://dl.theimagingsource.com/api/2.0/get-package-by-unique-id/d8f0e8d38af87c120ee5ba34401a4712ae21d7bee3e9bbb70cd9fd301d72b840.json
+* http://dl.theimagingsource.com/api/2.0/get-package-by-product-code-id/icwdmuvccamtis/en_US.json
 
-### Specific Package Product Code ID
+### Return package matching package ID
 
-* http://dl.theimagingsource.com/api/2.0/get-package-by-product-code-id/icwdmdcamtis/de_DE.json
+* http://dl.theimagingsource.com/api/2.0/get-package-by-package-id/icwdmuvccamtis/en_US.json
+
+### Return package matching unique ID
+
+* http://dl.theimagingsource.com/api/2.0/get-package-by-unique-id/f5e37622a7.json
 
 
 ## Programming Samples
