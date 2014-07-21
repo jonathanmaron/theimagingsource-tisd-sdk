@@ -11,13 +11,17 @@ The Imaging Source produces a large number of downloadable files (drivers, end-u
 
 * http://dl.theimagingsource.com/api/2.0/locales.json
 
+### Meta Information and Statistics
+
+* http://dl.theimagingsource.com/api/2.0/meta/en_US.json
+
 ### All Packages in "Downloads"
 
 * http://dl.theimagingsource.com/api/2.0/packages/downloads/en_US.json
 
 ### Specific Package Matching Unique ID
 
-* http://dl.theimagingsource.com/api/2.0/get-package-by-unique-id/8ecec2f180bfb31665e3414086eb6b4893f8e208409830e0337fb6647e8cb025.json
+* http://dl.theimagingsource.com/api/2.0/get-package-by-unique-id/d8f0e8d38af87c120ee5ba34401a4712ae21d7bee3e9bbb70cd9fd301d72b840.json
 
 ### Specific Package Product Code ID
 

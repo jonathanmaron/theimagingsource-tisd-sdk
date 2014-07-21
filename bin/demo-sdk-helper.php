@@ -5,7 +5,7 @@ include_once __DIR__ . '/init_autoloader.php';
 use Tisd\Sdk\Helper as SdkHelper;
 
 
-var_dump(SdkHelper::getPackageByUniqueId('9088530fa7e9dcf03ade2118acc662ddab4e614d8069e5979e99dd2be47e6517', array('locale' => 'de_DE')));
+var_dump(SdkHelper::getPackageByUniqueId('d8f0e8d38af87c120ee5ba34401a4712ae21d7bee3e9bbb70cd9fd301d72b840'));
 var_dump(SdkHelper::getPackageByPackageId('iccapture', array('locale' => 'de_DE')));
 var_dump(SdkHelper::getPackageByProductCodeId('iccapture', array('locale' => 'de_DE')));
 

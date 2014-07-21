@@ -117,10 +117,52 @@ class Sdk
 
     // --------------------------------------------------------------------------------
 
+    public function getMeta()
+    {
+        $fragment = sprintf('/meta/%s.json'
+                , $this->getLocale());
+
+        return $this->queryUrl($fragment);
+    }
+
+    public function getCategoryCount()
+    {
+        $meta = $this->getMeta();
+
+        return (integer) $meta['category']['count'];
+    }
+
+    public function getSectionCount()
+    {
+        $meta = $this->getMeta();
+
+        return (integer) $meta['section']['count'];
+    }
+
+    public function getPackageCount()
+    {
+        $meta = $this->getMeta();
+
+        return (integer) $meta['package']['count'];
+    }
+
+    public function getBuildTime($type = 'timestamp')
+    {
+        $meta = $this->getMeta();
+
+        return $meta['build']['time'][$type];
+    }
+
+    // --------------------------------------------------------------------------------
+
     public function getLocales()
     {
-        return $this->queryUrl('/locales.json');
+        $fragment = '/locales.json';
+
+        return $this->queryUrl($fragment);
     }
+
+    // --------------------------------------------------------------------------------
 
     public function getPackages($categoryId = null, $sectionId = null, $packageId = null)
     {
