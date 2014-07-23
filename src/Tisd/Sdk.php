@@ -4,6 +4,7 @@ namespace Tisd;
 
 use Tisd\Sdk\Cache as TisdSdkCache;
 
+use Tisd\Sdk\Exception\RuntimeException as RuntimeException;
 
 class Sdk
 {
@@ -160,6 +161,46 @@ class Sdk
         $fragment = '/locales.json';
 
         return $this->queryUrl($fragment);
+    }
+
+    // --------------------------------------------------------------------------------
+
+    public function getUniqueIdToPackageLut()
+    {
+        return $this->getKeyNameToPackageLut('unique_id');
+    }
+
+    public function getProductCodeIdToPackageLut()
+    {
+        return $this->getKeyNameToPackageLut('product_code_id');
+    }
+
+    public function getPackageIdToPackageLut()
+    {
+        return $this->getKeyNameToPackageLut('package_id');
+    }
+
+    protected function getKeyNameToPackageLut($keyName)
+    {
+        $ret = array();
+
+        $packages = $this->getPackages();
+
+        foreach ($packages['children'] as $sections) {
+            foreach ($sections['children'] as $categories) {
+                foreach ($categories['children'] as $package) {
+                    $key = $package[$keyName];
+                    if (isset($ret[$key])) {
+                        $errorMessage = "The {$keyName} is not unique in the LUT. The offending key is {$key}.";
+                        throw new RuntimeException($errorMessage);
+                    } else {
+                        $ret[$key] = $package;
+                    }
+                }
+            }
+        }
+
+        return $ret;
     }
 
     // --------------------------------------------------------------------------------
