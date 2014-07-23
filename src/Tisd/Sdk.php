@@ -111,7 +111,10 @@ class Sdk
 
     protected function buildUrl($fragment)
     {
-        $ret = sprintf('http://%s/api/%s%s', $this->getHostname(), $this->getVersion(), $fragment);
+        $ret = sprintf('http://%s/api/%s%s'
+                , $this->getHostname()
+                , $this->getVersion()
+                , $fragment);
 
         return $ret;
     }
