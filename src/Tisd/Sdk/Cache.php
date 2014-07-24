@@ -63,17 +63,21 @@ class Cache
 
     public function purge()
     {
-        foreach (glob($this->getFilename('*')) as $filename) {
+        foreach (glob($this->getFilename('*', '*')) as $filename) {
             unlink($filename);
         }
     }
 
-    public function getFilename($cacheId)
+    public function getFilename($cacheId, $user = null)
     {
+        if (null === $user) {
+            $user = $this->getUser();
+        }
+
         $ret = sprintf('%s/tis-dl-sdk_%s_%s.php'
                 , $this->getPath()
                 , $cacheId
-                , $this->getUser());
+                , $user);
 
         return $ret;
     }
@@ -81,7 +85,7 @@ class Cache
     public function getUser()
     {
         $userApache = trim(getenv('APACHE_RUN_USER'));
-        $userCli = trim(getenv('LOGNAME'));
+        $userCli    = trim(getenv('LOGNAME'));
 
         $ret = 'nouser';
 
