@@ -25,43 +25,43 @@ class Sdk
 
     public function __construct($options = array())
     {
-        $locale = self::LOCALE;
-
-        $this->setCache(new TisdSdkCache());
-
-
         if (isset($options['locale'])) {
             $locale = $options['locale'];
+        } else {
+            $locale = self::LOCALE;
         }
 
         $this->setLocale($locale);
 
 
-        $hostname = $this->getDefaultHostname();
-
         if (isset($options['hostname'])) {
             $hostname = $options['hostname'];
+        } else {
+            $hostname = $this->getDefaultHostname();
         }
 
         $this->setHostname($hostname);
 
 
-        $version = self::VERSION;
-
         if (isset($options['version'])) {
             $version = $options['version'];
+        } else {
+            $version = self::VERSION;
         }
 
         $this->setVersion($version);
 
 
-        $timeout = self::TIMEOUT;
-
         if (isset($options['timeout'])) {
-            $version = $options['timeout'];
+            $timeout = $options['timeout'];
+        } else {
+            $timeout = self::TIMEOUT;
         }
 
         $this->setTimeout($timeout);
+
+        
+        $this->setCache(new TisdSdkCache());
     }
 
     // --------------------------------------------------------------------------------
