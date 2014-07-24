@@ -36,6 +36,8 @@ class Cache
                  . ';';
 
         $ret = file_put_contents($filename, $content);
+        
+        chmod($filename, 0777);
 
         return $ret;
     }
