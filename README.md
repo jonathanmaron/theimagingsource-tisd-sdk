@@ -37,3 +37,42 @@ The Imaging Source produces a large number of downloadable files (drivers, end-u
 The SDK ships with comprehensive samples illustrating all functionality. Please take a look in the `/bin` directory at `php demo-sdk.php` and `php demo-sdk-helper.php`.
 
 
+## JSON Structure
+
+```
+root
+  categories
+    sections
+      packages
+        package
+```
+
+### Loop through the JSON structure in PHP
+
+```php
+<?php
+
+foreach ($packages['children'] as $categoryId => $categories ) {
+    foreach ($categories['children'] as $sectionId => $sections) {
+        foreach ($sections['children'] as $packageId => $package) {
+            // $latestPackageVersion = array_shift($package['versions']);
+        }
+    }
+}
+
+foreach ($packages['children'] as $categoryId => $categories) {
+    foreach ($categories['children'] as $sectionId => $sections) {
+        foreach ($sections['children'] as $packageId => $package) {
+            // $latestPackageVersion = array_shift($package['versions']);
+        }
+        if (0 == count($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
+            unset($packages['children'][$categoryId]['children'][$sectionId]);
+        }
+    }
+    if (0 == count($packages['children'][$categoryId]['children'])) {
+        unset($packages['children'][$categoryId]);
+    }
+}
+
+?>
+```

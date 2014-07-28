@@ -23,6 +23,8 @@ class Sdk
     protected $version;
     protected $timeout;
 
+    protected $filterByContext;
+
     public function __construct($options = array())
     {
         if (isset($options['locale'])) {
@@ -60,7 +62,7 @@ class Sdk
 
         $this->setTimeout($timeout);
 
-        
+
         $this->setCache(new TisdSdkCache());
     }
 
@@ -189,9 +191,9 @@ class Sdk
 
         $packages = $this->getPackages();
 
-        foreach ($packages['children'] as $sections) {
-            foreach ($sections['children'] as $categories) {
-                foreach ($categories['children'] as $package) {
+        foreach ($packages['children'] as $categories ){
+            foreach ($categories['children'] as $sections) {
+                foreach ($sections['children'] as $package) {
                     $key = $package[$keyName];
                     if (isset($ret[$key])) {
                         $errorMessage = "The {$keyName} is not unique in the LUT. The offending key is {$key}.";
@@ -207,6 +209,47 @@ class Sdk
     }
 
     // --------------------------------------------------------------------------------
+
+    protected function filterPackages($packages)
+    {
+        $filterApplied   = false;
+        $filterByContext = $this->getFilterByContext();
+
+        if (null !== $filterByContext) {
+            $filterApplied = true;
+            foreach ($packages['children'] as $categoryId => $categories) {
+                foreach ($categories['children'] as $sectionId => $sections) {
+                    foreach ($sections['children'] as $packageId => $package) {
+                        if (!in_array($filterByContext, $package['contexts'])) {
+                            unset($packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId]);
+                        }
+                    }
+                }
+            }
+        }
+
+        // add further filters here...
+
+        // remove empty arrays
+
+        if ($filterApplied) {
+            foreach ($packages['children'] as $categoryId => $categories) {
+                foreach ($categories['children'] as $sectionId => $sections) {
+                    if (0 == count($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
+                        unset($packages['children'][$categoryId]['children'][$sectionId]);
+                    }
+                }
+                if (0 == count($packages['children'][$categoryId]['children'])) {
+                    unset($packages['children'][$categoryId]);
+                }
+            }
+        }
+
+        return $packages;
+    }
+
+    // --------------------------------------------------------------------------------
+
 
     public function getPackages($categoryId = null, $sectionId = null, $packageId = null)
     {
@@ -234,7 +277,10 @@ class Sdk
                     , $this->getLocale());
         }
 
-        return $this->queryUrl($fragment);
+        $packages = $this->queryUrl($fragment);
+        $packages = $this->filterPackages($packages);
+
+        return $packages;
     }
 
     public function getPackageByUniqueId($uniqueId)
@@ -323,6 +369,18 @@ class Sdk
     public function getCache()
     {
         return $this->cache;
+    }
+
+    public function setFilterByContext($filterByContext)
+    {
+        $this->filterByContext = $filterByContext;
+
+        return $this;
+    }
+
+    public function getFilterByContext()
+    {
+        return $this->filterByContext;
     }
 
     // --------------------------------------------------------------------------------
