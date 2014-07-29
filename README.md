@@ -56,7 +56,7 @@ root
 ```php
 <?php
 
-foreach ($packages['children'] as $categoryId => $categories ) {
+foreach ($packages['children'] as $categoryId => $categories) {
     foreach ($categories['children'] as $sectionId => $sections) {
         foreach ($sections['children'] as $packageId => $package) {
             // $latestPackageVersion = array_shift($package['versions']);

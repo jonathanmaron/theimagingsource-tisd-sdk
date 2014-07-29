@@ -309,6 +309,26 @@ class Sdk
         return $this->queryUrl($fragment);
     }
 
+    public function getPackageByProductCode($productCode)
+    {
+        $ret = null;
+
+        $packages = $this->getPackages();
+
+        foreach ($packages['children'] as $categories) {
+            foreach ($categories['children'] as $sections) {
+                foreach ($sections['children'] as $package) {
+                    if ($productCode == $package['product_code']) {
+                        $ret = $package;
+                        break 3;
+                    }
+                }
+            }
+        }
+
+        return $ret;
+    }
+
     public function getPackagesByProductCodes($productCodes)
     {
         $packages = $this->getPackages();
