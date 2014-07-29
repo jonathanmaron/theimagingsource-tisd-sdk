@@ -309,6 +309,31 @@ class Sdk
         return $this->queryUrl($fragment);
     }
 
+    public function getPackagesByProductCodes($productCodes)
+    {
+        $packages = $this->getPackages();
+
+        foreach ($packages['children'] as $categoryId => $categories) {
+            foreach ($categories['children'] as $sectionId => $sections) {
+                foreach ($sections['children'] as $packageId => $package) {
+                    if (!in_array($package['product_code'], $productCodes)) {
+                        unset($packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId]);
+                    }
+                }
+                if (0 === count($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
+                    unset($packages['children'][$categoryId]['children'][$sectionId]);
+                }
+            }
+            if (0 === count($packages['children'][$categoryId]['children'])) {
+                unset($packages['children'][$categoryId]);
+            }
+        }
+
+        return $packages;
+    }
+
+    // --------------------------------------------------------------------------------
+
     public function getContexts()
     {
         $fragment = sprintf('/contexts/%s.json'

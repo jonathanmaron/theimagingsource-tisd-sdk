@@ -69,11 +69,11 @@ foreach ($packages['children'] as $categoryId => $categories) {
         foreach ($sections['children'] as $packageId => $package) {
             // $latestPackageVersion = array_shift($package['versions']);
         }
-        if (0 == count($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
+        if (0 === count($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
             unset($packages['children'][$categoryId]['children'][$sectionId]);
         }
     }
-    if (0 == count($packages['children'][$categoryId]['children'])) {
+    if (0 === count($packages['children'][$categoryId]['children'])) {
         unset($packages['children'][$categoryId]);
     }
 }

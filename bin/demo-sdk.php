@@ -9,7 +9,17 @@ $sdk = new Sdk(array('locale' => 'de_DE'));
 
 $sdk->getCache()->purge();
 
-var_dump( $sdk->getContexts() );
+$productCodes = array(
+    'IC WDM 1394b TIS',
+    'ICPresenter',
+    'Scan2Docx OCR',
+);
+
+
+var_dump( $sdk->getPackagesByProductCodes($productCodes) );
+
+
+//var_dump( $sdk->getContexts() );
 
 
 //var_dump( $sdk->getUniqueIdToPackageLut() );
