@@ -80,11 +80,11 @@ class Cache
             $user = $this->getUser();
         }
 
-        $filePrefix = basename(dirname(dirname(dirname(__DIR__))));
+        $cachePrefix = basename(dirname(dirname(dirname(__DIR__))));
 
         $ret = sprintf('%s/%s_%s_%s.php'
                 , $this->getPath()
-                , $filePrefix
+                , $cachePrefix
                 , $cacheId
                 , $user);
 
