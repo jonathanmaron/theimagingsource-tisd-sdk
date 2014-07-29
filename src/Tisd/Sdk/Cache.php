@@ -36,7 +36,7 @@ class Cache
                  . ';';
 
         $ret = file_put_contents($filename, $content);
-        
+
         chmod($filename, 0777);
 
         return $ret;
@@ -63,9 +63,13 @@ class Cache
         return $ret;
     }
 
-    public function purge()
+    public function purge($user = null)
     {
-        foreach (glob($this->getFilename('*', '*')) as $filename) {
+        if (null === $user) {
+            $user = $this->getUser();
+        }
+
+        foreach (glob($this->getFilename('*', $user)) as $filename) {
             unlink($filename);
         }
     }
@@ -76,8 +80,11 @@ class Cache
             $user = $this->getUser();
         }
 
-        $ret = sprintf('%s/tis-dl-sdk_%s_%s.php'
+        $filePrefix = basename(dirname(dirname(dirname(__DIR__))));
+
+        $ret = sprintf('%s/%s_%s_%s.php'
                 , $this->getPath()
+                , $filePrefix
                 , $cacheId
                 , $user);
 
