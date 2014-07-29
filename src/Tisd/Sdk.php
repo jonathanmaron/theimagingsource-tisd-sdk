@@ -352,6 +352,32 @@ class Sdk
         return $packages;
     }
 
+    public function getPackagesByProductCodeSearch($q)
+    {
+        $qLen = strlen($q);
+
+        $packages = $this->getPackages();
+
+        foreach ($packages['children'] as $categoryId => $categories) {
+            foreach ($categories['children'] as $sectionId => $sections) {
+                foreach ($sections['children'] as $packageId => $package) {
+                    $productCodeStart = strtolower(substr($package['product_code'], 0, $qLen));
+                    if ($productCodeStart != $q) {
+                        unset($packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId]);
+                    }
+                }
+                if (0 == count($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
+                    unset($packages['children'][$categoryId]['children'][$sectionId]);
+                }
+            }
+            if (0 == count($packages['children'][$categoryId]['children'])) {
+                unset($packages['children'][$categoryId]);
+            }
+        }
+
+        return $packages;
+    }
+
     // --------------------------------------------------------------------------------
 
     public function getContexts()
