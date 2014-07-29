@@ -80,7 +80,8 @@ class Cache
             $user = $this->getUser();
         }
 
-        $cachePrefix = basename(dirname(dirname(dirname(__DIR__))));
+        $cachePrefix = str_replace('\\', '_', __CLASS__);
+        $cachePrefix = strtolower($cachePrefix);
 
         $ret = sprintf('%s/%s_%s_%s.php'
                 , $this->getPath()
