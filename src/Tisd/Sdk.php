@@ -309,6 +309,14 @@ class Sdk
         return $this->queryUrl($fragment);
     }
 
+    public function getContexts()
+    {
+        $fragment = sprintf('/contexts/%s.json'
+                , $this->getLocale());
+
+        return $this->queryUrl($fragment);
+    }
+
     // --------------------------------------------------------------------------------
 
     public function setLocale($locale)

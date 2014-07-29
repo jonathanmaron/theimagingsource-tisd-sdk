@@ -7,11 +7,13 @@ use Tisd\Sdk as Sdk;
 
 $sdk = new Sdk(array('locale' => 'de_DE'));
 
-//$sdk->getCache()->purge();
+$sdk->getCache()->purge();
+
+var_dump( $sdk->getContexts() );
 
 
 //var_dump( $sdk->getUniqueIdToPackageLut() );
-var_dump( $sdk->getProductCodeIdToPackageLut() );
+//var_dump( $sdk->getProductCodeIdToPackageLut() );
 //var_dump( $sdk->getPackageIdToPackageLut() );
 
 exit();

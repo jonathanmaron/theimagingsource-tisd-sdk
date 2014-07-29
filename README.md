@@ -11,6 +11,10 @@ The Imaging Source produces a large number of downloadable files (drivers, end-u
 
 * http://dl.theimagingsource.com/api/2.0/locales.json
 
+### Return all supported contexts
+
+* http://dl.theimagingsource.com/api/2.0/contexts/en_US.json
+
 ### Return meta information and statistics
 
 * http://dl.theimagingsource.com/api/2.0/meta/en_US.json
