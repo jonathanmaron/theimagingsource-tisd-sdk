@@ -28,7 +28,7 @@ class Sdk
     protected $version;
     protected $timeout;
 
-    protected $filterByContext;
+    protected $context;
 
     public function __construct($options = array())
     {
@@ -69,7 +69,7 @@ class Sdk
 
 
         if (isset($options['context'])) {
-            $this->setFilterByContext($options['context']);
+            $this->setContext($options['context']);
         }
 
 
@@ -183,7 +183,7 @@ class Sdk
     protected function filterPackages($packages)
     {
         $filterApplied   = false;
-        $filterByContext = $this->getFilterByContext();
+        $filterByContext = $this->getContext();
 
         if (null !== $filterByContext) {
             $filterApplied = true;
@@ -422,16 +422,16 @@ class Sdk
         return $this->cache;
     }
 
-    public function setFilterByContext($filterByContext)
+    public function setContext($context)
     {
-        $this->filterByContext = $filterByContext;
+        $this->context = $context;
 
         return $this;
     }
 
-    public function getFilterByContext()
+    public function getContext()
     {
-        return $this->filterByContext;
+        return $this->context;
     }
 
     // --------------------------------------------------------------------------------

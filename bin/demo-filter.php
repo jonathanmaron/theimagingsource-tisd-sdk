@@ -10,7 +10,7 @@ $sdk = new Sdk(array('locale' => 'de_DE'));
 
 $sdk->getCache()->purge();
 
-$sdk->setFilterByContext('astronomy');
+$sdk->setContext('astronomy');
 
 $packages = $sdk->getPackages();
 
