@@ -8,6 +8,11 @@ use Tisd\Sdk\Exception\RuntimeException as RuntimeException;
 
 class Sdk
 {
+    const CONTEXT_MACHINE_VISION = 'machinevision';
+    const CONTEXT_ASTRONOMY      = 'astronomy';
+    const CONTEXT_SCAN2DOCX      = 'scan2docx';
+    const CONTEXT_SCAN2VOICE     = 'scan2voice';
+
     const HOSTNAME_DEVELOPMENT = 'dl.theimagingsource.com.dev';
     const HOSTNAME_PRODUCTION  = 'dl.theimagingsource.com';
 
@@ -61,6 +66,11 @@ class Sdk
         }
 
         $this->setTimeout($timeout);
+
+
+        if (isset($options['context'])) {
+            $this->setFilterByContext($options['context']);
+        }
 
 
         $this->setCache(new TisdSdkCache());
@@ -166,46 +176,6 @@ class Sdk
         $fragment = '/locales.json';
 
         return $this->queryUrl($fragment);
-    }
-
-    // --------------------------------------------------------------------------------
-
-    public function getUniqueIdToPackageLut()
-    {
-        return $this->getKeyNameToPackageLut('unique_id');
-    }
-
-    public function getProductCodeIdToPackageLut()
-    {
-        return $this->getKeyNameToPackageLut('product_code_id');
-    }
-
-    public function getPackageIdToPackageLut()
-    {
-        return $this->getKeyNameToPackageLut('package_id');
-    }
-
-    protected function getKeyNameToPackageLut($keyName)
-    {
-        $ret = array();
-
-        $packages = $this->getPackages();
-
-        foreach ($packages['children'] as $categories ){
-            foreach ($categories['children'] as $sections) {
-                foreach ($sections['children'] as $package) {
-                    $key = $package[$keyName];
-                    if (isset($ret[$key])) {
-                        $errorMessage = "The {$keyName} is not unique in the LUT. The offending key is {$key}.";
-                        throw new RuntimeException($errorMessage);
-                    } else {
-                        $ret[$key] = $package;
-                    }
-                }
-            }
-        }
-
-        return $ret;
     }
 
     // --------------------------------------------------------------------------------
@@ -354,6 +324,8 @@ class Sdk
 
     public function getPackagesByProductCodeSearch($q)
     {
+        $q = strtolower($q);
+
         $qLen = strlen($q);
 
         $packages = $this->getPackages();

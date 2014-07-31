@@ -1,6 +1,7 @@
 <?php
 
-include_once __DIR__ . '/../autoload_legacy.php';
+include_once __DIR__ . '/common.php';
+
 
 use Tisd\Sdk as Sdk;
 
