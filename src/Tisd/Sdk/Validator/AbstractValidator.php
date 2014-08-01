@@ -15,8 +15,8 @@ class AbstractValidator
     public function isValid($value)
     {
         $ret = false;
-
-        if (in_array($value, array_keys($this->getLut()->getValues()))) {
+        
+        if (in_array($value, $this->getLut()->getKeys())) {
             $ret = true;
         }
 

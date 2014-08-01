@@ -44,6 +44,11 @@ class AbstractLut
         return $this->lut;
     }
 
+    public function getKeys()
+    {
+        return array_keys($this->getValues());
+    }
+
     public function getValue($key)
     {
         $ret = null;

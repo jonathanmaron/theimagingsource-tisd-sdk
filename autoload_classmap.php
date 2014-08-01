@@ -2,10 +2,10 @@
 
 return array(
 
-    'Tisd\Sdk'                                    => __DIR__ . '/src/Tisd/Sdk.php',
-    
     'Tisd\Defaults'                               => __DIR__ . '/src/Tisd/Defaults.php',
 
+    'Tisd\Sdk'                                    => __DIR__ . '/src/Tisd/Sdk.php',
+    
     'Tisd\Sdk\Cache'                              => __DIR__ . '/src/Tisd/Sdk/Cache.php',
 
     'Tisd\Sdk\Lut\AbstractLut'                    => __DIR__ . '/src/Tisd/Sdk/Lut/AbstractLut.php',

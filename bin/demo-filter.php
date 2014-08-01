@@ -3,10 +3,10 @@
 include_once __DIR__ . '/common.php';
 
 
-use Tisd\Sdk as Sdk;
+use Tisd\Sdk as TisdSdk;
 
 
-$sdk = new Sdk(array('locale' => 'de_DE'));
+$sdk = new TisdSdk(array('locale' => 'de_DE'));
 
 $sdk->getCache()->purge();
 
