@@ -3,6 +3,8 @@
 return array(
 
     'Tisd\Sdk'                                    => __DIR__ . '/src/Tisd/Sdk.php',
+    
+    'Tisd\Defaults'                               => __DIR__ . '/src/Tisd/Defaults.php',
 
     'Tisd\Sdk\Cache'                              => __DIR__ . '/src/Tisd/Sdk/Cache.php',
 

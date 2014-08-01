@@ -4,74 +4,28 @@ namespace Tisd;
 
 use Tisd\Sdk\Cache as TisdSdkCache;
 
-use Tisd\Sdk\Exception\RuntimeException as RuntimeException;
 
 class Sdk
 {
-    const CONTEXT_MACHINE_VISION = 'machinevision';
-    const CONTEXT_ASTRONOMY      = 'astronomy';
-    const CONTEXT_SCAN2DOCX      = 'scan2docx';
-    const CONTEXT_SCAN2VOICE     = 'scan2voice';
-
-    const HOSTNAME_DEVELOPMENT = 'dl.theimagingsource.com.dev';
-    const HOSTNAME_PRODUCTION  = 'dl.theimagingsource.com';
-
-    const LOCALE  = 'en_US';
-
-    const VERSION = '2.0';
-
-    const TIMEOUT = 10;
 
     protected $cache;
-    protected $locale;
-    protected $hostname;
-    protected $version;
-    protected $timeout;
-
-    protected $context;
 
     public function __construct($options = array())
     {
-        if (isset($options['locale'])) {
-            $locale = $options['locale'];
-        } else {
-            $locale = self::LOCALE;
+        $optionKeys = array (
+            'locale',
+            'context',
+            'hostname',
+            'version',
+            'timeout',
+        );
+
+        foreach ($optionKeys as $optionKey) {
+            if (isset($options[$optionKey])) {
+                $methodName = 'set' . ucfirst($optionKey);
+                $this->$methodName($options[$optionKey]);
+            }
         }
-
-        $this->setLocale($locale);
-
-
-        if (isset($options['hostname'])) {
-            $hostname = $options['hostname'];
-        } else {
-            $hostname = $this->getDefaultHostname();
-        }
-
-        $this->setHostname($hostname);
-
-
-        if (isset($options['version'])) {
-            $version = $options['version'];
-        } else {
-            $version = self::VERSION;
-        }
-
-        $this->setVersion($version);
-
-
-        if (isset($options['timeout'])) {
-            $timeout = $options['timeout'];
-        } else {
-            $timeout = self::TIMEOUT;
-        }
-
-        $this->setTimeout($timeout);
-
-
-        if (isset($options['context'])) {
-            $this->setContext($options['context']);
-        }
-
 
         $this->setCache(new TisdSdkCache());
     }
@@ -362,54 +316,6 @@ class Sdk
 
     // --------------------------------------------------------------------------------
 
-    public function setLocale($locale)
-    {
-        $this->locale = $locale;
-
-        return $this;
-    }
-
-    public function getLocale()
-    {
-        return $this->locale;
-    }
-
-    public function setHostname($hostname)
-    {
-        $this->hostname = $hostname;
-
-        return $this;
-    }
-
-    public function getHostname()
-    {
-        return $this->hostname;
-    }
-
-    public function setVersion($version)
-    {
-        $this->version = $version;
-
-        return $this;
-    }
-
-    public function getVersion()
-    {
-        return $this->version;
-    }
-
-    public function setTimeout($timeout)
-    {
-        $this->timeout = $timeout;
-
-        return $this;
-    }
-
-    public function getTimeout()
-    {
-        return $this->timeout;
-    }
-
     public function setCache($cache)
     {
         $this->cache = $cache;
@@ -422,32 +328,74 @@ class Sdk
         return $this->cache;
     }
 
+    // --------------------------------------------------------------------------------
+
+    // proxy methods to Defaults
+
+    public function setLocale($locale)
+    {
+        Defaults::setLocale($locale);
+
+        return $this;
+    }
+
+    public function getLocale()
+    {
+        return Defaults::getLocale();
+    }
+
+
+    public function setHostname($hostname)
+    {
+        Defaults::setHostname($hostname);
+
+        return $this;
+    }
+
+    public function getHostname()
+    {
+        return Defaults::getHostname();
+    }
+
+
+    public function setVersion($version)
+    {
+        Defaults::setVersion($version);
+
+        return $this;
+    }
+
+    public function getVersion()
+    {
+        return Defaults::getVersion();
+    }
+
+
+    public function setTimeout($timeout)
+    {
+        Defaults::setTimeout($timeout);
+
+        return $this;
+    }
+
+    public function getTimeout()
+    {
+        return Defaults::getTimeout();
+    }
+
+
     public function setContext($context)
     {
-        $this->context = $context;
+        Defaults::setContext($context);
 
         return $this;
     }
 
     public function getContext()
     {
-        return $this->context;
+        return Defaults::getContext();
     }
 
     // --------------------------------------------------------------------------------
 
-    protected function getDefaultHostname()
-    {
-        $hostname = gethostbyname(trim(`hostname`));
-
-        if ('192.168' === substr($hostname, 0, 7)) {
-            $ret = self::HOSTNAME_DEVELOPMENT;
-        } else {
-            $ret = self::HOSTNAME_PRODUCTION;
-        }
-
-        return $ret;
-    }
-
-    // --------------------------------------------------------------------------------
 }
