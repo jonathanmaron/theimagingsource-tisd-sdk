@@ -17,6 +17,12 @@
         }
     ],
 
+    "autoload": {
+        "psr-0": {
+            "Tisd\\": "src/"
+        }
+    },
+
     "require": {
         "php": ">=5.3.3"
     }
