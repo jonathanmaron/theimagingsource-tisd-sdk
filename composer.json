@@ -1,15 +1,22 @@
 {
-    "name": "theimagingsource/Tisd",
-    "description": "The Imaging Source Downloads SDK",
-    "type": "library",
-    "version": "2.0",
-    "authors": [
+    "name"        : "theimagingsource/Tisd",
+
+    "description" : "The Imaging Source produces a large number of downloadable files (drivers, end-user software, documentation, images etc.). These resources are published at dl.theimagingsource.com and are available via a JSON-based API. In addition to encapsulating the functionality of the JSON-based API, this component library provides several helper objects to make access to The Imaging Source downloads as simple and quick as possible.",
+
+    "type"        : "library",
+
+    "version"     : "2.0",
+
+    "authors" : [
         {
-            "name": "The Imaging Source",
-            "email": "info@theimagingsource.com"
+            "name"     : "Jonathan Maron (The Imaging Source)",
+            "homepage" : "https://github.com/jonathanmaron/theimagingsource-tisd",
+            "role"     : "Developer"
         }
     ],
+
     "require": {
         "php": ">=5.3.3"
     }
+    
 }
