@@ -5,6 +5,27 @@
 The Imaging Source produces a large number of downloadable files (drivers, end-user software, documentation, images etc.). These resources are published at dl.theimagingsource.com and are available via a JSON-based API. In addition to encapsulating the functionality of the JSON-based API, this component library provides several helper objects to make access to The Imaging Source downloads as simple and quick as possible.",
 
 
+## Installation
+
+### Composer Install
+
+For easy installation, use Composer via Packagist.org:
+
+```json
+"require": {
+            "php": ">=5.3.0",
+            "theimagingsource/tisd" : "dev-master"
+    }
+```
+
+* https://packagist.org/packages/theimagingsource/tisd
+
+### Manual Install (without Composer)
+
+* [Download](https://github.com/jonathanmaron/theimagingsource-tisd/archive/master.zip) ZIP file and extract the contents to a directory in your project structure.
+* Include the file `/autoload_legacy.php` and all components are ready to be used.
+
+
 ## Sample Endpoints
 
 ### Return all supported locales
