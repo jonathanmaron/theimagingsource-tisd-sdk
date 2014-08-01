@@ -15,7 +15,7 @@ For easy installation, use Composer via Packagist.org:
 "require": {
     "php": ">=5.3.0",
     "theimagingsource/tisd" : "dev-master"
-    }
+}
 ```
 
 * https://packagist.org/packages/theimagingsource/tisd
