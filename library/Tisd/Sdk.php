@@ -177,7 +177,9 @@ class Sdk
 
     public function getPackages($categoryId = null, $sectionId = null, $packageId = null)
     {
-        if (isset($categoryId) && isset($sectionId) && isset($packageId)) {
+        if (null !== $categoryId &&
+            null !== $sectionId  &&
+            null !== $packageId) {
 
             $fragment = sprintf('/packages/%s/%s/%s/%s.json'
                     , $categoryId
@@ -185,14 +187,15 @@ class Sdk
                     , $packageId
                     , $this->getLocale());
 
-        } elseif (isset($categoryId) && isset($sectionId)) {
+        } elseif (null !== $categoryId &&
+                  null !== $sectionId) {
 
             $fragment = sprintf('/packages/%s/%s/%s.json'
                     , $categoryId
                     , $sectionId
                     , $this->getLocale());
 
-        } elseif (isset($categoryId)) {
+        } elseif (null !== $categoryId) {
 
             $fragment = sprintf('/packages/%s/%s.json'
                     , $categoryId
