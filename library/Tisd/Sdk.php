@@ -139,18 +139,18 @@ class Sdk
         foreach ($array as $key => $item) {
 
             if (is_array($item)) {
-                $array[$key] = $this->filterPackages($item);
+                $array[$key] = $this->filterPackages($item);    //   set via parent
             }
 
             if (isset($item['children']) && is_array($item['children'])) {
                 if (0 === count($item['children'])) {
-                    unset($array[$key]);    // unset via parent
+                    unset($array[$key]);                        // unset via parent
                 }
             }
 
             if (isset($item['contexts']) && is_array($item['contexts'])) {
                 if (!in_array($this->getContext(), $item['contexts'])) {
-                    unset($array[$key]);    // unset via parent
+                    unset($array[$key]);                        // unset via parent
                 }
             }
         }
