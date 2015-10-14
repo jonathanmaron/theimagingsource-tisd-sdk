@@ -192,7 +192,7 @@ class Sdk
 
         $packages = $this->queryUrl($fragment);
 
-        $this->filterPackages($packages);
+        $packages = $this->filterPackages($packages);
 
         return $packages;
     }
