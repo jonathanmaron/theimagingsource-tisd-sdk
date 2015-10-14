@@ -14,5 +14,16 @@ $sdk->setContext('astronomy');
 
 $packages = $sdk->getPackages();
 
+//var_dump($packages);
+
+
+$sdk = new TisdSdk(array('locale' => 'de_DE'));
+
+$sdk->getCache()->purge();
+
+$sdk->setContext('machinevision');
+
+$packages = $sdk->getPackages('downloads');
+
 var_dump($packages);
 

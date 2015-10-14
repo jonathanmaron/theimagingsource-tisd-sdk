@@ -134,42 +134,27 @@ class Sdk
 
     // --------------------------------------------------------------------------------
 
-    protected function filterPackages($packages)
+    protected function filterPackages(&$array)
     {
-        $filterApplied   = false;
-        $filterByContext = $this->getContext();
+        foreach ($array as $key => $item) {
 
-        if (null !== $filterByContext) {
-            $filterApplied = true;
-            foreach ($packages['children'] as $categoryId => $categories) {
-                foreach ($categories['children'] as $sectionId => $sections) {
-                    foreach ($sections['children'] as $packageId => $package) {
-                        if (!in_array($filterByContext, $package['contexts'])) {
-                            unset($packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId]);
-                        }
-                    }
+            if (is_array($item)) {
+                $array[$key] = $this->filterPackages($item);
+            }
+
+            if (isset($item['children']) && is_array($item['children']) && 0 === count($item['children']) ) {
+                unset($array[$key]);     // unset via parent
+            }
+
+            if (isset($item['contexts']) && is_array($item['contexts'])) {
+                if (!in_array($this->getContext(), $item['contexts'])) {
+                    unset($array[$key]); // unset via parent
                 }
             }
+
         }
 
-        // add further filters here...
-
-        // remove empty arrays
-
-        if ($filterApplied) {
-            foreach ($packages['children'] as $categoryId => $categories) {
-                foreach ($categories['children'] as $sectionId => $sections) {
-                    if (0 == count($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
-                        unset($packages['children'][$categoryId]['children'][$sectionId]);
-                    }
-                }
-                if (0 == count($packages['children'][$categoryId]['children'])) {
-                    unset($packages['children'][$categoryId]);
-                }
-            }
-        }
-
-        return $packages;
+        return $array;
     }
 
     // --------------------------------------------------------------------------------
@@ -177,9 +162,7 @@ class Sdk
 
     public function getPackages($categoryId = null, $sectionId = null, $packageId = null)
     {
-        if (null !== $categoryId &&
-            null !== $sectionId  &&
-            null !== $packageId) {
+        if (null !== $categoryId && null !== $sectionId && null !== $packageId) {
 
             $fragment = sprintf('/packages/%s/%s/%s/%s.json'
                     , $categoryId
@@ -187,8 +170,7 @@ class Sdk
                     , $packageId
                     , $this->getLocale());
 
-        } elseif (null !== $categoryId &&
-                  null !== $sectionId) {
+        } elseif (null !== $categoryId && null !== $sectionId) {
 
             $fragment = sprintf('/packages/%s/%s/%s.json'
                     , $categoryId
@@ -209,7 +191,7 @@ class Sdk
 
         $packages = $this->queryUrl($fragment);
 
-        $packages = $this->filterPackages($packages);
+        $this->filterPackages($packages);
 
         return $packages;
     }
@@ -406,3 +388,6 @@ class Sdk
     // --------------------------------------------------------------------------------
 
 }
+
+
+
