@@ -184,17 +184,20 @@ class Sdk
                     , $sectionId
                     , $packageId
                     , $this->getLocale());
+
         } elseif (isset($categoryId) && isset($sectionId)) {
 
             $fragment = sprintf('/packages/%s/%s/%s.json'
                     , $categoryId
                     , $sectionId
                     , $this->getLocale());
+
         } elseif (isset($categoryId)) {
 
             $fragment = sprintf('/packages/%s/%s.json'
                     , $categoryId
                     , $this->getLocale());
+
         } else {
 
             $fragment = sprintf('/packages/%s.json'
@@ -202,6 +205,7 @@ class Sdk
         }
 
         $packages = $this->queryUrl($fragment);
+
         $packages = $this->filterPackages($packages);
 
         return $packages;
