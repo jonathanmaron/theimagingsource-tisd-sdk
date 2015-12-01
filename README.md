@@ -13,7 +13,6 @@ For easy installation, use Composer via Packagist.org:
 
 ```json
 "require": {
-    "php": ">=5.3.0",
     "theimagingsource/tisd" : "dev-master"
 }
 ```
