@@ -2,4 +2,4 @@
 
 error_reporting( E_ALL );
 
-include_once __DIR__ . '/../autoload_legacy.php';
+include_once realpath (__DIR__ . '/../vendor/autoload.php');
