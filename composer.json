@@ -1,4 +1,5 @@
 {
+
     "name"        : "theimagingsource/tisd",
 
     "description" : "The Imaging Source produces a large number of downloadable files (drivers, end-user software, documentation, images etc.). These resources are published at dl.theimagingsource.com and are available via a JSON-based API. In addition to encapsulating the functionality of the JSON-based API, this component library provides several helper objects to make access to The Imaging Source downloads as simple and quick as possible.",
@@ -7,7 +8,7 @@
 
     "type"        : "library",
 
-    "version"     : "2.0",
+    "version"     : "2.4",
 
     "license"     : "Apache-2.0",
 
@@ -19,14 +20,26 @@
         }
     ],
 
+    "minimum-stability" : "dev",
+
+    "prefer-stable"     : true,
+
     "autoload": {
-        "psr-0": {
-            "Tisd\\": "library/"
+        "psr-4": {
+                "Tisd\\": "src/"
         }
     },
 
-    "require": {
-        "php": ">=5.3.3"
+    "autoload-dev": {
+        "psr-4": {
+            "TisdTest\\": "test/"
+        }
+    },
+
+    "require" : {
+
+        "php" : "~5.3"
+
     }
 
 }
