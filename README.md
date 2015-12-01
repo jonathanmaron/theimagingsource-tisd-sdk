@@ -7,22 +7,15 @@ The Imaging Source produces a large number of [downloadable files](http://dl-gui
 
 ## Installation
 
-### Composer Install
-
-For easy installation, use Composer via Packagist.org:
+Simply add the following to your composer.json file:
 
 ```json
 "require": {
-    "theimagingsource/tisd" : "dev-master"
+    "theimagingsource/tisd" : "~2.5"
 }
 ```
 
 * https://packagist.org/packages/theimagingsource/tisd
-
-### Manual Install (without Composer)
-
-* [Download](https://github.com/jonathanmaron/theimagingsource-tisd/archive/master.zip) ZIP file and extract the contents to a directory in your project structure.
-* Include the file `/autoload_legacy.php` and all components are ready to be used.
 
 
 ## Sample Endpoints
