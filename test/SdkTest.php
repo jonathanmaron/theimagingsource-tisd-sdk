@@ -245,9 +245,111 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($result > 0);
     }
 
-    public function testGetPackages()
+    public function testGetPackagesNoParamaters()
     {
+        $result = $this->sdk->getPackages();
+
+        $this->assertTrue(is_array($result));
+
+        $this->assertArrayHasKey('children'       , $result);
+
+        $this->assertArrayHasKey('downloads'      , $result['children']);
+        $this->assertArrayHasKey('images'         , $result['children']);
+        $this->assertArrayHasKey('movies'         , $result['children']);
+        $this->assertArrayHasKey('publications'   , $result['children']);
+
+        $this->assertArrayHasKey('children'       , $result['children']['downloads']);
+
+        $this->assertArrayHasKey('drivers'        , $result['children']['downloads']['children']);
+
+        $this->assertArrayHasKey('children'       , $result['children']['downloads']['children']['drivers']);
+
+        $this->assertArrayHasKey('icwdmdcamtis'   , $result['children']['downloads']['children']['drivers']['children']);
+
+        $this->assertArrayHasKey('category_id'    , $result['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('section_id'     , $result['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('package_id'     , $result['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('unique_id'      , $result['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('locale'         , $result['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('manufacturer'   , $result['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('product_code'   , $result['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('product_code_id', $result['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('name'           , $result['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('abstract'       , $result['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('description'    , $result['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('contexts'       , $result['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('versions'       , $result['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
+
         $this->markTestSkipped();
+    }
+
+    public function testGetPackagesWithCategoryId()
+    {
+        $result = $this->sdk->getPackages('downloads');
+
+        $this->assertArrayHasKey('children'       , $result);
+
+        $this->assertArrayHasKey('drivers'        , $result['children']);
+
+        $this->assertArrayHasKey('children'       , $result['children']['drivers']);
+
+        $this->assertArrayHasKey('icwdmdcamtis'   , $result['children']['drivers']['children']);
+
+        $this->assertArrayHasKey('category_id'    , $result['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('section_id'     , $result['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('package_id'     , $result['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('unique_id'      , $result['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('locale'         , $result['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('manufacturer'   , $result['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('product_code'   , $result['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('product_code_id', $result['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('name'           , $result['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('abstract'       , $result['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('description'    , $result['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('contexts'       , $result['children']['drivers']['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('versions'       , $result['children']['drivers']['children']['icwdmdcamtis']);
+    }
+
+    public function testGetPackagesWithCategoryIdAndSectionId()
+    {
+        $result = $this->sdk->getPackages('downloads', 'drivers');
+
+        $this->assertArrayHasKey('children'       , $result);
+
+        $this->assertArrayHasKey('icwdmdcamtis'   , $result['children']);
+
+        $this->assertArrayHasKey('category_id'    , $result['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('section_id'     , $result['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('package_id'     , $result['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('unique_id'      , $result['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('locale'         , $result['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('manufacturer'   , $result['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('product_code'   , $result['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('product_code_id', $result['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('name'           , $result['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('abstract'       , $result['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('description'    , $result['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('contexts'       , $result['children']['icwdmdcamtis']);
+        $this->assertArrayHasKey('versions'       , $result['children']['icwdmdcamtis']);
+    }
+
+    public function testGetPackagesWithCategoryIdAndSectionIdAndPackageId()
+    {
+        $result = $this->sdk->getPackages('downloads', 'drivers', 'icwdmdcamtis');
+
+        $this->assertArrayHasKey('category_id'    , $result);
+        $this->assertArrayHasKey('section_id'     , $result);
+        $this->assertArrayHasKey('package_id'     , $result);
+        $this->assertArrayHasKey('unique_id'      , $result);
+        $this->assertArrayHasKey('locale'         , $result);
+        $this->assertArrayHasKey('manufacturer'   , $result);
+        $this->assertArrayHasKey('product_code'   , $result);
+        $this->assertArrayHasKey('product_code_id', $result);
+        $this->assertArrayHasKey('name'           , $result);
+        $this->assertArrayHasKey('abstract'       , $result);
+        $this->assertArrayHasKey('description'    , $result);
+        $this->assertArrayHasKey('contexts'       , $result);
+        $this->assertArrayHasKey('versions'       , $result);
     }
 
     public function testGetPackagesByProductCodes()
