@@ -4,7 +4,7 @@ namespace TisdTest\Sdk\Validator;
 
 use PHPUnit_Framework_TestCase;
 
-use Tisd\Sdk\Validator\UniqueId as TisdSdkValidatorUniqueId;
+use Tisd\Sdk\Validator\UniqueId as Validator;
 
 class UniqueIdTest extends PHPUnit_Framework_TestCase
 {
@@ -12,7 +12,7 @@ class UniqueIdTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->validator = new TisdSdkValidatorUniqueId();
+        $this->validator = new Validator();
     }
 
     protected function tearDown()
@@ -20,8 +20,10 @@ class UniqueIdTest extends PHPUnit_Framework_TestCase
         unset($this->validator);
     }
 
-    public function testComingSoon()
+    public function testIsValid()
     {
-        $this->markTestSkipped();
+        $this->assertFalse($this->validator->isValid('1111111111'));
+
+        $this->assertTrue ($this->validator->isValid('7df1a5a399'));
     }
 }

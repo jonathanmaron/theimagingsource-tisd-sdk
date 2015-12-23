@@ -4,7 +4,7 @@ namespace TisdTest\Sdk\Validator;
 
 use PHPUnit_Framework_TestCase;
 
-use Tisd\Sdk\Validator\PackageId as TisdSdkValidatorPackageId;
+use Tisd\Sdk\Validator\PackageId as Validator;
 
 class PackageIdTest extends PHPUnit_Framework_TestCase
 {
@@ -12,7 +12,7 @@ class PackageIdTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->validator = new TisdSdkValidatorPackageId();
+        $this->validator = new Validator();
     }
 
     protected function tearDown()
@@ -20,8 +20,10 @@ class PackageIdTest extends PHPUnit_Framework_TestCase
         unset($this->validator);
     }
 
-    public function testComingSoon()
+    public function testIsValid()
     {
-        $this->markTestSkipped();
+        $this->assertFalse($this->validator->isValid('invalid'));
+
+        $this->assertTrue ($this->validator->isValid('flhc12142m'));
     }
 }

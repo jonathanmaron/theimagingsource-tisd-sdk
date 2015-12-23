@@ -4,7 +4,7 @@ namespace TisdTest\Sdk\Lut;
 
 use PHPUnit_Framework_TestCase;
 
-use Tisd\Sdk\Lut\ProductCodeIdToPackage as TisdSdkLutProductCodeIdToPackage;
+use Tisd\Sdk\Lut\ProductCodeIdToPackage as Lut;
 
 class ProductCodeIdToPackageTest extends PHPUnit_Framework_TestCase
 {
