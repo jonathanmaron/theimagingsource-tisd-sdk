@@ -9,6 +9,7 @@ use Tisd\Sdk\Lut\UniqueIdToPackage as Lut;
 
 class UniqueIdToPackageTest extends PHPUnit_Framework_TestCase
 {
+
     protected $lut;
 
     protected function setUp()

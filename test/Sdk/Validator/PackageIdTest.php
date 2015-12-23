@@ -8,6 +8,7 @@ use Tisd\Sdk\Validator\PackageId as Validator;
 
 class PackageIdTest extends PHPUnit_Framework_TestCase
 {
+
     protected $validator;
 
     protected function setUp()

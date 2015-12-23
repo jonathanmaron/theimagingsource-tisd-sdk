@@ -8,6 +8,7 @@ use Tisd\Sdk\Validator\ProductCodeId as Validator;
 
 class ProductCodeIdTest extends PHPUnit_Framework_TestCase
 {
+
     protected $validator;
 
     protected function setUp()

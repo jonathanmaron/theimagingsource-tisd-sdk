@@ -8,6 +8,7 @@ use Tisd\Sdk\Defaults as TisdSdkDefaults;
 
 class DefaultsTest extends PHPUnit_Framework_TestCase
 {
+
     protected function setUp()
     {
     }

@@ -8,6 +8,7 @@ use Tisd\Sdk\Validator\UniqueId as Validator;
 
 class UniqueIdTest extends PHPUnit_Framework_TestCase
 {
+
     protected $validator;
 
     protected function setUp()

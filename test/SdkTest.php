@@ -3,6 +3,7 @@
 namespace TisdTest\Sdk;
 
 use PHPUnit_Framework_TestCase;
+
 use Tisd\Sdk;
 use Tisd\Sdk\Cache;
 use Tisd\Defaults;
@@ -26,6 +27,10 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->sdk->getCache()->purge();
 
         $this->sdk->getCache()->setTtl(0);
+
+        $actual = $this->sdk->getPackages();
+
+        $this->assertTrue(is_array($actual));
     }
 
     public function testConstruct()
@@ -210,6 +215,8 @@ class SdkTest extends PHPUnit_Framework_TestCase
 
     public function GetPackageByProductCodeInvalidProductCode()
     {
+        $this->sdk->getCache()->purge();
+
         $actual = $this->sdk->getPackageByProductCode('INVALID PRODUCT CODE');
 
         $this->assertNull($actual);

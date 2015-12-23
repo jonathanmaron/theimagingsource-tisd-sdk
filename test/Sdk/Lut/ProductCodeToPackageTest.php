@@ -8,6 +8,7 @@ use Tisd\Sdk\Lut\ProductCodeToPackage as Lut;
 
 class ProductCodeToPackageTest extends PHPUnit_Framework_TestCase
 {
+
     protected $lut;
 
     protected function setUp()
