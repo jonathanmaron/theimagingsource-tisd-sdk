@@ -354,7 +354,10 @@ class SdkTest extends PHPUnit_Framework_TestCase
 
     public function testGetPackagesByProductCodes()
     {
-        $this->markTestSkipped();
+        $result = $this->sdk->getPackagesByProductCodes(['IC WDM DCAM TIS','IC WDM GIGE TIS','IC WDM 878 TIS']);
+
+        var_dump($result);
+        exit();
     }
 
     public function testGetPackagesByProductCodeSearch()
