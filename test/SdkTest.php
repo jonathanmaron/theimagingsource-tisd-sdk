@@ -21,9 +21,11 @@ class SdkTest extends PHPUnit_Framework_TestCase
         unset($this->sdk);
     }
 
-    public function testPurgeCacheOnce()
+    public function testPurgeAndWithDisabledCache()
     {
         $this->sdk->getCache()->purge();
+
+        $this->sdk->getCache()->setTtl(0);
     }
 
     public function testConstruct()
