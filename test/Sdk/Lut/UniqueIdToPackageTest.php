@@ -23,32 +23,32 @@ class UniqueIdToPackageTest extends PHPUnit_Framework_TestCase
 
     public function testGetValues()
     {
-        $result = $this->lut->getValues();
+        $actual = $this->lut->getValues();
 
-        $this->assertTrue(is_array($result));
+        $this->assertTrue(is_array($actual));
 
-        $this->assertArrayHasKey('10503db497', $result);
+        $this->assertArrayHasKey('10503db497', $actual);
     }
 
     public function testGetKeys()
     {
-        $result = $this->lut->getKeys();
+        $actual = $this->lut->getKeys();
 
-        $this->assertTrue(is_array($result));
+        $this->assertTrue(is_array($actual));
 
-        $this->assertContains('6025d93a03', $result);
-        $this->assertContains('6686718ea3'  , $result);
+        $this->assertContains('6025d93a03', $actual);
+        $this->assertContains('6686718ea3'  , $actual);
 
     }
 
     public function testGetValue()
     {
-        $result = $this->lut->getValue('10503db497');
+        $actual = $this->lut->getValue('10503db497');
 
-        $this->assertTrue(is_array($result));
+        $this->assertTrue(is_array($actual));
 
-        $this->assertArrayHasKey('unique_id', $result);
-        $this->assertArrayHasKey('versions' , $result);
+        $this->assertArrayHasKey('unique_id', $actual);
+        $this->assertArrayHasKey('versions' , $actual);
     }
 
 }

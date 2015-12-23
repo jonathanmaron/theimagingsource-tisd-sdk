@@ -22,32 +22,32 @@ class ProductCodeToPackageTest extends PHPUnit_Framework_TestCase
 
     public function testGetValues()
     {
-        $result = $this->lut->getValues();
+        $actual = $this->lut->getValues();
 
-        $this->assertTrue(is_array($result));
+        $this->assertTrue(is_array($actual));
 
-        $this->assertArrayHasKey('IC WDM GIGE TIS', $result);
+        $this->assertArrayHasKey('IC WDM GIGE TIS', $actual);
     }
 
     public function testGetKeys()
     {
-        $result = $this->lut->getKeys();
+        $actual = $this->lut->getKeys();
 
-        $this->assertTrue(is_array($result));
+        $this->assertTrue(is_array($actual));
 
-        $this->assertContains('IC WDM V2F TIS', $result);
-        $this->assertContains('IC Measure'  , $result);
+        $this->assertContains('IC WDM V2F TIS', $actual);
+        $this->assertContains('IC Measure'  , $actual);
 
     }
 
     public function testGetValue()
     {
-        $result = $this->lut->getValue('IC Measure');
+        $actual = $this->lut->getValue('IC Measure');
 
-        $this->assertTrue(is_array($result));
+        $this->assertTrue(is_array($actual));
 
-        $this->assertArrayHasKey('unique_id', $result);
-        $this->assertArrayHasKey('versions' , $result);
+        $this->assertArrayHasKey('unique_id', $actual);
+        $this->assertArrayHasKey('versions' , $actual);
     }
 
 }
