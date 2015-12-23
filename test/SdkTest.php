@@ -50,7 +50,11 @@ class SdkTest extends PHPUnit_Framework_TestCase
 
     public function testSetAndGetContext()
     {
-        $this->markTestSkipped();
+        $this->sdk->setContext(Defaults::CONTEXT_MACHINE_VISION);
+
+        $actual = $this->sdk->getContext();
+
+        $this->assertEquals(Defaults::CONTEXT_MACHINE_VISION, $actual);
     }
 
     public function testSetAndGetContexts()
