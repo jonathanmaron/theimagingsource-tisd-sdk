@@ -115,11 +115,11 @@ class SdkTest extends PHPUnit_Framework_TestCase
 
     public function testSetAndGetLocale()
     {
-        $this->sdk->setLocale('fr_FR');
+        $this->sdk->setLocale(Defaults::LOCALE);
 
         $actual = $this->sdk->getLocale();
 
-        $this->assertEquals('fr_FR', $actual);
+        $this->assertEquals(Defaults::LOCALE, $actual);
     }
 
     public function testSetAndGetLocales()
