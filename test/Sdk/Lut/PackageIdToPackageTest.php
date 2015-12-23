@@ -20,8 +20,34 @@ class PackageIdToPackageTest extends PHPUnit_Framework_TestCase
         unset($this->lut);
     }
 
-    public function testComingSoon()
+    public function testGetValues()
     {
-        $this->markTestSkipped();
+        $result = $this->lut->getValues();
+
+        $this->assertTrue(is_array($result));
+
+        $this->assertArrayHasKey('icwdmdcamtis', $result);
     }
+
+    public function testGetKeys()
+    {
+        $result = $this->lut->getKeys();
+
+        $this->assertTrue(is_array($result));
+
+        $this->assertContains('icwdm1394btis', $result);
+        $this->assertContains('icwdm878tis'  , $result);
+
+    }
+
+    public function testGetValue()
+    {
+        $result = $this->lut->getValue('icwdm1394btis');
+
+        $this->assertTrue(is_array($result));
+
+        $this->assertArrayHasKey('unique_id', $result);
+        $this->assertArrayHasKey('versions' , $result);
+    }
+
 }
