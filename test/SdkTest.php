@@ -35,6 +35,7 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $actual = $this->sdk->getBuildTime();
 
         $this->assertTrue(is_numeric($actual));
+
         $this->assertTrue($actual > 1450183000);
     }
 
@@ -43,9 +44,13 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->markTestSkipped();
     }
 
-    public function testSetAndGetCategoryCount()
+    public function testGetCategoryCount()
     {
-        $this->markTestSkipped();
+        $result = $this->sdk->getCategoryCount();
+
+        $this->assertTrue(is_numeric($result));
+
+        $this->assertTrue($result > 3);
     }
 
     public function testSetAndGetContext()
@@ -57,9 +62,14 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(Defaults::CONTEXT_MACHINE_VISION, $actual);
     }
 
-    public function testSetAndGetContexts()
+    public function testGetContexts()
     {
-        $this->markTestSkipped();
+        $result = $this->sdk->getContexts();
+
+        $this->assertTrue(is_array($result));
+
+        $this->assertContains(Defaults::CONTEXT_MACHINE_VISION, $result);
+        $this->assertContains(Defaults::CONTEXT_ASTRONOMY, $result);
     }
 
     public function testSetAndGetHostname()
@@ -102,7 +112,7 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->markTestSkipped();
     }
 
-    public function testSetAndGetPackageByPackageId()
+    public function testGetPackageByPackageId()
     {
         $result = $this->sdk->getPackageByPackageId('icwdmdcamtis');
 
@@ -133,7 +143,7 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('pph'            , $version);
     }
 
-    public function testSetAndGetPackageByProductCode()
+    public function testGetPackageByProductCode()
     {
         $result = $this->sdk->getPackageByProductCode('IC WDM DCAM TIS');
 
@@ -164,7 +174,7 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('pph'            , $version);
     }
 
-    public function testSetAndGetPackageByProductCodeId()
+    public function testGetPackageByProductCodeId()
     {
         $result = $this->sdk->getPackageByProductCodeId('icwdmdcamtis');
 
@@ -195,7 +205,7 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('pph'            , $version);
     }
 
-    public function testSetAndGetPackageByUniqueId()
+    public function testGetPackageByUniqueId()
     {
         $result = $this->sdk->getPackageByUniqueId('1ae6bab1d1');
 
@@ -226,7 +236,7 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('pph'            , $version);
     }
 
-    public function testSetAndGetPackageCount()
+    public function testGetPackageCount()
     {
         $result = $this->sdk->getPackageCount('1ae6bab1d1');
 
@@ -235,24 +245,28 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($result > 0);
     }
 
-    public function testSetAndGetPackages()
+    public function testGetPackages()
     {
         $this->markTestSkipped();
     }
 
-    public function testSetAndGetPackagesByProductCodes()
+    public function testGetPackagesByProductCodes()
     {
         $this->markTestSkipped();
     }
 
-    public function testSetAndGetPackagesByProductCodeSearch()
+    public function testGetPackagesByProductCodeSearch()
     {
         $this->markTestSkipped();
     }
 
-    public function testSetAndGetSectionCount()
+    public function testGetSectionCount()
     {
-        $this->markTestSkipped();
+        $result = $this->sdk->getSectionCount();
+
+        $this->assertTrue(is_numeric($result));
+
+        $this->assertTrue($result > 30);
     }
 
     public function testSetAndGetTimeout()
@@ -263,7 +277,6 @@ class SdkTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(Defaults::TIMEOUT, $actual);
     }
-
 
     public function testSetAndGetVersion()
     {
