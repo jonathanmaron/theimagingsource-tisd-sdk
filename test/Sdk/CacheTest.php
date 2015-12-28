@@ -27,7 +27,6 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $expected = sprintf('%s/tisd_sdk_cache_aaa_%s.php', sys_get_temp_dir(), $this->cache->getUser());
 
         $this->assertEquals($actual, $expected);
-
     }
 
     public function testGetId()
@@ -57,7 +56,8 @@ class CacheTest extends PHPUnit_Framework_TestCase
 
     public function testPurge()
     {
-        $sdk = new Sdk();
+        $sdk = new Sdk();       // ensure there is something in the cache
+                                // so that it can be purged, and return true
         $sdk->getPackages();
 
         $this->assertTrue($sdk->getCache()->purge());

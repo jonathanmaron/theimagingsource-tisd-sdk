@@ -52,11 +52,6 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(Defaults::TIMEOUT                , $sdk->getTimeout());
     }
 
-    public function testBuildUrl()
-    {
-        $this->markTestSkipped();
-    }
-
     public function testFilterPackages()
     {
         $this->markTestSkipped();
@@ -148,7 +143,14 @@ class SdkTest extends PHPUnit_Framework_TestCase
 
     public function testSetAndGetMeta()
     {
-        $this->markTestSkipped();
+        $actual = $this->sdk->getMeta();
+
+        $this->assertArrayHasKey('category', $actual);
+        $this->assertArrayHasKey('section' , $actual);
+        $this->assertArrayHasKey('package' , $actual);
+        $this->assertArrayHasKey('total'   , $actual);
+        $this->assertArrayHasKey('build'   , $actual);
+
     }
 
     public function testGetPackageByPackageId()
@@ -328,7 +330,6 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('contexts'       , $actual['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
         $this->assertArrayHasKey('versions'       , $actual['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
 
-        $this->markTestSkipped();
     }
 
     public function testGetPackagesWithCategoryId()
@@ -555,16 +556,6 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $actual = $this->sdk->getVersion();
 
         $this->assertEquals(Defaults::VERSION, $actual);
-    }
-
-    public function testQueryUrl()
-    {
-        $this->markTestSkipped();
-    }
-
-    public function testRequestUrl()
-    {
-        $this->markTestSkipped();
     }
 
 }
