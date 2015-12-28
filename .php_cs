@@ -11,7 +11,7 @@ $config = new Symfony\CS\Config\Config();
 $config->getFinder()
         ->exclude('vendor')
         ->exclude('test')
-        ->exclude('test-coverage')
+        ->exclude('build')
         ->in(__DIR__);
 
 return $config->level(Symfony\CS\FixerInterface::PSR2_LEVEL)
