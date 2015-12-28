@@ -22,17 +22,22 @@ class AbstractLut
         $packages = $this->getSdk()->getPackages();
 
         foreach ($packages['children'] as $categories) {
+
             foreach ($categories['children'] as $sections) {
+                
                 foreach ($sections['children'] as $package) {
+
                     if (!isset($package[$keyName])) {
                         throw new RuntimeException("The '{$keyName}' does not exist in the package.");
                     }
+
                     $key = $package[$keyName];
+
                     if (isset($ret[$key])) {
                         throw new RuntimeException("The '{$keyName}' is not unique in the LUT. The offending key is '{$key}'.");
-                    } else {
-                        $ret[$key] = $package;
                     }
+
+                    $ret[$key] = $package;
                 }
             }
         }
