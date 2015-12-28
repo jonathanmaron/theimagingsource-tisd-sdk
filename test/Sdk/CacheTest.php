@@ -29,9 +29,20 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $this->markTestSkipped();
     }
 
-    public function testGetUser()
+    public function testGetUserCli()
     {
-        $this->markTestSkipped();
+        $expected = trim(getenv('LOGNAME'));
+
+        $this->assertEquals($expected, $this->cache->getUser());
+    }
+
+    public function testGetUserApache()
+    {
+        putenv("APACHE_RUN_USER=apache-user");
+
+        $expected = trim(getenv('APACHE_RUN_USER'));
+
+        $this->assertEquals($expected, $this->cache->getUser());
     }
 
     public function testPurge()
@@ -46,12 +57,24 @@ class CacheTest extends PHPUnit_Framework_TestCase
 
     public function testSetAndGetPath()
     {
-        $this->markTestSkipped();
+        $expected = sys_get_temp_dir() . '/test';
+
+        $this->cache->setPath($expected);
+
+        $actual = $this->cache->getPath();
+
+        $this->assertEquals($expected, $actual);
     }
 
     public function testSetAndGetTtl()
     {
-        $this->markTestSkipped();
+        $expected = 100;
+
+        $this->cache->setTtl($expected);
+
+        $actual = $this->cache->getTtl();
+
+        $this->assertEquals($expected, $actual);
     }
 
     public function testWrite()
