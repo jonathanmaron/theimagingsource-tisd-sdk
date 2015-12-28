@@ -1,6 +1,7 @@
-![The Imaging Source](http://www.theimagingsource.com/img/tis_logo.png)
-
 [![Build Status](https://travis-ci.org/jonathanmaron/theimagingsource-tisd.svg)](https://travis-ci.org/jonathanmaron/theimagingsource-tisd)
+
+
+![The Imaging Source](http://www.theimagingsource.com/img/tis_logo.png)
 
 # The Imaging Source Downloads SDK
 
@@ -9,13 +10,11 @@ The Imaging Source produces a large number of [downloadable files](http://dl-gui
 
 ## Installation
 
-Simply add the following to your composer.json file:
+Composer is the only supported method of installation.
 
-```json
-"require": {
-    "theimagingsource/tisd" : "~2.5"
-}
-```
+Once composer is globally installed, simply execute:
+
+```composer require theimagingsource/tisd ~2.5```
 
 And then execute:
 
