@@ -4,7 +4,6 @@ namespace Tisd\Sdk\Exception;
 
 class RuntimeException extends \RuntimeException implements ExceptionInterface
 {
-
     protected $usage = '';
 
     public function __construct($message, $usage = '')
@@ -18,5 +17,4 @@ class RuntimeException extends \RuntimeException implements ExceptionInterface
     {
         return $this->usage;
     }
-
 }

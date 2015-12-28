@@ -4,21 +4,19 @@ namespace Tisd;
 
 use Tisd\Sdk\Cache as TisdSdkCache;
 
-
 class Sdk
 {
-
     protected $cache;
 
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
-        $optionKeys = array (
+        $optionKeys = [
             'locale',
             'context',
             'hostname',
             'version',
             'timeout',
-        );
+        ];
 
         foreach ($optionKeys as $optionKey) {
             if (isset($options[$optionKey])) {
@@ -45,14 +43,11 @@ class Sdk
             $ret = $this->getCache()->read($cacheId);
 
             if (false === $ret) {
-
                 $ret = $this->requestUrl($url);
 
                 $this->getCache()->write($cacheId, $ret);
             }
-
         } else {
-
             $ret = $this->requestUrl($url);
         }
 
@@ -61,13 +56,13 @@ class Sdk
 
     protected function requestUrl($url)
     {
-        $context = stream_context_create(
-                array(
-                    'http' => array(
-                        'timeout' => $this->getTimeout(),
-                    )
-                )
-        );
+        $options = [
+            'http' => [
+                'timeout' => $this->getTimeout(),
+            ],
+        ];
+
+        $context = stream_context_create($options);
 
         $ret = file_get_contents($url, false, $context);
         $ret = json_decode($ret, true);
@@ -77,10 +72,7 @@ class Sdk
 
     protected function buildUrl($fragment)
     {
-        $ret = sprintf('http://%s/api/%s%s'
-                , $this->getHostname()
-                , $this->getVersion()
-                , $fragment);
+        $ret = sprintf('http://%s/api/%s%s', $this->getHostname(), $this->getVersion(), $fragment);
 
         return $ret;
     }
@@ -89,8 +81,7 @@ class Sdk
 
     public function getMeta()
     {
-        $fragment = sprintf('/meta/%s.json'
-                , $this->getLocale());
+        $fragment = sprintf('/meta/%s.json', $this->getLocale());
 
         return $this->queryUrl($fragment);
     }
@@ -156,7 +147,6 @@ class Sdk
                     }
                 }
             }
-            
         }
 
         return $array;
@@ -168,30 +158,13 @@ class Sdk
     public function getPackages($categoryId = null, $sectionId = null, $packageId = null)
     {
         if (null !== $categoryId && null !== $sectionId && null !== $packageId) {
-
-            $fragment = sprintf('/packages/%s/%s/%s/%s.json'
-                    , $categoryId
-                    , $sectionId
-                    , $packageId
-                    , $this->getLocale());
-
+            $fragment = sprintf('/packages/%s/%s/%s/%s.json', $categoryId, $sectionId, $packageId, $this->getLocale());
         } elseif (null !== $categoryId && null !== $sectionId) {
-
-            $fragment = sprintf('/packages/%s/%s/%s.json'
-                    , $categoryId
-                    , $sectionId
-                    , $this->getLocale());
-
+            $fragment = sprintf('/packages/%s/%s/%s.json', $categoryId, $sectionId, $this->getLocale());
         } elseif (null !== $categoryId) {
-
-            $fragment = sprintf('/packages/%s/%s.json'
-                    , $categoryId
-                    , $this->getLocale());
-
+            $fragment = sprintf('/packages/%s/%s.json', $categoryId, $this->getLocale());
         } else {
-
-            $fragment = sprintf('/packages/%s.json'
-                    , $this->getLocale());
+            $fragment = sprintf('/packages/%s.json', $this->getLocale());
         }
 
         $packages = $this->queryUrl($fragment);
@@ -203,26 +176,21 @@ class Sdk
 
     public function getPackageByUniqueId($uniqueId)
     {
-        $fragment = sprintf('/get-package-by-unique-id/%s.json'
-                , $uniqueId);
+        $fragment = sprintf('/get-package-by-unique-id/%s.json', $uniqueId);
 
         return $this->queryUrl($fragment);
     }
 
     public function getPackageByProductCodeId($productCodeId)
     {
-        $fragment = sprintf('/get-package-by-product-code-id/%s/%s.json'
-                , $productCodeId
-                , $this->getLocale());
+        $fragment = sprintf('/get-package-by-product-code-id/%s/%s.json', $productCodeId, $this->getLocale());
 
         return $this->queryUrl($fragment);
     }
 
     public function getPackageByPackageId($packageId)
     {
-        $fragment = sprintf('/get-package-by-package-id/%s/%s.json'
-                , $packageId
-                , $this->getLocale());
+        $fragment = sprintf('/get-package-by-package-id/%s/%s.json', $packageId, $this->getLocale());
 
         return $this->queryUrl($fragment);
     }
@@ -302,8 +270,7 @@ class Sdk
 
     public function getContexts()
     {
-        $fragment = sprintf('/contexts/%s.json'
-                , $this->getLocale());
+        $fragment = sprintf('/contexts/%s.json', $this->getLocale());
 
         return $this->queryUrl($fragment);
     }
@@ -338,7 +305,6 @@ class Sdk
         return Defaults::getLocale();
     }
 
-
     public function setHostname($hostname)
     {
         Defaults::setHostname($hostname);
@@ -350,7 +316,6 @@ class Sdk
     {
         return Defaults::getHostname();
     }
-
 
     public function setVersion($version)
     {
@@ -364,7 +329,6 @@ class Sdk
         return Defaults::getVersion();
     }
 
-
     public function setTimeout($timeout)
     {
         Defaults::setTimeout($timeout);
@@ -376,7 +340,6 @@ class Sdk
     {
         return Defaults::getTimeout();
     }
-
 
     public function setContext($context)
     {
@@ -391,8 +354,4 @@ class Sdk
     }
 
     // --------------------------------------------------------------------------------
-
 }
-
-
-

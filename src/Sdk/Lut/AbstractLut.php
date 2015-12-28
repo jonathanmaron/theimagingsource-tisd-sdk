@@ -2,23 +2,22 @@
 
 namespace Tisd\Sdk\Lut;
 
-use Tisd\Sdk\Exception\RuntimeException as RuntimeException;
 use Tisd\Sdk;
+use Tisd\Sdk\Exception\RuntimeException as RuntimeException;
 
 class AbstractLut
 {
-
     protected $sdk;
     protected $lut;
 
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->setSdk(new Sdk($options));
     }
 
     protected function buildLut($keyName)
     {
-        $ret = array();
+        $ret = [];
 
         $packages = $this->getSdk()->getPackages();
 
@@ -73,5 +72,4 @@ class AbstractLut
     {
         return $this->sdk;
     }
-
 }

@@ -15,7 +15,13 @@ Simply add the following to your composer.json file:
 }
 ```
 
-* https://packagist.org/packages/theimagingsource/tisd
+And then execute:
+
+```composer install```
+
+or (for an optimized autoload map):
+ 
+```composer install --optimize-autoloader```
 
 
 ## Sample Endpoints

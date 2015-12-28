@@ -4,12 +4,10 @@ namespace Tisd\Sdk\Validator;
 
 class AbstractValidator
 {
-
     protected $lut;
 
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
-
     }
 
     public function isValid($value)
@@ -34,5 +32,4 @@ class AbstractValidator
     {
         return $this->lut;
     }
-
 }

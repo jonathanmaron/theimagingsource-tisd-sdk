@@ -4,12 +4,10 @@ namespace Tisd\Sdk\Lut;
 
 class ProductCodeToPackage extends AbstractLut
 {
-
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         parent::__construct($options);
 
         $this->lut = $this->buildLut('product_code');
     }
-
 }

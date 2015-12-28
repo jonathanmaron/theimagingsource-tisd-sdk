@@ -1,12 +1,10 @@
 <?php
 
-include_once __DIR__ . '/common.php';
-
+require __DIR__ . '/../vendor/autoload.php';
 
 use Tisd\Sdk as TisdSdk;
 
-
-$sdk = new TisdSdk(array('locale' => 'de_DE'));
+$sdk = new TisdSdk(['locale' => 'de_DE']);
 
 $sdk->getCache()->purge();
 
@@ -27,7 +25,7 @@ $sdk->getPackages();
 $sdk->getPackages('downloads');
 $sdk->getPackages('downloads', 'enduser');
 $sdk->getPackages('downloads', 'enduser', 'iccapture');
-$sdk->getPackagesByProductCodes(array('IC WDM 1394b TIS', 'ICPresenter', 'Scan2Docx OCR'));
+$sdk->getPackagesByProductCodes(['IC WDM 1394b TIS', 'ICPresenter', 'Scan2Docx OCR']);
 
 $sdk->getPackageByProductCode('SKYRIS FW');
 $sdk->getPackageByUniqueId('69a5d3c60f');
@@ -37,7 +35,6 @@ $sdk->getPackageByPackageId('iccapture');
 $sdk->getUniqueIdToPackageLut();
 $sdk->getProductCodeIdToPackageLut();
 $sdk->getPackageIdToPackageLut();
-
 
 $package = $sdk->getPackageByPackageId('footswitch');
 
@@ -49,3 +46,4 @@ foreach ($package['versions'] as $version) {
 }
 
 //$sdk->getCache()->purge();
+

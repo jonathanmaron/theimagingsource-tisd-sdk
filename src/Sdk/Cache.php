@@ -2,10 +2,8 @@
 
 namespace Tisd\Sdk;
 
-
 class Cache
 {
-
     const DEFAULT_TTL = 86400;
 
     protected $path;
@@ -81,11 +79,7 @@ class Cache
         $cachePrefix = str_replace('\\', '_', __CLASS__);
         $cachePrefix = strtolower($cachePrefix);
 
-        $ret = sprintf('%s/%s_%s_%s.php'
-                , $this->getPath()
-                , $cachePrefix
-                , $cacheId
-                , $user);
+        $ret = sprintf('%s/%s_%s_%s.php', $this->getPath(), $cachePrefix, $cacheId, $user);
 
         return $ret;
     }
@@ -134,5 +128,4 @@ class Cache
     {
         return $this->ttl;
     }
-
 }

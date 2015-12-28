@@ -4,7 +4,6 @@ namespace Tisd;
 
 class Defaults
 {
-
     const HOSTNAME_DEVELOPMENT   = 'dl.theimagingsource.com.dev';
     const HOSTNAME_PRODUCTION    = 'dl.theimagingsource.com';
 
@@ -19,13 +18,11 @@ class Defaults
     const CONTEXT_SCAN2DOCX      = 'scan2docx';
     const CONTEXT_SCAN2VOICE     = 'scan2voice';
 
-
-    protected static $locale = null;
-    protected static $context = null;
+    protected static $locale   = null;
+    protected static $context  = null;
     protected static $hostname = null;
-    protected static $version = null;
-    protected static $timeout = null;
-
+    protected static $version  = null;
+    protected static $timeout  = null;
 
     public static function setLocale($locale)
     {
@@ -41,7 +38,6 @@ class Defaults
         return self::$locale;
     }
 
-
     public static function setContext($context)
     {
         // there is no default context
@@ -54,7 +50,6 @@ class Defaults
         return self::$context;
     }
 
-
     public static function setHostname($hostname)
     {
         self::$hostname = $hostname;
@@ -64,9 +59,10 @@ class Defaults
     {
         if (null === self::$hostname) {
 
-            $hostname = gethostbyname(trim(`hostname`));
+            $host = gethostname();
+            $ip   = gethostbyname($host);
 
-            if ('192.168' === substr($hostname, 0, 7)) {
+            if ('192.168' === substr($ip, 0, 7)) {
                 $hostname = self::HOSTNAME_DEVELOPMENT;
             } else {
                 $hostname = self::HOSTNAME_PRODUCTION;
@@ -77,7 +73,6 @@ class Defaults
 
         return self::$hostname;
     }
-
 
     public static function setVersion($version)
     {
@@ -93,7 +88,6 @@ class Defaults
         return self::$version;
     }
 
-
     public static function setTimeout($timeout)
     {
         self::$timeout = $timeout;
@@ -107,6 +101,4 @@ class Defaults
 
         return self::$timeout;
     }
-
-
 }
