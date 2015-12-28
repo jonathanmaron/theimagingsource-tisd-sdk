@@ -121,7 +121,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
 
     protected function generateRandomCacheId()
     {
-        $cacheId  = hash('sha256', rand(0, 9999999999));
+        $cacheId = hash('sha256', rand(0, 9999999999));
 
         return $cacheId;
     }

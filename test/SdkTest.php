@@ -52,11 +52,6 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(Defaults::TIMEOUT                , $sdk->getTimeout());
     }
 
-    public function testFilterPackages()
-    {
-        $this->markTestSkipped();
-    }
-
     public function testSetAndGetBuildTime()
     {
         $actual = $this->sdk->getBuildTime();
@@ -75,7 +70,6 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $actual = $this->sdk->getCache();
 
         $this->assertEquals($cache, $actual);
-
     }
 
     public function testGetCategoryCount()

@@ -43,10 +43,12 @@ class Sdk
             $ret = $this->getCache()->read($cacheId);
 
             if (false === $ret) {
+
                 $ret = $this->requestUrl($url);
 
                 $this->getCache()->write($cacheId, $ret);
             }
+
         } else {
             $ret = $this->requestUrl($url);
         }
