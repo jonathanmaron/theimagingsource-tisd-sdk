@@ -4,6 +4,7 @@ namespace TisdTest\Sdk;
 
 use PHPUnit_Framework_TestCase;
 use Tisd\Sdk\Cache;
+use Tisd\Sdk;
 
 class CacheTest extends PHPUnit_Framework_TestCase
 {
@@ -56,7 +57,10 @@ class CacheTest extends PHPUnit_Framework_TestCase
 
     public function testPurge()
     {
-        $this->assertTrue($this->cache->purge());
+        $sdk = new Sdk();
+        $sdk->getPackages();
+
+        $this->assertTrue($sdk->getCache()->purge());
     }
 
     public function testRead()
