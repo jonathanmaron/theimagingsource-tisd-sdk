@@ -21,12 +21,21 @@ class CacheTest extends PHPUnit_Framework_TestCase
 
     public function testGetFilename()
     {
-        $this->markTestSkipped();
+        $actual   = $this->cache->getFilename('aaa');
+
+        $expected = sprintf('%s/tisd_sdk_cache_aaa_%s.php', sys_get_temp_dir(), $this->cache->getUser());
+
+        $this->assertEquals($actual, $expected);
+
     }
 
     public function testGetId()
     {
-        $this->markTestSkipped();
+        $actual   = $this->cache->getId('http://www.example.com');
+
+        $expected = '2108db1a141c956f945ad83ec87cc8d82990a2465bc00c904536c441eb0eb8ab';
+
+        $this->assertEquals($actual, $expected);
     }
 
     public function testGetUserCli()
@@ -47,12 +56,19 @@ class CacheTest extends PHPUnit_Framework_TestCase
 
     public function testPurge()
     {
-        $this->markTestSkipped();
+        $this->assertTrue($this->cache->purge());
     }
 
     public function testRead()
     {
-        $this->markTestSkipped();
+        $cacheId  = $this->generateRandomCacheId();
+        $expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        $this->cache->write($cacheId, $expected);
+
+        $actual = $this->cache->read($cacheId);
+
+        $this->assertEquals($expected, $actual);
     }
 
     public function testSetAndGetPath()
@@ -79,12 +95,17 @@ class CacheTest extends PHPUnit_Framework_TestCase
 
     public function testWrite()
     {
-        $this->markTestSkipped();
+        $cacheId = $this->generateRandomCacheId();
+        $data    = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        $ret = $this->cache->write($cacheId, $data);
+
+        $this->assertTrue(is_integer($ret));
     }
 
     public function testWriteUnlinkFile()
     {
-        $cacheId = 'cache-id';
+        $cacheId = $this->generateRandomCacheId();
         $data    = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         $ret1 = $this->cache->write($cacheId, $data);
@@ -92,6 +113,13 @@ class CacheTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue(is_integer($ret1));
         $this->assertTrue(is_integer($ret2));
+    }
+
+    protected function generateRandomCacheId()
+    {
+        $cacheId  = hash('sha256', rand(0, 9999999999));
+
+        return $cacheId;
     }
 
 }

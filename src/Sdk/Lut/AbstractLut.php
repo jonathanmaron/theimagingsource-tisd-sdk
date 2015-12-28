@@ -24,7 +24,7 @@ class AbstractLut
         foreach ($packages['children'] as $categories) {
 
             foreach ($categories['children'] as $sections) {
-                
+
                 foreach ($sections['children'] as $package) {
 
                     if (!isset($package[$keyName])) {

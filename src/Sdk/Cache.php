@@ -61,13 +61,17 @@ class Cache
 
     public function purge($user = null)
     {
+        $ret = null;
+
         if (null === $user) {
             $user = $this->getUser();
         }
 
         foreach (glob($this->getFilename('*', $user)) as $filename) {
-            unlink($filename);
+            $ret = unlink($filename);
         }
+
+        return $ret;
     }
 
     public function getFilename($cacheId, $user = null)
