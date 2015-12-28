@@ -3,7 +3,6 @@
 namespace TisdTest\Sdk\Validator;
 
 use PHPUnit_Framework_TestCase;
-
 use Tisd\Sdk\Validator\ProductCodeId as Validator;
 
 class ProductCodeIdTest extends PHPUnit_Framework_TestCase
@@ -25,6 +24,6 @@ class ProductCodeIdTest extends PHPUnit_Framework_TestCase
     {
         $this->assertFalse($this->validator->isValid('invalid'));
 
-        $this->assertTrue ($this->validator->isValid('flhc12142m'));
+        $this->assertTrue($this->validator->isValid('flhc12142m'));
     }
 }

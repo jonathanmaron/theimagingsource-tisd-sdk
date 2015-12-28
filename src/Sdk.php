@@ -156,7 +156,6 @@ class Sdk
 
     // --------------------------------------------------------------------------------
 
-
     public function getPackages($categoryId = null, $sectionId = null, $packageId = null)
     {
         if (null !== $categoryId && null !== $sectionId && null !== $packageId) {

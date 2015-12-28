@@ -3,8 +3,8 @@
 namespace TisdTest\Sdk;
 
 use PHPUnit_Framework_TestCase;
-use Tisd\Sdk\Cache;
 use Tisd\Sdk;
+use Tisd\Sdk\Cache;
 
 class CacheTest extends PHPUnit_Framework_TestCase
 {
@@ -22,7 +22,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
 
     public function testGetFilename()
     {
-        $actual   = $this->cache->getFilename('aaa');
+        $actual = $this->cache->getFilename('aaa');
 
         $expected = sprintf('%s/tisd_sdk_cache_aaa_%s.php', sys_get_temp_dir(), $this->cache->getUser());
 
@@ -31,7 +31,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
 
     public function testGetId()
     {
-        $actual   = $this->cache->getId('http://www.example.com');
+        $actual = $this->cache->getId('http://www.example.com');
 
         $expected = '2108db1a141c956f945ad83ec87cc8d82990a2465bc00c904536c441eb0eb8ab';
 
@@ -65,7 +65,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
 
     public function testRead()
     {
-        $cacheId  = $this->generateRandomCacheId();
+        $cacheId = $this->generateRandomCacheId();
         $expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         $this->cache->write($cacheId, $expected);
@@ -100,7 +100,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
     public function testWrite()
     {
         $cacheId = $this->generateRandomCacheId();
-        $data    = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        $data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         $ret = $this->cache->write($cacheId, $data);
 
@@ -110,7 +110,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
     public function testWriteUnlinkFile()
     {
         $cacheId = $this->generateRandomCacheId();
-        $data    = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        $data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         $ret1 = $this->cache->write($cacheId, $data);
         $ret2 = $this->cache->write($cacheId, $data);

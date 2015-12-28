@@ -3,7 +3,6 @@
 namespace TisdTest\Sdk\Lut;
 
 use PHPUnit_Framework_TestCase;
-
 use Tisd\Sdk\Lut\PackageIdToPackage as Lut;
 
 class PackageIdToPackageTest extends PHPUnit_Framework_TestCase
@@ -37,7 +36,7 @@ class PackageIdToPackageTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($actual));
 
         $this->assertContains('icwdm1394btis', $actual);
-        $this->assertContains('icwdm878tis'  , $actual);
+        $this->assertContains('icwdm878tis', $actual);
 
     }
 
@@ -48,7 +47,7 @@ class PackageIdToPackageTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($actual));
 
         $this->assertArrayHasKey('unique_id', $actual);
-        $this->assertArrayHasKey('versions' , $actual);
+        $this->assertArrayHasKey('versions', $actual);
     }
 
 }

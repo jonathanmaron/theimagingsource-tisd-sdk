@@ -3,7 +3,6 @@
 namespace TisdTest\Sdk\Exception;
 
 use PHPUnit_Framework_TestCase;
-
 use Tisd\Sdk\Exception\InvalidArgumentException;
 
 class InvalidArgumentExceptionTest extends PHPUnit_Framework_TestCase

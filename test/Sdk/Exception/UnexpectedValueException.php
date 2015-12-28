@@ -3,7 +3,6 @@
 namespace TisdTest\Sdk\Exception;
 
 use PHPUnit_Framework_TestCase;
-
 use Tisd\Sdk\Exception\UnexpectedValueException;
 
 class UnexpectedValueExceptionTest extends PHPUnit_Framework_TestCase

@@ -3,7 +3,6 @@
 namespace TisdTest\Sdk\Lut;
 
 use PHPUnit_Framework_TestCase;
-
 use Tisd\Sdk\Lut\ProductCodeToPackage as Lut;
 
 class ProductCodeToPackageTest extends PHPUnit_Framework_TestCase
@@ -37,7 +36,7 @@ class ProductCodeToPackageTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($actual));
 
         $this->assertContains('IC WDM V2F TIS', $actual);
-        $this->assertContains('IC Measure'  , $actual);
+        $this->assertContains('IC Measure', $actual);
 
     }
 
@@ -48,7 +47,7 @@ class ProductCodeToPackageTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($actual));
 
         $this->assertArrayHasKey('unique_id', $actual);
-        $this->assertArrayHasKey('versions' , $actual);
+        $this->assertArrayHasKey('versions', $actual);
     }
 
 }

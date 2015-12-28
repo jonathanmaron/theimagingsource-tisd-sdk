@@ -68,5 +68,4 @@ class DefaultsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(Defaults::VERSION, Defaults::getVersion());
     }
 
-
 }
