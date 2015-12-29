@@ -21,17 +21,6 @@ class SdkTest extends PHPUnit_Framework_TestCase
         unset($this->sdk);
     }
 
-    public function testPurgeAndWithDisabledCache()
-    {
-        $this->sdk->getCache()->purge();
-
-        $this->sdk->getCache()->setTtl(0);
-
-        $actual = $this->sdk->getPackages();
-
-        $this->assertTrue(is_array($actual));
-    }
-
     public function testConstructWithDefaults()
     {
         $sdk = new Sdk();
@@ -41,6 +30,8 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(Defaults::HOSTNAME_PRODUCTION    , $sdk->getHostname());
         $this->assertEquals(Defaults::VERSION                , $sdk->getVersion());
         $this->assertEquals(Defaults::TIMEOUT                , $sdk->getTimeout());
+
+        unset($sdk);
     }
 
     public function testConstructWithOptionsArray()
@@ -63,6 +54,19 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(Defaults::HOSTNAME_PRODUCTION    , $sdk->getHostname());
         $this->assertEquals(Defaults::VERSION                , $sdk->getVersion());
         $this->assertEquals($timeout                         , $sdk->getTimeout());
+
+        unset($sdk);
+    }
+
+    public function testPurgeAndWithDisabledCache()
+    {
+        $this->sdk->getCache()->purge();
+
+        $this->sdk->getCache()->setTtl(0);
+
+        $actual = $this->sdk->getPackages();
+
+        $this->assertTrue(is_array($actual));
     }
 
     public function testSetAndGetBuildTime()
