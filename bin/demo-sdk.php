@@ -2,9 +2,10 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Tisd\Sdk as TisdSdk;
 
-$sdk = new TisdSdk(['locale' => 'de_DE']);
+use Tisd\Sdk;
+
+$sdk = new Sdk(['locale' => 'de_DE']);
 
 $sdk->getCache()->purge();
 

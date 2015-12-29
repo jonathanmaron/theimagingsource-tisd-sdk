@@ -2,9 +2,10 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Tisd\Sdk as TisdSdk;
 
-$sdk = new TisdSdk();
+use Tisd\Sdk;
+
+$sdk = new Sdk();
 
 $sdk->getCache()->purge();
 
