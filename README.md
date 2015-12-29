@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jonathanmaron/theimagingsource-tisd.svg)](https://travis-ci.org/jonathanmaron/theimagingsource-tisd) [![Coverage Status](https://coveralls.io/repos/jonathanmaron/theimagingsource-tisd/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonathanmaron/theimagingsource-tisd?branch=master)
+[![Build Status](https://travis-ci.org/jonathanmaron/theimagingsource-tisd.svg)](https://travis-ci.org/jonathanmaron/theimagingsource-tisd) [![Coverage Status](https://coveralls.io/repos/jonathanmaron/theimagingsource-tisd/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonathanmaron/theimagingsource-tisd?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jonathanmaron/theimagingsource-tisd/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jonathanmaron/theimagingsource-tisd/?branch=master)
 
 ![The Imaging Source](http://www.theimagingsource.com/img/tis_logo.png)
 
