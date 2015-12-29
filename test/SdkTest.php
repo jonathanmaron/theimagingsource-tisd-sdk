@@ -32,23 +32,37 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($actual));
     }
 
-    public function testConstruct()
+    public function testConstructWithDefaults()
     {
+        $sdk = new Sdk();
+
+        $this->assertEquals(Defaults::LOCALE                 , $sdk->getLocale());
+        $this->assertEquals(null                             , $sdk->getContext());
+        $this->assertEquals(Defaults::HOSTNAME_PRODUCTION    , $sdk->getHostname());
+        $this->assertEquals(Defaults::VERSION                , $sdk->getVersion());
+        $this->assertEquals(Defaults::TIMEOUT                , $sdk->getTimeout());
+    }
+
+    public function testConstructWithOptionsArray()
+    {
+        $timeout = rand(10, 100);
+        $locale  = 'de_DE';
+
         $sdk = new Sdk(
             [
-                'locale' => Defaults::LOCALE,
-                'context' => Defaults::CONTEXT_MACHINE_VISION,
+                'locale'   => $locale,
+                'context'  => Defaults::CONTEXT_MACHINE_VISION,
                 'hostname' => Defaults::HOSTNAME_PRODUCTION,
-                'version' => Defaults::VERSION,
-                'timeout' => Defaults::TIMEOUT,
+                'version'  => Defaults::VERSION,
+                'timeout'  => $timeout,
             ]
         );
 
-        $this->assertEquals(Defaults::LOCALE, $sdk->getLocale());
-        $this->assertEquals(Defaults::CONTEXT_MACHINE_VISION, $sdk->getContext());
-        $this->assertEquals(Defaults::HOSTNAME_PRODUCTION, $sdk->getHostname());
-        $this->assertEquals(Defaults::VERSION, $sdk->getVersion());
-        $this->assertEquals(Defaults::TIMEOUT, $sdk->getTimeout());
+        $this->assertEquals($locale                          , $sdk->getLocale());
+        $this->assertEquals(Defaults::CONTEXT_MACHINE_VISION , $sdk->getContext());
+        $this->assertEquals(Defaults::HOSTNAME_PRODUCTION    , $sdk->getHostname());
+        $this->assertEquals(Defaults::VERSION                , $sdk->getVersion());
+        $this->assertEquals($timeout                         , $sdk->getTimeout());
     }
 
     public function testSetAndGetBuildTime()
