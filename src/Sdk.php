@@ -253,11 +253,11 @@ class Sdk
                         unset($packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId]);
                     }
                 }
-                if (0 == count($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
+                if (0 === count($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
                     unset($packages['children'][$categoryId]['children'][$sectionId]);
                 }
             }
-            if (0 == count($packages['children'][$categoryId]['children'])) {
+            if (0 === count($packages['children'][$categoryId]['children'])) {
                 unset($packages['children'][$categoryId]);
             }
         }
