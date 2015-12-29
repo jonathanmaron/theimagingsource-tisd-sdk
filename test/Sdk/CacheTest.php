@@ -65,7 +65,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
 
     public function testRead()
     {
-        $cacheId = $this->generateRandomCacheId();
+        $cacheId  = $this->generateRandomCacheId();
         $expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         $this->cache->write($cacheId, $expected);
@@ -73,6 +73,44 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $actual = $this->cache->read($cacheId);
 
         $this->assertEquals($expected, $actual);
+    }
+
+    public function testReadCacheFileNotReadable()
+    {
+        $cacheId  = $this->generateRandomCacheId();
+        $expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        $filename = $this->cache->getFilename($cacheId);
+
+        $this->cache->write($cacheId, $expected);
+
+        unlink($filename);
+
+        $actual = $this->cache->read($cacheId);
+
+        $this->assertFalse($actual);
+    }
+
+    public function testReadCacheExpired()
+    {
+        $cacheId  = $this->generateRandomCacheId();
+        $expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        $filename = $this->cache->getFilename($cacheId);
+
+        touch($filename);
+
+        $filemtime = filemtime($filename);
+
+        $this->assertLessThanOrEqual($filemtime, time());
+
+        $this->cache->write($cacheId, $expected);
+
+        touch($filename, $filemtime - $this->cache->getTtl() - 1);
+
+        $actual = $this->cache->read($cacheId);
+
+        $this->assertFalse($actual);
     }
 
     public function testSetAndGetPath()

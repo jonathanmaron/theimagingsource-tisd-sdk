@@ -44,15 +44,9 @@ class Cache
         $filename = $this->getFilename($cacheId);
 
         if (is_readable($filename)) {
-            if (time() > filemtime($filename) + $this->getTtl()) {
-                // cache is stale
-                // continue
-            } else {
+            if (filemtime($filename) + $this->getTtl() > time()) {
                 $ret = include $filename;
             }
-        } else {
-            // unprimed cache
-            // continue
         }
 
         return $ret;
