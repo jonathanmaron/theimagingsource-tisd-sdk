@@ -82,6 +82,12 @@ root
 ```php
 <?php
 
+use Tisd\Sdk;
+
+$sdk = new Sdk();
+
+$packages = $sdk->getPackages();
+
 foreach ($packages['children'] as $categoryId => $categories) {
     foreach ($categories['children'] as $sectionId => $sections) {
         foreach ($sections['children'] as $packageId => $package) {
