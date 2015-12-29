@@ -9,9 +9,7 @@ The Imaging Source produces a large number of [downloadable files](http://dl-gui
 
 ## Installation
 
-Composer is the only supported method of installation.
-
-Once composer is globally installed, simply execute:
+[Composer](https://getcomposer.org/doc/00-intro.md#globally) is the only supported method of installation.
 
 ```composer require theimagingsource/tisd ~2.5```
 
