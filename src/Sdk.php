@@ -222,16 +222,12 @@ class Sdk
             foreach ($categories['children'] as $sectionId => $sections) {
                 foreach ($sections['children'] as $packageId => $package) {
                     if (!in_array($package['product_code'], $productCodes)) {
-                        unset($packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId]);
+                        $this->removeEmptyPackages($packages, $categoryId, $sectionId, $packageId);
                     }
                 }
-                if (0 === count($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
-                    unset($packages['children'][$categoryId]['children'][$sectionId]);
-                }
+                $this->removeEmptyPackages($packages, $categoryId, $sectionId);
             }
-            if (0 === count($packages['children'][$categoryId]['children'])) {
-                unset($packages['children'][$categoryId]);
-            }
+            $this->removeEmptyPackages($packages, $categoryId);
         }
 
         return $packages;
@@ -250,13 +246,30 @@ class Sdk
                 foreach ($sections['children'] as $packageId => $package) {
                     $productCodeStart = strtolower(substr($package['product_code'], 0, $qLen));
                     if ($productCodeStart != $q) {
-                        unset($packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId]);
+                        $this->removeEmptyPackages($packages, $categoryId, $sectionId, $packageId);
                     }
                 }
-                if (0 === count($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
-                    unset($packages['children'][$categoryId]['children'][$sectionId]);
-                }
+                $this->removeEmptyPackages($packages, $categoryId, $sectionId);
             }
+            $this->removeEmptyPackages($packages, $categoryId);
+        }
+
+        return $packages;
+    }
+
+    protected function removeEmptyPackages(&$packages, $categoryId = null, $sectionId = null, $packageId = null)
+    {
+        if (isset($packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId])) {
+            unset($packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId]);
+        }
+
+        elseif (isset($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
+            if (0 === count($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
+                unset($packages['children'][$categoryId]['children'][$sectionId]);
+            }
+        }
+
+        elseif (isset($packages['children'][$categoryId]['children'])) {
             if (0 === count($packages['children'][$categoryId]['children'])) {
                 unset($packages['children'][$categoryId]);
             }

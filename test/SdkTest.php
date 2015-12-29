@@ -410,7 +410,17 @@ class SdkTest extends PHPUnit_Framework_TestCase
 
         $this->assertArrayHasKey('downloads', $actual['children']);
 
+        $this->assertArrayNotHasKey('images', $actual['children']);
+        $this->assertArrayNotHasKey('publications', $actual['children']);
+        $this->assertArrayNotHasKey('movies', $actual['children']);
+
         $this->assertArrayHasKey('drivers', $actual['children']['downloads']['children']);
+
+        $this->assertArrayNotHasKey('enduser', $actual['children']['downloads']['children']);
+        $this->assertArrayNotHasKey('extensions', $actual['children']['downloads']['children']);
+        $this->assertArrayNotHasKey('firmware', $actual['children']['downloads']['children']);
+        $this->assertArrayNotHasKey('samples', $actual['children']['downloads']['children']);
+        $this->assertArrayNotHasKey('tools', $actual['children']['downloads']['children']);
 
         $this->assertArrayHasKey('icwdmdcamtis', $actual['children']['downloads']['children']['drivers']['children']);
 
@@ -472,7 +482,18 @@ class SdkTest extends PHPUnit_Framework_TestCase
 
         $this->assertArrayHasKey('downloads', $actual['children']);
 
+        $this->assertArrayNotHasKey('images', $actual['children']);
+        $this->assertArrayNotHasKey('publications', $actual['children']);
+        $this->assertArrayNotHasKey('movies', $actual['children']);
+
         $this->assertArrayHasKey('drivers', $actual['children']['downloads']['children']);
+
+        $this->assertArrayNotHasKey('enduser', $actual['children']['downloads']['children']);
+        $this->assertArrayNotHasKey('extensions', $actual['children']['downloads']['children']);
+        $this->assertArrayNotHasKey('firmware', $actual['children']['downloads']['children']);
+        $this->assertArrayNotHasKey('samples', $actual['children']['downloads']['children']);
+        $this->assertArrayNotHasKey('tools', $actual['children']['downloads']['children']);
+
 
         $this->assertArrayHasKey('icwdmdcamtis', $actual['children']['downloads']['children']['drivers']['children']);
 
