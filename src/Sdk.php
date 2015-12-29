@@ -32,8 +32,6 @@ class Sdk
 
     protected function queryUrl($fragment)
     {
-        $ret = false;
-
         $url = $this->buildUrl($fragment);
 
         if ($this->getCache()->getTtl() > 0) {
