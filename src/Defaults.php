@@ -58,17 +58,7 @@ class Defaults
     public static function getHostname()
     {
         if (null === self::$hostname) {
-
-            $host = gethostname();
-            $ip   = gethostbyname($host);
-
-            if ('192.168' === substr($ip, 0, 7)) {
-                $hostname = self::HOSTNAME_DEVELOPMENT;
-            } else {
-                $hostname = self::HOSTNAME_PRODUCTION;
-            }
-
-            self::setHostname($hostname);
+            self::setHostname(self::HOSTNAME_PRODUCTION);
         }
 
         return self::$hostname;
