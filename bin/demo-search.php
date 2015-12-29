@@ -8,6 +8,8 @@ $sdk = new TisdSdk();
 
 $sdk->getCache()->purge();
 
+$sdk->getPackageByProductCode('IC WDM DCAM TIS');
+
 $sdk->getPackagesByProductCodes(['IC WDM DCAM TIS', 'IC WDM GIGE TIS', 'IC WDM 878 TIS']);
 
 $sdk->getPackagesByProductCodeSearch('IC WDM');
