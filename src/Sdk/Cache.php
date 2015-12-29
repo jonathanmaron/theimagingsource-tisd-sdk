@@ -12,9 +12,8 @@ class Cache
     public function __construct()
     {
         $this->setPath(sys_get_temp_dir());
-        $this->setTtl(self::DEFAULT_TTL);
-
-        return true;
+        
+        $this->setTtl (self::DEFAULT_TTL);
     }
 
     public function write($cacheId, $data)
