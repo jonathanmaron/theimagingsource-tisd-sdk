@@ -22,7 +22,7 @@ And then execute:
 ```composer install```
 
 or (for an optimized autoload map):
- 
+
 ```composer install --optimize-autoloader```
 
 
@@ -59,7 +59,7 @@ or (for an optimized autoload map):
 
 ## Programming Samples
 
-The SDK ships with comprehensive samples illustrating all functionality. Please take a look in the `/bin` directory at `php demo-sdk.php` and `php demo-sdk-helper.php`.
+The SDK ships with comprehensive samples illustrating all functionality. Please take a look in the `/bin` directory.
 
 
 ## Unit Tests
