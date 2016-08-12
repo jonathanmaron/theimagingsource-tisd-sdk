@@ -31,9 +31,9 @@ class CacheTest extends PHPUnit_Framework_TestCase
 
     public function testGetId()
     {
-        $actual = $this->cache->getId('http://www.example.com');
+        $actual = $this->cache->getId('https://www.example.com');
 
-        $expected = '2108db1a141c956f945ad83ec87cc8d82990a2465bc00c904536c441eb0eb8ab';
+        $expected = 'cdb4d88dca0bef8defe13d71624a46e7e851750a750a5467d53cb1bf273ab973';
 
         $this->assertEquals($actual, $expected);
     }
