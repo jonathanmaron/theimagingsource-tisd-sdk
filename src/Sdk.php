@@ -3,6 +3,7 @@
 namespace Tisd;
 
 use Tisd\Sdk\Cache as TisdSdkCache;
+use Tisd\Sdk\Exception\RuntimeException;
 
 class Sdk
 {
@@ -156,59 +157,26 @@ class Sdk
 
     public function getPackages($categoryId = null, $sectionId = null, $packageId = null)
     {
-        if (null !== $categoryId && null !== $sectionId && null !== $packageId) {
-            $fragment = sprintf('/packages/%s/%s/%s/%s.json', $categoryId, $sectionId, $packageId, $this->getLocale());
-        } elseif (null !== $categoryId && null !== $sectionId) {
-            $fragment = sprintf('/packages/%s/%s/%s.json', $categoryId, $sectionId, $this->getLocale());
-        } elseif (null !== $categoryId) {
-            $fragment = sprintf('/packages/%s/%s.json', $categoryId, $this->getLocale());
-        } else {
-            $fragment = sprintf('/packages/%s.json', $this->getLocale());
-        }
+        $ret = [];
 
+        $fragment = sprintf('/packages/%s.json', $this->getLocale());
         $packages = $this->queryUrl($fragment);
-
         $packages = $this->filterPackages($packages);
 
-        return $packages;
-    }
-
-    public function getPackageByUniqueId($uniqueId)
-    {
-        $fragment = sprintf('/get-package-by-unique-id/%s.json', $uniqueId);
-
-        return $this->queryUrl($fragment);
-    }
-
-    public function getPackageByProductCodeId($productCodeId)
-    {
-        $fragment = sprintf('/get-package-by-product-code-id/%s/%s.json', $productCodeId, $this->getLocale());
-
-        return $this->queryUrl($fragment);
-    }
-
-    public function getPackageByPackageId($packageId)
-    {
-        $fragment = sprintf('/get-package-by-package-id/%s/%s.json', $packageId, $this->getLocale());
-
-        return $this->queryUrl($fragment);
-    }
-
-    public function getPackageByProductCode($productCode)
-    {
-        $ret = null;
-
-        $packages = $this->getPackages();
-
-        foreach ($packages['children'] as $categories) {
-            foreach ($categories['children'] as $sections) {
-                foreach ($sections['children'] as $package) {
-                    if ($productCode == $package['product_code']) {
-                        $ret = $package;
-                        break 3;
-                    }
-                }
+        if (null !== $categoryId && null !== $sectionId && null !== $packageId) {
+            if (isset($packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId])) {
+                $ret = $packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId];
             }
+        } elseif (null !== $categoryId && null !== $sectionId) {
+            if (isset($packages['children'][$categoryId]['children'][$sectionId])) {
+                $ret = $packages['children'][$categoryId]['children'][$sectionId];
+            }
+        } elseif (null !== $categoryId) {
+            if (isset($packages['children'][$categoryId])) {
+                $ret = $packages['children'][$categoryId];
+            }
+        } else {
+            $ret = $packages;
         }
 
         return $ret;
@@ -261,21 +229,62 @@ class Sdk
     {
         if (isset($packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId])) {
             unset($packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId]);
-        }
-
-        elseif (isset($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
+        } elseif (isset($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
             if (0 === count($packages['children'][$categoryId]['children'][$sectionId]['children'])) {
                 unset($packages['children'][$categoryId]['children'][$sectionId]);
             }
-        }
-
-        elseif (isset($packages['children'][$categoryId]['children'])) {
+        } elseif (isset($packages['children'][$categoryId]['children'])) {
             if (0 === count($packages['children'][$categoryId]['children'])) {
                 unset($packages['children'][$categoryId]);
             }
         }
 
         return $packages;
+    }
+
+    // --------------------------------------------------------------------------------
+
+    public function getPackageByUniqueId($uniqueId)
+    {
+        return $this->getPackageByKeyValue('unique_id', $uniqueId);
+    }
+
+    public function getPackageByProductCodeId($productCodeId)
+    {
+        return $this->getPackageByKeyValue('product_code_id', $productCodeId);
+    }
+
+    public function getPackageByPackageId($packageId)
+    {
+        return $this->getPackageByKeyValue('package_id', $packageId);
+    }
+
+    public function getPackageByProductCode($productCode)
+    {
+        return $this->getPackageByKeyValue('product_code', $productCode);
+    }
+
+    protected function getPackageByKeyValue($keyName, $keyValue)
+    {
+        $ret = null;
+
+        $packages = $this->getPackages();
+
+        foreach ($packages['children'] as $categories) {
+            foreach ($categories['children'] as $sections) {
+                foreach ($sections['children'] as $package) {
+                    if (!isset($package[$keyName])) {
+                        throw new RuntimeException("The '{$keyName}' does not exist in the package.");
+                    }
+                    if ($keyValue == $package[$keyName]) {
+                        $ret = $package;
+                        break 3;
+                    }
+                }
+            }
+        }
+
+        return $ret;
     }
 
     // --------------------------------------------------------------------------------

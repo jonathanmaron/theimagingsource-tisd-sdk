@@ -26,15 +26,13 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $timeout = rand(10, 100);
         $locale  = 'de_DE';
 
-        $sdk = new Sdk(
-            [
-                'locale'   => $locale,
-                'context'  => Defaults::CONTEXT_MACHINE_VISION,
-                'hostname' => Defaults::HOSTNAME_PRODUCTION,
-                'version'  => Defaults::VERSION,
-                'timeout'  => $timeout,
-            ]
-        );
+        $sdk = new Sdk([
+            'locale'   => $locale,
+            'context'  => Defaults::CONTEXT_MACHINE_VISION,
+            'hostname' => Defaults::HOSTNAME_PRODUCTION,
+            'version'  => Defaults::VERSION,
+            'timeout'  => $timeout,
+        ]);
 
         $this->assertEquals($locale                          , $sdk->getLocale());
         $this->assertEquals(Defaults::CONTEXT_MACHINE_VISION , $sdk->getContext());
@@ -213,7 +211,7 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('pph', $version);
     }
 
-    public function GetPackageByProductCodeInvalidProductCode()
+    public function testGetPackageByProductCodeInvalidProductCode()
     {
         $this->sdk->getCache()->purge();
 
@@ -255,7 +253,7 @@ class SdkTest extends PHPUnit_Framework_TestCase
 
     public function testGetPackageByUniqueId()
     {
-        $actual = $this->sdk->getPackageByUniqueId('1ae6bab1d1');
+        $actual = $this->sdk->getPackageByUniqueId('a2928f41f4');
 
         $this->assertTrue(is_array($actual));
 
@@ -482,7 +480,6 @@ class SdkTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue(is_array($actual));
 
-
         $this->assertArrayHasKey('children', $actual);
 
         $this->assertArrayHasKey('downloads', $actual['children']);
@@ -547,7 +544,6 @@ class SdkTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('description', $actual['children']['downloads']['children']['drivers']['children']['icwdm878tis']);
         $this->assertArrayHasKey('contexts', $actual['children']['downloads']['children']['drivers']['children']['icwdm878tis']);
         $this->assertArrayHasKey('versions', $actual['children']['downloads']['children']['drivers']['children']['icwdm878tis']);
-
     }
 
     public function testGetSectionCount()
