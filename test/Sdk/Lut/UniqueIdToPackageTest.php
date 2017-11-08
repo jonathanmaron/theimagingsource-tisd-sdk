@@ -35,8 +35,8 @@ class UniqueIdToPackageTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue(is_array($actual));
 
-        $this->assertContains('6025d93a03', $actual);
-        $this->assertContains('6686718ea3', $actual);
+        $this->assertContains('75f1c839db', $actual);
+        $this->assertContains('d163761773', $actual);
 
     }
 

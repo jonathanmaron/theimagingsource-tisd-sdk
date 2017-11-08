@@ -38,13 +38,6 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($actual, $expected);
     }
 
-    public function testGetUserCli()
-    {
-        $expected = trim(getenv('LOGNAME'));
-
-        $this->assertEquals($expected, $this->cache->getUser());
-    }
-
     public function testGetUserApache()
     {
         putenv("APACHE_RUN_USER=apache-user");
