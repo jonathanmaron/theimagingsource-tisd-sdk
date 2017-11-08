@@ -4,7 +4,7 @@ namespace Tisd;
 
 class Defaults
 {
-    const HOSTNAME_DEVELOPMENT   = 'dl.theimagingsource.com.dev';
+    const HOSTNAME_DEVELOPMENT   = 'dl.theimagingsource.com.development';
     const HOSTNAME_PRODUCTION    = 'dl.theimagingsource.com';
 
     const LOCALE                 = 'en_US';
