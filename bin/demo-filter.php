@@ -2,7 +2,6 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-
 use Tisd\Sdk;
 
 $sdk = new Sdk(['locale' => 'de_DE']);
@@ -13,7 +12,9 @@ $sdk->setContext('astronomy');
 
 $packages = $sdk->getPackages();
 
-//var_dump($packages);
+dump($packages);
+
+$sdk->getCache()->purge();
 
 
 $sdk = new Sdk(['locale' => 'de_DE']);
@@ -24,4 +25,6 @@ $sdk->setContext('machinevision');
 
 $packages = $sdk->getPackages('downloads');
 
-var_dump($packages);
+dump($packages);
+
+$sdk->getCache()->purge();

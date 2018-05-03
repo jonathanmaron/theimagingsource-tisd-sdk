@@ -2,34 +2,35 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-
 use Tisd\Defaults;
 use Tisd\Sdk;
 
-Defaults::setLocale('fr_FR');
+Defaults::setLocale('zh_CN');
 Defaults::setContext(Defaults::CONTEXT_MACHINE_VISION);
 
 $sdk = new Sdk();
 
-$sdk->getPackages();    // fr_FR packages
-
+// zh_CN packages
+$sdk->getPackages();
 
 $sdk = new Sdk(['locale' => 'de_DE']);
 
-$sdk->getPackages();    // de_DE packages (constructor options overwrite default options)
+// de_DE packages (constructor options overwrite default options)
+$sdk->getPackages();
 
+dump($sdk->getLocale());
+dump(Defaults::getLocale());
 
-var_dump($sdk->getLocale());
-var_dump(Defaults::getLocale());
+dump($sdk->getContext());
+dump(Defaults::getContext());
 
-var_dump($sdk->getContext());
-var_dump(Defaults::getContext());
+dump($sdk->getHostname());
+dump(Defaults::getHostname());
 
-var_dump($sdk->getHostname());
-var_dump(Defaults::getHostname());
+dump($sdk->getVersion());
+dump(Defaults::getVersion());
 
-var_dump($sdk->getVersion());
-var_dump(Defaults::getVersion());
+dump($sdk->getTimeout());
+dump(Defaults::getTimeout());
 
-var_dump($sdk->getTimeout());
-var_dump(Defaults::getTimeout());
+$sdk->getCache()->purge();

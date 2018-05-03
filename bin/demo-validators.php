@@ -2,24 +2,23 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-
-use Tisd\Sdk;
-use Tisd\Sdk\Validator\PackageId     as PackageIdValidator;
-use Tisd\Sdk\Validator\ProductCode   as ProductCodeValidator;
+use Tisd\Defaults;
+use Tisd\Sdk\Validator\PackageId as PackageIdValidator;
+use Tisd\Sdk\Validator\ProductCode as ProductCodeValidator;
 use Tisd\Sdk\Validator\ProductCodeId as ProductCodeIdValidator;
-use Tisd\Sdk\Validator\UniqueId      as UniqueIdValidator;
+use Tisd\Sdk\Validator\Uuid as UuidValidator;
 
 $validator = new PackageIdValidator();
-var_dump($validator->isValid('icwdm878tis'));
+dump($validator->isValid('icwdm878tis'));
 
 $validator = new ProductCodeIdValidator();
-var_dump($validator->isValid('icwdm878tis'));
+dump($validator->isValid('icwdm878tis'));
 
 $validator = new ProductCodeValidator();
-var_dump($validator->isValid('IC WDM 878 TIS'));
+dump($validator->isValid('IC WDM 878 TIS'));
 
-$validator = new UniqueIdValidator(['locale' => 'de_DE', 'context' => Sdk::CONTEXT_ASTRONOMY]);
-var_dump($validator->isValid('6595e5055d'));
+$validator = new UuidValidator(['locale' => 'de_DE', 'context' => Defaults::CONTEXT_ASTRONOMY]);
+dump($validator->isValid('4198ecea-7436-5875-94d4-bbb378ba6110'));
 
-$validator = new UniqueIdValidator(['locale' => 'en_US', 'context' => Sdk::CONTEXT_ASTRONOMY]);
-var_dump($validator->isValid('6595e5055d'));
+$validator = new UuidValidator(['locale' => 'en_US', 'context' => Defaults::CONTEXT_ASTRONOMY]);
+dump($validator->isValid('4198ecea-7436-5875-94d4-bbb378ba6110'));
