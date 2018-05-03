@@ -80,17 +80,7 @@ class Sdk
 
         } catch (TransferException $e) {
 
-            $contents = $e->getResponse()->getBody()->getContents();
-            $contents = strip_tags($contents);
-            $lines    = explode(PHP_EOL, $contents);
-            $lines    = array_filter($lines, function ($line) {
-                $line = trim($line);
-                if (!empty($line)) {
-                    return true;
-                }
-            });
-            $message  = implode(' | ', $lines);
-            throw new RuntimeException($message);
+            throw new RuntimeException($e->getMessage());
         }
 
         return $ret;
