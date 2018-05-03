@@ -2,12 +2,11 @@
 
 namespace TisdTest\Sdk\Lut;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Tisd\Sdk\Lut\ProductCodeIdToPackage as Lut;
 
-class ProductCodeIdToPackageTest extends PHPUnit_Framework_TestCase
+class ProductCodeIdToPackageTest extends TestCase
 {
-
     protected $lut;
 
     protected function setUp()
@@ -37,7 +36,6 @@ class ProductCodeIdToPackageTest extends PHPUnit_Framework_TestCase
 
         $this->assertContains('icwdm1394btis', $actual);
         $this->assertContains('icwdm878tis', $actual);
-
     }
 
     public function testGetValue()
@@ -46,8 +44,7 @@ class ProductCodeIdToPackageTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue(is_array($actual));
 
-        $this->assertArrayHasKey('unique_id', $actual);
+        $this->assertArrayHasKey('uuid', $actual);
         $this->assertArrayHasKey('versions', $actual);
     }
-
 }

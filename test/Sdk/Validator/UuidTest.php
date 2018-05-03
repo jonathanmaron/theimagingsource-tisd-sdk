@@ -2,12 +2,11 @@
 
 namespace TisdTest\Sdk\Validator;
 
-use PHPUnit_Framework_TestCase;
-use Tisd\Sdk\Validator\UniqueId as Validator;
+use PHPUnit\Framework\TestCase;
+use Tisd\Sdk\Validator\Uuid as Validator;
 
-class UniqueIdTest extends PHPUnit_Framework_TestCase
+class UuidTest extends TestCase
 {
-
     protected $validator;
 
     protected function setUp()
@@ -24,6 +23,6 @@ class UniqueIdTest extends PHPUnit_Framework_TestCase
     {
         $this->assertFalse($this->validator->isValid('1111111111'));
 
-        $this->assertTrue($this->validator->isValid('7df1a5a399'));
+        $this->assertTrue($this->validator->isValid('8f050bec-a920-55c1-9e08-c06c6a689b20'));
     }
 }

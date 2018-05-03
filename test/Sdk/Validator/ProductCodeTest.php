@@ -2,13 +2,13 @@
 
 namespace TisdTest\Sdk\Validator;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Tisd\Sdk\Validator\ProductCode as Validator;
 
-class ProductCodeTest extends PHPUnit_Framework_TestCase
+class ProductCodeTest extends TestCase
 {
-
     protected $validator;
+
 
     protected function setUp()
     {

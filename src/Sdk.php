@@ -29,25 +29,19 @@ class Sdk
         $this->setCache(new TisdSdkCache());
     }
 
-    // --------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------------------
 
     protected function queryUrl($fragment)
     {
         $url = $this->buildUrl($fragment);
 
         if ($this->getCache()->getTtl() > 0) {
-
             $cacheId = $this->getCache()->getId($url);
-
             $ret = $this->getCache()->read($cacheId);
-
             if (false === $ret) {
-
                 $ret = $this->requestUrl($url);
-
                 $this->getCache()->write($cacheId, $ret);
             }
-
         } else {
             $ret = $this->requestUrl($url);
         }
@@ -78,7 +72,7 @@ class Sdk
         return $ret;
     }
 
-    // --------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------------------
 
     public function getMeta()
     {
@@ -91,21 +85,21 @@ class Sdk
     {
         $meta = $this->getMeta();
 
-        return (integer) $meta['category']['count'];
+        return (int) $meta['category']['count'];
     }
 
     public function getSectionCount()
     {
         $meta = $this->getMeta();
 
-        return (integer) $meta['section']['count'];
+        return (int) $meta['section']['count'];
     }
 
     public function getPackageCount()
     {
         $meta = $this->getMeta();
 
-        return (integer) $meta['package']['count'];
+        return (int) $meta['package']['count'];
     }
 
     public function getBuildTime($type = 'timestamp')
@@ -115,7 +109,7 @@ class Sdk
         return $meta['build']['time'][$type];
     }
 
-    // --------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------------------
 
     public function getLocales()
     {
@@ -124,7 +118,7 @@ class Sdk
         return $this->queryUrl($fragment);
     }
 
-    // --------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------------------
 
     protected function filterPackages(&$array)
     {
@@ -133,18 +127,21 @@ class Sdk
             foreach ($array as $key => $item) {
 
                 if (is_array($item)) {
-                    $array[$key] = $this->filterPackages($item);    //   set via parent
+                    // set via parent
+                    $array[$key] = $this->filterPackages($item);
                 }
 
                 if (isset($item['children']) && is_array($item['children'])) {
                     if (0 === count($item['children'])) {
-                        unset($array[$key]);                        // unset via parent
+                        // unset via parent
+                        unset($array[$key]);
                     }
                 }
 
                 if (isset($item['contexts']) && is_array($item['contexts'])) {
                     if (!in_array($this->getContext(), $item['contexts'])) {
-                        unset($array[$key]);                        // unset via parent
+                        // unset via parent
+                        unset($array[$key]);
                     }
                 }
             }
@@ -153,7 +150,7 @@ class Sdk
         return $array;
     }
 
-    // --------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------------------
 
     public function getPackages($categoryId = null, $sectionId = null, $packageId = null)
     {
@@ -242,11 +239,11 @@ class Sdk
         return $packages;
     }
 
-    // --------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------------------
 
-    public function getPackageByUniqueId($uniqueId)
+    public function getPackageByUuid($uuid)
     {
-        return $this->getPackageByKeyValue('unique_id', $uniqueId);
+        return $this->getPackageByKeyValue('uuid', $uuid);
     }
 
     public function getPackageByProductCodeId($productCodeId)
@@ -287,7 +284,7 @@ class Sdk
         return $ret;
     }
 
-    // --------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------------------
 
     public function getContexts()
     {
@@ -296,7 +293,7 @@ class Sdk
         return $this->queryUrl($fragment);
     }
 
-    // --------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------------------
 
     public function setCache($cache)
     {
@@ -310,7 +307,7 @@ class Sdk
         return $this->cache;
     }
 
-    // --------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------------------
 
     // proxy methods to Defaults
 
@@ -373,6 +370,4 @@ class Sdk
     {
         return Defaults::getContext();
     }
-
-    // --------------------------------------------------------------------------------
 }

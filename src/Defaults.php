@@ -4,25 +4,35 @@ namespace Tisd;
 
 class Defaults
 {
-    const HOSTNAME_DEVELOPMENT   = 'dl.theimagingsource.com.development';
-    const HOSTNAME_PRODUCTION    = 'dl.theimagingsource.com';
+    const HOSTNAME_DEVELOPMENT   = 'dl2.theimagingsource.com.development';
+
+    const HOSTNAME_PRODUCTION    = 'dl2.theimagingsource.com';
 
     const LOCALE                 = 'en_US';
 
-    const VERSION                = '2.0';
+    const VERSION                = '2.5';
 
     const TIMEOUT                = 10;
 
     const CONTEXT_MACHINE_VISION = 'machinevision';
+
     const CONTEXT_ASTRONOMY      = 'astronomy';
+
     const CONTEXT_SCAN2DOCX      = 'scan2docx';
+
     const CONTEXT_SCAN2VOICE     = 'scan2voice';
 
-    protected static $locale   = null;
-    protected static $context  = null;
-    protected static $hostname = null;
-    protected static $version  = null;
-    protected static $timeout  = null;
+    const CONTEXT_MICROSCOPY     = 'microscopy';
+
+    protected static $locale;
+
+    protected static $context;
+
+    protected static $hostname;
+
+    protected static $version;
+
+    protected static $timeout;
 
     public static function setLocale($locale)
     {

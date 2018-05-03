@@ -2,11 +2,11 @@
 
 namespace TisdTest\Sdk;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Tisd\Sdk;
 use Tisd\Sdk\Cache;
 
-class CacheTest extends PHPUnit_Framework_TestCase
+class CacheTest extends TestCase
 {
     protected $cache;
 
@@ -50,7 +50,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
     public function testPurge()
     {
         $sdk = new Sdk();       // ensure there is something in the cache
-                                // so that it can be purged, and return true
+        // so that it can be purged, and return true
         $sdk->getPackages();
 
         $this->assertTrue($sdk->getCache()->purge());
@@ -66,6 +66,13 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $actual = $this->cache->read($cacheId);
 
         $this->assertEquals($expected, $actual);
+    }
+
+    protected function generateRandomCacheId()
+    {
+        $cacheId = hash('sha256', rand(0, 9999999999));
+
+        return $cacheId;
     }
 
     public function testReadCacheFileNotReadable()
@@ -131,7 +138,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
     public function testWrite()
     {
         $cacheId = $this->generateRandomCacheId();
-        $data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        $data    = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         $ret = $this->cache->write($cacheId, $data);
 
@@ -141,7 +148,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
     public function testWriteUnlinkFile()
     {
         $cacheId = $this->generateRandomCacheId();
-        $data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        $data    = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         $ret1 = $this->cache->write($cacheId, $data);
         $ret2 = $this->cache->write($cacheId, $data);
@@ -149,12 +156,4 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_integer($ret1));
         $this->assertTrue(is_integer($ret2));
     }
-
-    protected function generateRandomCacheId()
-    {
-        $cacheId = hash('sha256', rand(0, 9999999999));
-
-        return $cacheId;
-    }
-
 }

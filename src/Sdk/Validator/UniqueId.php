@@ -2,14 +2,14 @@
 
 namespace Tisd\Sdk\Validator;
 
-use Tisd\Sdk\Lut\UniqueIdToPackage as UniqueIdToPackageLut;
+use Tisd\Sdk\Lut\UuidToPackage as UuidToPackageLut;
 
-class UniqueId extends AbstractValidator
+class Uuid extends AbstractValidator
 {
     public function __construct($options = [])
     {
         parent::__construct($options);
 
-        $this->setLut(new UniqueIdToPackageLut($options));
+        $this->setLut(new UuidToPackageLut($options));
     }
 }

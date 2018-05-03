@@ -8,6 +8,7 @@ use Tisd\Sdk\Exception\RuntimeException as RuntimeException;
 class AbstractLut
 {
     protected $sdk;
+
     protected $lut;
 
     public function __construct($options = [])

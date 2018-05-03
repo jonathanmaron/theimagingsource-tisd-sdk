@@ -2,12 +2,11 @@
 
 namespace TisdTest\Sdk;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Tisd\Defaults;
 
-class DefaultsTest extends PHPUnit_Framework_TestCase
+class DefaultsTest extends TestCase
 {
-
     public function testGetContext()
     {
         $this->assertNull(Defaults::getContext());
@@ -67,5 +66,4 @@ class DefaultsTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(Defaults::VERSION, Defaults::getVersion());
     }
-
 }

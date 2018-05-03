@@ -2,16 +2,16 @@
 
 namespace TisdTest\Sdk\Lut;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use Tisd\Sdk\Exception\RuntimeException;
 
-class ConcreteLutTest extends PHPUnit_Framework_TestCase
+class ConcreteLutTest extends TestCase
 {
-
+    /**
+     * @expectedException RuntimeException
+     */
     public function testException()
     {
-        $this->setExpectedException('RuntimeException');
-
         $lut = new ConcreteLut();
     }
-
 }
