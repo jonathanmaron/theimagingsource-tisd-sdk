@@ -21,7 +21,7 @@ class Sdk
 
         foreach ($optionKeys as $optionKey) {
             if (isset($options[$optionKey])) {
-                $methodName = 'set' . ucfirst($optionKey);
+                $methodName = sprintf('set%s', ucfirst($optionKey));
                 $this->$methodName($options[$optionKey]);
             }
         }

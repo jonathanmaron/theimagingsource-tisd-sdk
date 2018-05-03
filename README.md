@@ -2,7 +2,6 @@
 
 # The Imaging Source Downloads SDK
 
-[![Build Status](https://travis-ci.org/jonathanmaron/theimagingsource-tisd.svg)](https://travis-ci.org/jonathanmaron/theimagingsource-tisd)
 [![Coverage Status](https://coveralls.io/repos/jonathanmaron/theimagingsource-tisd/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonathanmaron/theimagingsource-tisd?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jonathanmaron/theimagingsource-tisd/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jonathanmaron/theimagingsource-tisd/?branch=master)
 [![Total Downloads](https://poser.pugx.org/theimagingsource/tisd/downloads)](https://packagist.org/packages/theimagingsource/tisd)
@@ -15,46 +14,49 @@ The Imaging Source produces a large number of [downloadable files](http://dl-gui
 
 [Composer](https://getcomposer.org/doc/00-intro.md#globally) is the only supported method of installation:
 
-```composer require theimagingsource/tisd ~2.5```
+```composer require theimagingsource/tisd ~3.0```
 
 And then execute:
 
 ```composer install```
 
-or (for an optimized autoload map):
-
-```composer install --optimize-autoloader```
-
-
 ## Sample Endpoints
 
 ### Return all supported locales
 
-* http://dl.theimagingsource.com/api/2.0/locales.json
+* https://dl2.theimagingsource.com/api/2.5/packages/en_US.json
 
 ### Return all supported contexts
 
-* http://dl.theimagingsource.com/api/2.0/contexts/en_US.json
+* https://dl2.theimagingsource.com/api/2.5/contexts/en_US.json
 
 ### Return meta information and statistics
 
-* http://dl.theimagingsource.com/api/2.0/meta/en_US.json
+* https://dl2.theimagingsource.com/api/2.5/meta/en_US.json
+
+### Return all data (consolidated)
+
+* https://dl2.theimagingsource.com/api/2.5/consolidated/en_US.json
 
 ### Return all packages in "Downloads"
 
-* http://dl.theimagingsource.com/api/2.0/packages/downloads/en_US.json
+* https://dl2.theimagingsource.com/api/2.5/packages/downloads/en_US.json
+
+### Return all packages in "Downloads" -> "Drivers"
+
+* https://dl2.theimagingsource.com/api/2.5/packages/downloads/drivers/en_US.json
 
 ### Return package matching product code ID
 
-* http://dl.theimagingsource.com/api/2.0/get-package-by-product-code-id/icwdmuvccamtis/en_US.json
+* https://dl2.theimagingsource.com/api/2.5/get-package-by-product-code-id/icwdmuvccamtis/en_US.json
 
 ### Return package matching package ID
 
-* http://dl.theimagingsource.com/api/2.0/get-package-by-package-id/icwdmuvccamtis/en_US.json
+* https://dl2.theimagingsource.com/api/2.5/get-package-by-package-id/icwdmuvccamtis/en_US.json
 
-### Return package matching unique ID
+### Return package matching UUID
 
-* http://dl.theimagingsource.com/api/2.0/get-package-by-unique-id/d97fcf0a20.json
+* https://dl2.theimagingsource.com/api/2.5/get-package-by-uuid/9fb079e7-e7c8-5b46-bf34-5d3a4b3eb19b.json
 
 
 ## Programming Samples
@@ -64,7 +66,7 @@ The SDK ships with comprehensive samples illustrating all functionality. Please 
 
 ## Unit Tests
 
-The SDK ships with complete unit tests. Simply run `phpunit` in the root directory.
+The SDK ships with complete unit tests. Simply run `composer test` in the root directory.
 
 
 ## JSON Structure
