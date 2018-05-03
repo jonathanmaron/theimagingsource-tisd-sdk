@@ -28,7 +28,7 @@ $sdk->getPackages('downloads', 'enduser', 'iccapture');
 $sdk->getPackagesByProductCodes(['IC WDM 1394b TIS', 'ICPresenter', 'Scan2Docx OCR']);
 
 $sdk->getPackageByProductCode('SKYRIS FW');
-$sdk->getPackageByUuid('4198ecea-7436-5875-94d4-bbb378ba6110');
+$sdk->getPackageByUuid('2b5a907d-5eb0-538b-87ff-1a36bb76c92f');
 $sdk->getPackageByProductCodeId('iccapture');
 $sdk->getPackageByPackageId('iccapture');
 
