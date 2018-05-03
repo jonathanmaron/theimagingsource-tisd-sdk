@@ -25,7 +25,7 @@ class UuidToPackageTest extends TestCase
 
         $this->assertTrue(is_array($actual));
 
-        $this->assertArrayHasKey('f064e359-78c2-5ba4-9f39-96aa94fe3ea8', $actual);
+        $this->assertArrayHasKey('059f8cbe-9a03-5ad8-809e-90b33380a673', $actual);
     }
 
     public function testGetKeys()
@@ -34,13 +34,13 @@ class UuidToPackageTest extends TestCase
 
         $this->assertTrue(is_array($actual));
 
-        $this->assertContains('58d012e3-380b-53b4-901b-bafd9fcc702a', $actual);
-        $this->assertContains('0e451f84-d91b-5840-a70a-48cbceeec573', $actual);
+        $this->assertContains('efa0ed86-f2ca-5fc1-b895-3cdae849e7a5', $actual);
+        $this->assertContains('696ee548-522a-5619-95d9-37e617bbc7a0', $actual);
     }
 
     public function testGetValue()
     {
-        $actual = $this->lut->getValue('8f050bec-a920-55c1-9e08-c06c6a689b20');
+        $actual = $this->lut->getValue('f6ea27be-096a-509d-84bc-b267f100f0a4');
 
         $this->assertTrue(is_array($actual));
 

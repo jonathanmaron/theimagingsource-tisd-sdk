@@ -244,7 +244,7 @@ class SdkTest extends TestCase
 
     public function testGetPackageByUuid()
     {
-        $actual = $this->sdk->getPackageByUuid('90ce4868-2de8-54b4-bd4c-71b5d04e002c');
+        $actual = $this->sdk->getPackageByUuid('2b5a907d-5eb0-538b-87ff-1a36bb76c92f');
 
         $this->assertTrue(is_array($actual));
 
