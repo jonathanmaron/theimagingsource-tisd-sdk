@@ -55,6 +55,11 @@ class Sdk
             'http' => [
                 'timeout' => $this->getTimeout(),
             ],
+            // 'ssl'  => [
+            //    'verify_peer'       => false,
+            //    'verify_peer_name'  => false,
+            //    'allow_self_signed' => true,
+            //],
         ];
 
         $context = stream_context_create($options);
