@@ -12,11 +12,11 @@ The Imaging Source produces a large number of [downloadable files](http://dl-gui
 
 ## Installation
 
-[Composer](https://getcomposer.org/doc/00-intro.md#globally) is the only supported method of installation:
+Use [Composer](https://getcomposer.org/doc/00-intro.md#globally) to install the SDK:
 
 ```composer require theimagingsource/tisd ~3.0```
 
-And then execute:
+And then install the dependencies with:
 
 ```composer install```
 
