@@ -2,6 +2,9 @@
 
 namespace Tisd;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\TransferException;
+use GuzzleHttp\RequestOptions;
 use Tisd\Sdk\Cache as TisdSdkCache;
 use Tisd\Sdk\Exception\RuntimeException;
 
@@ -31,9 +34,9 @@ class Sdk
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    protected function queryUrl($fragment)
+    protected function queryUrl($path)
     {
-        $url = $this->buildUrl($fragment);
+        $url = $this->buildUrl($path);
 
         if ($this->getCache()->getTtl() > 0) {
             $cacheId = $this->getCache()->getId($url);
@@ -51,28 +54,51 @@ class Sdk
 
     protected function requestUrl($url)
     {
-        $options = [
-            'http' => [
-                'timeout' => $this->getTimeout(),
-            ],
-            // 'ssl'  => [
-            //    'verify_peer'       => false,
-            //    'verify_peer_name'  => false,
-            //    'allow_self_signed' => true,
-            //],
-        ];
+        $ret = null;
 
-        $context = stream_context_create($options);
+        try {
 
-        $ret = file_get_contents($url, false, $context);
-        $ret = json_decode($ret, true);
+            $client = new Client();
+
+            $options = [
+                RequestOptions::VERIFY          => true,
+                RequestOptions::DEBUG           => false,
+                RequestOptions::ALLOW_REDIRECTS => false,
+                RequestOptions::TIMEOUT         => (float) $this->getTimeout(),
+            ];
+
+            $response = $client->get($url, $options);
+            if ($response->getBody()) {
+                $contents = $response->getBody()->getContents();
+                $contents = trim($contents);
+                if (!empty($contents)) {
+                    $ret = json_decode($contents, true);
+                }
+            }
+
+            unset($client);
+
+        } catch (TransferException $e) {
+
+            $contents = $e->getResponse()->getBody()->getContents();
+            $contents = strip_tags($contents);
+            $lines    = explode(PHP_EOL, $contents);
+            $lines    = array_filter($lines, function ($line) {
+                $line = trim($line);
+                if (!empty($line)) {
+                    return true;
+                }
+            });
+            $message  = implode(' | ', $lines);
+            throw new RuntimeException($message);
+        }
 
         return $ret;
     }
 
-    protected function buildUrl($fragment)
+    protected function buildUrl($path)
     {
-        $ret = sprintf('https://%s/api/%s%s', $this->getHostname(), $this->getVersion(), $fragment);
+        $ret = sprintf('https://%s/api/%s%s', $this->getHostname(), $this->getVersion(), $path);
 
         return $ret;
     }
