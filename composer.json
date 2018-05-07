@@ -1,6 +1,6 @@
 {
     "name": "theimagingsource/tisd",
-    "description": "The Imaging Source produces a large number of downloadable files (drivers, end-user software, documentation, images etc.). These resources are published at dl2.theimagingsource.com and are available via a JSON-based API. In addition to encapsulating the functionality of the JSON-based API, this component library provides several helper objects to make access to The Imaging Source downloads as simple and quick as possible.",
+    "description": "The Imaging Source produces a large number of downloadable files (drivers, end-user software, documentation, images etc.). These resources are published at dl.theimagingsource.com and are available via a JSON-based API. In addition to encapsulating the functionality of the JSON-based API, this component library provides several helper objects to make access to The Imaging Source downloads as simple and quick as possible.",
     "homepage": "https://github.com/jonathanmaron/theimagingsource-tisd",
     "type": "library",
     "license": "Apache-2.0",

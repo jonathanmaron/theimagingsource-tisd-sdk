@@ -7,7 +7,7 @@
 [![Total Downloads](https://poser.pugx.org/theimagingsource/tisd/downloads)](https://packagist.org/packages/theimagingsource/tisd)
 [![Latest Stable Version](https://poser.pugx.org/theimagingsource/tisd/v/stable)](https://packagist.org/packages/theimagingsource/tisd)
 
-The Imaging Source produces a large number of [downloadable files](http://dl-gui.theimagingsource.com/) (drivers, end-user software, documentation, images etc.). These resources are published at [dl2.theimagingsource.com](https://dl2.theimagingsource.com/) and are available via a JSON-based API. In addition to encapsulating the functionality of the JSON-based API, this component library provides several helper objects to make access to The Imaging Source downloads as simple and quick as possible.
+The Imaging Source produces a large number of [downloadable files](http://dl-gui.theimagingsource.com/) (drivers, end-user software, documentation, images etc.). These resources are published at [dl.theimagingsource.com](https://dl.theimagingsource.com/) and are available via a JSON-based API. In addition to encapsulating the functionality of the JSON-based API, this component library provides several helper objects to make access to The Imaging Source downloads as simple and quick as possible.
 
 
 ## Installation
@@ -24,39 +24,39 @@ And then install the dependencies with:
 
 ### Return all supported locales
 
-* https://dl2.theimagingsource.com/api/2.5/packages/en_US.json
+* https://dl.theimagingsource.com/api/2.5/packages/en_US.json
 
 ### Return all supported contexts
 
-* https://dl2.theimagingsource.com/api/2.5/contexts/en_US.json
+* https://dl.theimagingsource.com/api/2.5/contexts/en_US.json
 
 ### Return meta information and statistics
 
-* https://dl2.theimagingsource.com/api/2.5/meta/en_US.json
+* https://dl.theimagingsource.com/api/2.5/meta/en_US.json
 
 ### Return all data (consolidated)
 
-* https://dl2.theimagingsource.com/api/2.5/consolidated/en_US.json
+* https://dl.theimagingsource.com/api/2.5/consolidated/en_US.json
 
 ### Return all packages in "Downloads"
 
-* https://dl2.theimagingsource.com/api/2.5/packages/downloads/en_US.json
+* https://dl.theimagingsource.com/api/2.5/packages/downloads/en_US.json
 
 ### Return all packages in "Downloads" -> "Drivers"
 
-* https://dl2.theimagingsource.com/api/2.5/packages/downloads/drivers/en_US.json
+* https://dl.theimagingsource.com/api/2.5/packages/downloads/drivers/en_US.json
 
 ### Return package matching product code ID
 
-* https://dl2.theimagingsource.com/api/2.5/get-package-by-product-code-id/icwdmuvccamtis/en_US.json
+* https://dl.theimagingsource.com/api/2.5/get-package-by-product-code-id/icwdmuvccamtis/en_US.json
 
 ### Return package matching package ID
 
-* https://dl2.theimagingsource.com/api/2.5/get-package-by-package-id/icwdmuvccamtis/en_US.json
+* https://dl.theimagingsource.com/api/2.5/get-package-by-package-id/icwdmuvccamtis/en_US.json
 
 ### Return package matching UUID
 
-* https://dl2.theimagingsource.com/api/2.5/get-package-by-uuid/9fb079e7-e7c8-5b46-bf34-5d3a4b3eb19b.json
+* https://dl.theimagingsource.com/api/2.5/get-package-by-uuid/9fb079e7-e7c8-5b46-bf34-5d3a4b3eb19b.json
 
 
 ## Programming Samples
