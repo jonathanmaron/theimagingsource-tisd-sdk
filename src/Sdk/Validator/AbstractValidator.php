@@ -6,10 +6,6 @@ class AbstractValidator
 {
     protected $lut;
 
-    public function __construct($options = [])
-    {
-    }
-
     public function isValid($value)
     {
         $ret = false;
@@ -21,12 +17,12 @@ class AbstractValidator
         return $ret;
     }
 
-    public function getLut()
+    protected function getLut()
     {
         return $this->lut;
     }
 
-    public function setLut($lut)
+    protected function setLut($lut)
     {
         $this->lut = $lut;
 

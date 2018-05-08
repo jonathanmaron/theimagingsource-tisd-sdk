@@ -8,8 +8,8 @@ class ProductCodeId extends AbstractValidator
 {
     public function __construct($options = [])
     {
-        parent::__construct($options);
+        $lut = new ProductCodeIdToPackageLut($options);
 
-        $this->setLut(new ProductCodeIdToPackageLut($options));
+        $this->setLut($lut);
     }
 }
