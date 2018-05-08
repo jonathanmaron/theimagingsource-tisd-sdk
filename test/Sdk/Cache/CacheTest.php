@@ -24,7 +24,7 @@ class CacheTest extends TestCase
     {
         $actual = $this->cache->getFilename('aaa');
 
-        $expected = sprintf('%s/tisd_sdk_cache_cache_aaa_%s.php', sys_get_temp_dir(), $this->cache->getUser());
+        $expected = sprintf('%s/tisd_sdk_cache_aaa_%s.php', sys_get_temp_dir(), $this->cache->getUser());
 
         $this->assertEquals($actual, $expected);
     }

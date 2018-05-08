@@ -2,21 +2,8 @@
 
 namespace Tisd\Sdk\Cache;
 
-class Cache
+class Cache extends AbstractCache
 {
-    const DEFAULT_TTL = 86400;
-
-    protected $path;
-
-    protected $ttl;
-
-    public function __construct()
-    {
-        $this->setPath(sys_get_temp_dir());
-
-        $this->setTtl(self::DEFAULT_TTL);
-    }
-
     public function write($cacheId, $data)
     {
         $filename = $this->getFilename($cacheId);
@@ -60,64 +47,5 @@ class Cache
         }
 
         return $ret;
-    }
-
-    public function getFilename($cacheId, $user = null)
-    {
-        if (null === $user) {
-            $user = $this->getUser();
-        }
-
-        $prefix = str_replace('\\', '_', __CLASS__);
-        $prefix = strtolower($prefix);
-
-        $ret = sprintf('%s/%s_%s_%s.php', $this->getPath(), $prefix, $cacheId, $user);
-
-        return $ret;
-    }
-
-    public function getUser()
-    {
-        $userApache = trim(getenv('APACHE_RUN_USER'));
-        $userCli    = trim(getenv('LOGNAME'));
-
-        $ret = 'nouser';
-
-        if (strlen($userApache) > 0) {
-            $ret = $userApache;
-        } elseif (strlen($userCli) > 0) {
-            $ret = $userCli;
-        }
-
-        return $ret;
-    }
-
-    public function getPath()
-    {
-        return $this->path;
-    }
-
-    public function setPath($cachePath)
-    {
-        $this->path = $cachePath;
-
-        return $this;
-    }
-
-    public function getTtl()
-    {
-        return $this->ttl;
-    }
-
-    public function setTtl($cacheTtl)
-    {
-        $this->ttl = $cacheTtl;
-
-        return $this;
-    }
-
-    public function getId($url)
-    {
-        return hash('sha256', $url);
     }
 }
