@@ -12,17 +12,17 @@ class Defaults
 
     const VERSION                = '2.5';
 
-    const TIMEOUT                = 10;
+    const TIMEOUT                = 25;
+
+    const CONTEXT_ASTRONOMY      = 'astronomy';
 
     const CONTEXT_MACHINE_VISION = 'machinevision';
 
-    const CONTEXT_ASTRONOMY      = 'astronomy';
+    const CONTEXT_MICROSCOPY     = 'microscopy';
 
     const CONTEXT_SCAN2DOCX      = 'scan2docx';
 
     const CONTEXT_SCAN2VOICE     = 'scan2voice';
-
-    const CONTEXT_MICROSCOPY     = 'microscopy';
 
     protected static $locale;
 
@@ -34,11 +34,6 @@ class Defaults
 
     protected static $timeout;
 
-    public static function setLocale($locale)
-    {
-        self::$locale = $locale;
-    }
-
     public static function getLocale()
     {
         if (null === self::$locale) {
@@ -48,11 +43,9 @@ class Defaults
         return self::$locale;
     }
 
-    public static function setContext($context)
+    public static function setLocale($locale)
     {
-        // there is no default context
-
-        self::$context = $context;
+        self::$locale = $locale;
     }
 
     public static function getContext()
@@ -60,9 +53,11 @@ class Defaults
         return self::$context;
     }
 
-    public static function setHostname($hostname)
+    public static function setContext($context)
     {
-        self::$hostname = $hostname;
+        // there is no default context
+
+        self::$context = $context;
     }
 
     public static function getHostname()
@@ -74,9 +69,9 @@ class Defaults
         return self::$hostname;
     }
 
-    public static function setVersion($version)
+    public static function setHostname($hostname)
     {
-        self::$version = $version;
+        self::$hostname = $hostname;
     }
 
     public static function getVersion()
@@ -88,9 +83,9 @@ class Defaults
         return self::$version;
     }
 
-    public static function setTimeout($timeout)
+    public static function setVersion($version)
     {
-        self::$timeout = $timeout;
+        self::$version = $version;
     }
 
     public static function getTimeout()
@@ -100,5 +95,10 @@ class Defaults
         }
 
         return self::$timeout;
+    }
+
+    public static function setTimeout($timeout)
+    {
+        self::$timeout = $timeout;
     }
 }

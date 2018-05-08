@@ -21,15 +21,15 @@ class AbstractValidator
         return $ret;
     }
 
+    public function getLut()
+    {
+        return $this->lut;
+    }
+
     public function setLut($lut)
     {
         $this->lut = $lut;
 
         return $this;
-    }
-
-    public function getLut()
-    {
-        return $this->lut;
     }
 }

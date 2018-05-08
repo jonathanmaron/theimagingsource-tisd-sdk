@@ -92,9 +92,9 @@ class Cache
         return $ret;
     }
 
-    public function getId($url)
+    public function getPath()
     {
-        return hash('sha256', $url);
+        return $this->path;
     }
 
     public function setPath($cachePath)
@@ -104,9 +104,9 @@ class Cache
         return $this;
     }
 
-    public function getPath()
+    public function getTtl()
     {
-        return $this->path;
+        return $this->ttl;
     }
 
     public function setTtl($cacheTtl)
@@ -116,8 +116,8 @@ class Cache
         return $this;
     }
 
-    public function getTtl()
+    public function getId($url)
     {
-        return $this->ttl;
+        return hash('sha256', $url);
     }
 }

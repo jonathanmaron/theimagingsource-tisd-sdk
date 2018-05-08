@@ -2,8 +2,10 @@
 
 namespace Tisd\Sdk\Lut;
 
+use RecursiveArrayIterator;
+use RecursiveIteratorIterator;
 use Tisd\Sdk;
-use Tisd\Sdk\Exception\RuntimeException as RuntimeException;
+use Tisd\Sdk\Exception\RuntimeException;
 
 class AbstractLut
 {
@@ -13,41 +15,19 @@ class AbstractLut
 
     public function __construct($options = [])
     {
-        $this->setSdk(new Sdk($options));
-    }
+        $sdk = new Sdk($options);
 
-    protected function buildLut($keyName)
-    {
-        $ret = [];
-
-        $packages = $this->getSdk()->getPackages();
-
-        foreach ($packages['children'] as $categories) {
-            foreach ($categories['children'] as $sections) {
-                foreach ($sections['children'] as $package) {
-                    if (!isset($package[$keyName])) {
-                        throw new RuntimeException("The '{$keyName}' does not exist in the package.");
-                    }
-                    $key = $package[$keyName];
-                    if (isset($ret[$key])) {
-                        throw new RuntimeException("The '{$keyName}' is not unique in the LUT. The offending key is '{$key}'.");
-                    }
-                    $ret[$key] = $package;
-                }
-            }
-        }
-
-        return $ret;
-    }
-
-    public function getValues()
-    {
-        return $this->lut;
+        $this->setSdk($sdk);
     }
 
     public function getKeys()
     {
         return array_keys($this->getValues());
+    }
+
+    public function getValues()
+    {
+        return $this->lut;
     }
 
     public function getValue($key)
@@ -61,6 +41,11 @@ class AbstractLut
         return $ret;
     }
 
+    public function getSdk()
+    {
+        return $this->sdk;
+    }
+
     public function setSdk($sdk)
     {
         $this->sdk = $sdk;
@@ -68,8 +53,42 @@ class AbstractLut
         return $this;
     }
 
-    public function getSdk()
+    protected function buildLut($keyName)
     {
-        return $this->sdk;
+        $ret = [];
+
+        $packages = $this->getSdk()->getPackages();
+
+        $rai = new RecursiveArrayIterator($packages);
+        $rii = new RecursiveIteratorIterator($rai, RecursiveIteratorIterator::SELF_FIRST);
+
+        foreach ($rii as $package) {
+
+            if (!is_array($package)) {
+                continue;
+            }
+
+            if (!array_key_exists('package_id', $package)) {
+                continue;
+            }
+
+            if (!isset($package[$keyName])) {
+                $format  = "The '%s' does not exist in the package.";
+                $message = sprintf($format, $keyName);
+                throw new RuntimeException($message);
+            }
+
+            $key = $package[$keyName];
+
+            if (isset($ret[$key])) {
+                $format  = "The '%s' is not unique in the LUT. The offending key is '%s'.";
+                $message = sprintf($format, $keyName, $key);
+                throw new RuntimeException($message);
+            }
+
+            $ret[$key] = $package;
+        }
+
+        return $ret;
     }
 }
