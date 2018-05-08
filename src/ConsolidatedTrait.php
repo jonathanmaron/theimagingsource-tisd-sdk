@@ -2,8 +2,6 @@
 
 namespace Tisd;
 
-use Tisd\Defaults;
-
 trait ConsolidatedTrait
 {
     private $consolidated;
@@ -26,7 +24,10 @@ trait ConsolidatedTrait
                 $consolidated = $this->downloadConsolidated();
             }
 
-            //@todo: Filter by context here
+            if (null !== $this->getContext()) {
+                $packages = $this->filter($consolidated['packages'], 'contexts', $this->getContext());
+                $consolidated['packages'] = $packages;
+            }
 
             $this->setConsolidated($consolidated);
         }
@@ -49,6 +50,8 @@ trait ConsolidatedTrait
         $options = [
             'http' => [
                 'timeout' => $this->getTimeout(),
+                'method'  => "GET",
+                'header'  => sprintf('User-Agent: TIS Download System SDK (PHP %s)', phpversion()),
             ],
         ];
 

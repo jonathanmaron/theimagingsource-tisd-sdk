@@ -31,8 +31,6 @@ trait PackageTrait
 
     private function getPackageByKeyValue($key, $value)
     {
-        $ret = null;
-
         $consolidated = $this->getConsolidated();
 
         $rai = new RecursiveArrayIterator($consolidated['packages']);
@@ -49,11 +47,10 @@ trait PackageTrait
             }
 
             if ($package[$key] === $value) {
-                $ret = $package;
-                break;
+                return $package;
             }
         }
 
-        return $ret;
+        return null;
     }
 }

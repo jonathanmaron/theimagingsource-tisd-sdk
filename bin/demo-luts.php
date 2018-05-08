@@ -8,17 +8,42 @@ use Tisd\Sdk\Lut\ProductCodeIdToPackage as ProductCodeIdToPackageLut;
 use Tisd\Sdk\Lut\ProductCodeToPackage as ProductCodeToPackageLut;
 use Tisd\Sdk\Lut\UuidToPackage as UuidToPackageLut;
 
+/*
 $lut = new PackageIdToPackageLut();
 dump($lut->getValues());
+*/
 
-$lut = new ProductCodeIdToPackageLut(['locale' => 'de_DE', 'context' => Defaults::CONTEXT_MACHINE_VISION]);
+/*
+$options = [
+    'locale'  => 'de_DE',
+    'context' => Defaults::CONTEXT_MACHINE_VISION,
+];
+$lut     = new ProductCodeIdToPackageLut($options);
 dump($lut->getValues());
+*/
 
-$lut = new ProductCodeToPackageLut(['locale' => 'zh_TW', 'context' => Defaults::CONTEXT_SCAN2DOCX]);
+/*
+$options = [
+    'locale'  => 'zh_TW',
+    'context' => Defaults::CONTEXT_SCAN2DOCX,
+];
+$lut     = new ProductCodeToPackageLut($options);
 dump($lut->getValues());
+*/
 
-$lut = new UuidToPackageLut(['locale' => 'zh_CN', 'context' => Defaults::CONTEXT_ASTRONOMY]);
+/*
+$options = [
+    'locale'  => 'zh_CN',
+    'context' => Defaults::CONTEXT_ASTRONOMY,
+];
+$lut     = new UuidToPackageLut($options);
 dump($lut->getValues());
+*/
 
-$lut = new UuidToPackageLut(['locale' => 'en_US', 'context' => Defaults::CONTEXT_MICROSCOPY]);
-dump($lut->getValues());
+$options = [
+    'locale'  => 'en_US',
+    'context' => Defaults::CONTEXT_MICROSCOPY,
+];
+$lut     = new UuidToPackageLut($options);
+//var_dump($lut->getValues());
+$lut->getValues();

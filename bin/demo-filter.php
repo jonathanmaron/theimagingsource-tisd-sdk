@@ -6,13 +6,16 @@ use Tisd\Sdk;
 
 $sdk = new Sdk(['locale' => 'de_DE']);
 
-$sdk->getCache()->purge();
+//$sdk->getCache()->purge();
 
 $sdk->setContext('astronomy');
 
-$packages = $sdk->getPackages();
+$packages = $sdk->getPackages('downloads');
 
 dump($packages);
+
+exit();
+
 
 $sdk->getCache()->purge();
 

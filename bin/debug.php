@@ -2,34 +2,33 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Tisd\Sdk;
 use Tisd\Defaults;
+use Tisd\Sdk;
 
-$sdk = new Sdk(['locale' => 'de_DE', 'hostname' => Defaults::HOSTNAME_DEVELOPMENT]);
-
-//$package = $sdk->getPackageByUuid('9545f254-c7d4-54a4-a86b-c9e367bf4c57');
-//$package = $sdk->getPackageByProductCodeId('fsdfk27bup006');
-//$package = $sdk->getPackageByPackageId('fsdfk27bup006');
-//$package = $sdk->getPackageByProductCode('FS/DFK 27BUP006');
-
-//dump($sdk->getMeta());
-//dump($sdk->getCategoryCount());
-//dump($sdk->getSectionCount());
-//dump($sdk->getPackageCount());
-//dump($sdk->getBuildTime());
-//dump($sdk->getLocales());
-//dump($sdk->getContexts());
-
+$sdk = new Sdk(['locale'   => 'de_DE',
+                'hostname' => Defaults::HOSTNAME_DEVELOPMENT,
+                //'context'  => Defaults::CONTEXT_ASTRONOMY,
+               ]);
 /*
-$packages = $sdk->getPackagesByProductCodes([
-    'IC WDM UVCCAM TIS',
-    'ICX445AQA',
-    'FS/DMK 41BF02.H',
-    'MN/IC Imaging Control .NET',
-]);
+//$sdk->getCache()->purge();
+
+$categories = $sdk->getPackages('downloads', 'drivers');
+
+foreach ($categories['children'] as $package) {
+
+    dump($package['contexts']);
+
+}
 */
 
-$sdk->getCache()->purge();
+/*
+$packages = $sdk->getPackagesByProductCodes(['IC WDM DCAM TIS', 'IC WDM GIGE TIS', 'IC WDM 878 TIS']);
 
-dump($sdk->getLocales());
+dump($packages);
+*/
 
+//$packages = $sdk->getPackagesByProductCodeSearch('FS/');
+
+$packaged = $sdk->getPackageByProductCode('IC WDM DCAM TIS');
+
+dump($packaged);

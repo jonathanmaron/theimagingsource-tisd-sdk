@@ -7,12 +7,13 @@ use Tisd\Sdk\Cache as Cache;
 
 class Sdk
 {
+    use ConsolidatedTrait;
     use ContextsTrait;
+    use FilterTrait;
     use LocalesTrait;
     use MetaTrait;
     use PackagesTrait;
     use PackageTrait;
-    use ConsolidatedTrait;
 
     protected $cache;
 
