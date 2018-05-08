@@ -4,6 +4,8 @@ namespace Tisd;
 
 trait PackagesTrait
 {
+    abstract protected function filter($packages, $key, $value, $fuzzy = false);
+
     abstract protected function getConsolidated();
 
     public function getPackages($categoryId = null, $sectionId = null, $packageId = null)
@@ -19,15 +21,17 @@ trait PackagesTrait
             $packages = $this->filter($packages, 'package_id', $packageId);
 
             return $packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId];
+        }
 
-        } elseif (null !== $categoryId && null !== $sectionId) {
+        if (null !== $categoryId && null !== $sectionId) {
 
             $packages = $this->filter($packages, 'category_id', $categoryId);
             $packages = $this->filter($packages, 'section_id', $sectionId);
 
             return $packages['children'][$categoryId]['children'][$sectionId];
+        }
 
-        } elseif (null !== $categoryId) {
+        if (null !== $categoryId) {
 
             $packages = $this->filter($packages, 'category_id', $categoryId);
 
