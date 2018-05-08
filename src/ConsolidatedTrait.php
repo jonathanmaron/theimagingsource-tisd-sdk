@@ -6,6 +6,20 @@ trait ConsolidatedTrait
 {
     private $consolidated;
 
+    abstract public function getCache();
+
+    abstract public function getContext();
+
+    abstract public function getHostname();
+
+    abstract public function getLocale();
+
+    abstract public function getTimeout();
+
+    abstract public function getVersion();
+
+    abstract protected function filter($packages, $key, $value, $fuzzy = false);
+
     protected function getConsolidated()
     {
         if (null === $this->consolidated) {
