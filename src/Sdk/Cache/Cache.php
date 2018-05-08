@@ -1,6 +1,6 @@
 <?php
 
-namespace Tisd\Sdk;
+namespace Tisd\Sdk\Cache;
 
 class Cache
 {

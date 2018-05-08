@@ -3,7 +3,7 @@
 namespace Tisd;
 
 use Tisd\Defaults as Defaults;
-use Tisd\Sdk\Cache as Cache;
+use Tisd\Sdk\Cache\Cache;
 
 class Sdk
 {
