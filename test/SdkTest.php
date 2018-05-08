@@ -14,7 +14,7 @@ class SdkTest extends TestCase
     protected function setUp()
     {
         $options = [
-            'hostname' => Defaults::HOSTNAME_DEVELOPMENT,
+            //'hostname' => Defaults::HOSTNAME_DEVELOPMENT,
         ];
 
         $this->sdk = new Sdk($options);
