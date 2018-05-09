@@ -1,6 +1,6 @@
 ![The Imaging Source](http://s1.www.theimagingsource.com/application-0.0.0/img/corporate_id/tis_logo.png)
 
-# The Imaging Source Downloads SDK
+# PHP Wrapper for The Imaging Source Download System Web API
 
 [![Coverage Status](https://coveralls.io/repos/jonathanmaron/theimagingsource-tisd/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonathanmaron/theimagingsource-tisd?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jonathanmaron/theimagingsource-tisd/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jonathanmaron/theimagingsource-tisd/?branch=master)
@@ -14,7 +14,7 @@ The Imaging Source produces a large number of [downloadable files](http://dl-gui
 
 Use [Composer](https://getcomposer.org/doc/00-intro.md#globally) to install the SDK:
 
-```composer require theimagingsource/tisd ~3.0```
+```composer require theimagingsource/tisd ~4.0```
 
 And then install the dependencies with:
 

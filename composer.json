@@ -1,6 +1,6 @@
 {
     "name": "theimagingsource/tisd",
-    "description": "The Imaging Source produces a large number of downloadable files (drivers, end-user software, documentation, images etc.). These resources are published at dl.theimagingsource.com and are available via a JSON-based API. In addition to encapsulating the functionality of the JSON-based API, this component library provides several helper objects to make access to The Imaging Source downloads as simple and quick as possible.",
+    "description": "PHP wrapper for TIS Download System Web API. Authored and supported by The Imaging Source Europe GmbH."
     "homepage": "https://github.com/jonathanmaron/theimagingsource-tisd",
     "type": "library",
     "license": "Apache-2.0",
