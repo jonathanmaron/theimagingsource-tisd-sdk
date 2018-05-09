@@ -2,8 +2,8 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Tisd\Defaults\Defaults;
-use Tisd\Sdk;
+use Tisd\Sdk\Defaults\Defaults;
+use Tisd\Sdk\Sdk;
 
 $sdk = new Sdk(['locale'   => 'de_DE',
                 'hostname' => Defaults::HOSTNAME_DEVELOPMENT,

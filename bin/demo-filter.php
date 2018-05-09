@@ -2,25 +2,25 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Tisd\Sdk;
+use Tisd\Sdk\Sdk;
+use Tisd\Sdk\Defaults\Defaults;
 
-$sdk = new Sdk(['locale' => 'de_DE']);
+$sdk = new Sdk([
+    'locale' => 'de_DE'
+]);
 
-//$sdk->getCache()->purge();
-
-$sdk->setContext('astronomy');
+$sdk->setContext(Defaults::CONTEXT_ASTRONOMY);
 
 $packages = $sdk->getPackages('downloads');
 
 dump($packages);
 
-exit();
-
-
 $sdk->getCache()->purge();
 
 
-$sdk = new Sdk(['locale' => 'de_DE']);
+$sdk = new Sdk([
+    'locale' => 'de_DE'
+]);
 
 $sdk->getCache()->purge();
 

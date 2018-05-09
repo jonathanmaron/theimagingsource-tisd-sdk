@@ -49,10 +49,10 @@ class CacheTest extends TestCase
 
     public function testPurge()
     {
-        $sdk = new Sdk();       // ensure there is something in the cache
+        // ensure there is something in the cache
         // so that it can be purged, and return true
+        $sdk = new Sdk();
         $sdk->getPackages();
-
         $this->assertTrue($sdk->getCache()->purge());
     }
 
