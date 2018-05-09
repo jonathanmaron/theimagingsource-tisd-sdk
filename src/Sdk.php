@@ -101,6 +101,8 @@ class Sdk
     {
         $this->locale = $locale;
 
+        $this->setConsolidated(null);
+
         return $this;
     }
 
