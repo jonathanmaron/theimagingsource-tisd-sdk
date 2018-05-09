@@ -10,6 +10,6 @@ class ProductCode extends AbstractValidator
     {
         $lut = new ProductCodeToPackageLut($options);
 
-        $this->setLut($lut);
+        $this->setHaystack($lut->getKeys());
     }
 }

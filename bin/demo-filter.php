@@ -6,17 +6,15 @@ use Tisd\Sdk\Sdk;
 use Tisd\Sdk\Defaults\Defaults;
 
 $sdk = new Sdk([
-    'locale' => 'de_DE'
+    'locale' => 'de_DE',
+    'context' => Defaults::CONTEXT_ASTRONOMY,
 ]);
-
-$sdk->setContext(Defaults::CONTEXT_ASTRONOMY);
 
 $packages = $sdk->getPackages('downloads');
 
 dump($packages);
 
 $sdk->getCache()->purge();
-
 
 $sdk = new Sdk([
     'locale' => 'de_DE'

@@ -10,6 +10,6 @@ class ProductCodeId extends AbstractValidator
     {
         $lut = new ProductCodeIdToPackageLut($options);
 
-        $this->setLut($lut);
+        $this->setHaystack($lut->getKeys());
     }
 }

@@ -10,6 +10,6 @@ class PackageId extends AbstractValidator
     {
         $lut = new PackageIdToPackageLut($options);
 
-        $this->setLut($lut);
+        $this->setHaystack($lut->getKeys());
     }
 }

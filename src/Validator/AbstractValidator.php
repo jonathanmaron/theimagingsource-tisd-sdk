@@ -4,27 +4,21 @@ namespace Tisd\Sdk\Validator;
 
 class AbstractValidator
 {
-    protected $lut;
+    protected $haystack;
 
     public function isValid($value)
     {
-        $ret = false;
-
-        if (in_array($value, $this->getLut()->getKeys())) {
-            $ret = true;
-        }
-
-        return $ret;
+        return in_array($value, $this->getHaystack());
     }
 
-    protected function getLut()
+    protected function getHaystack()
     {
-        return $this->lut;
+        return $this->haystack;
     }
 
-    protected function setLut($lut)
+    protected function setHaystack($haystack)
     {
-        $this->lut = $lut;
+        $this->haystack = $haystack;
 
         return $this;
     }

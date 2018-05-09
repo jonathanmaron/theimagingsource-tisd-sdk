@@ -10,6 +10,6 @@ class Uuid extends AbstractValidator
     {
         $lut = new UuidToPackageLut($options);
 
-        $this->setLut($lut);
+        $this->setHaystack($lut->getKeys());
     }
 }
