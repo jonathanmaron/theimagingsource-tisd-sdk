@@ -2,8 +2,8 @@
 
 # PHP Wrapper for The Imaging Source Download System Web API
 
-[![Coverage Status](https://coveralls.io/repos/jonathanmaron/theimagingsource-tisd/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonathanmaron/theimagingsource-tisd?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jonathanmaron/theimagingsource-tisd/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jonathanmaron/theimagingsource-tisd/?branch=master)
+[![Coverage Status](https://coveralls.io/repos/jonathanmaron/theimagingsource-tisd-sdk/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonathanmaron/theimagingsource-tisd-sdk?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jonathanmaron/theimagingsource-tisd-sdk/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jonathanmaron/theimagingsource-tisd-sdk/?branch=master)
 [![Total Downloads](https://poser.pugx.org/theimagingsource/tisd/downloads)](https://packagist.org/packages/theimagingsource/tisd)
 [![Latest Stable Version](https://poser.pugx.org/theimagingsource/tisd/v/stable)](https://packagist.org/packages/theimagingsource/tisd)
 
