@@ -84,7 +84,7 @@ root
 ```php
 <?php
 
-use Tisd\Sdk;
+use Tisd\Sdk\Sdk;
 
 $sdk = new Sdk();
 
