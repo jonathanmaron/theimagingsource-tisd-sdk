@@ -3,7 +3,7 @@
 namespace TisdTest\Sdk\Cache;
 
 use PHPUnit\Framework\TestCase;
-use Tisd\Sdk;
+use Tisd\Sdk\Sdk;
 use Tisd\Sdk\Cache\Cache;
 
 class CacheTest extends TestCase

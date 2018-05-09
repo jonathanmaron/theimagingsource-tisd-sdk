@@ -1,8 +1,8 @@
 <?php
 
-namespace Tisd;
+namespace Tisd\Sdk;
 
-use Tisd\Defaults as Defaults;
+use Tisd\Sdk\Defaults\Defaults;
 use Tisd\Sdk\Cache\Cache;
 
 class Sdk
@@ -29,6 +29,8 @@ class Sdk
 
     public function __construct($options = [])
     {
+        $defaults = new Defaults();
+
         $optionKeys = [
             'context',
             'hostname',
@@ -42,7 +44,7 @@ class Sdk
                 $value = $options[$optionKey];
             } else {
                 $getter = sprintf('get%s', ucfirst($optionKey));
-                $value  = Defaults::$getter();
+                $value  = $defaults->$getter();
             }
 
             $setter = sprintf('set%s', ucfirst($optionKey));

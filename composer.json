@@ -17,12 +17,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Tisd\\": "src/"
+            "Tisd\\Sdk\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "TisdTest\\": "test/"
+            "TisdTest\\Sdk\\": "test/"
         }
     },
     "require": {

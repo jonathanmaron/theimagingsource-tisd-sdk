@@ -2,11 +2,11 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Tisd\Defaults;
-use Tisd\Sdk\Validator\PackageId as PackageIdValidator;
-use Tisd\Sdk\Validator\ProductCode as ProductCodeValidator;
-use Tisd\Sdk\Validator\ProductCodeId as ProductCodeIdValidator;
-use Tisd\Sdk\Validator\Uuid as UuidValidator;
+use Tisd\Defaults\Defaults;
+use Tisd\Validator\PackageId as PackageIdValidator;
+use Tisd\Validator\ProductCode as ProductCodeValidator;
+use Tisd\Validator\ProductCodeId as ProductCodeIdValidator;
+use Tisd\Validator\Uuid as UuidValidator;
 
 $validator = new PackageIdValidator();
 dump($validator->isValid('icwdm878tis'));

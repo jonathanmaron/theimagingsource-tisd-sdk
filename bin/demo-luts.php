@@ -2,11 +2,11 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Tisd\Defaults;
-use Tisd\Sdk\Lut\PackageIdToPackage as PackageIdToPackageLut;
-use Tisd\Sdk\Lut\ProductCodeIdToPackage as ProductCodeIdToPackageLut;
-use Tisd\Sdk\Lut\ProductCodeToPackage as ProductCodeToPackageLut;
-use Tisd\Sdk\Lut\UuidToPackage as UuidToPackageLut;
+use Tisd\Defaults\Defaults;
+use Tisd\Lut\PackageIdToPackage as PackageIdToPackageLut;
+use Tisd\Lut\ProductCodeIdToPackage as ProductCodeIdToPackageLut;
+use Tisd\Lut\ProductCodeToPackage as ProductCodeToPackageLut;
+use Tisd\Lut\UuidToPackage as UuidToPackageLut;
 
 /*
 $lut = new PackageIdToPackageLut();

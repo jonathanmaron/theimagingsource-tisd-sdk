@@ -1,6 +1,8 @@
 <?php
 
-namespace Tisd;
+namespace Tisd\Sdk;
+
+use Tisd\Sdk\Defaults\Defaults;
 
 trait ConsolidatedTrait
 {

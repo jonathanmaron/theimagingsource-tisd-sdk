@@ -4,7 +4,7 @@ namespace Tisd\Sdk\Lut;
 
 use RecursiveArrayIterator;
 use RecursiveIteratorIterator;
-use Tisd\Sdk;
+use Tisd\Sdk\Sdk;
 use Tisd\Sdk\Exception\RuntimeException;
 
 class AbstractLut

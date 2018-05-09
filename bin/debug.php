@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Tisd\Defaults;
+use Tisd\Defaults\Defaults;
 use Tisd\Sdk;
 
 $sdk = new Sdk(['locale'   => 'de_DE',

@@ -4,7 +4,7 @@ namespace Tisd\Sdk\Cache;
 
 abstract class AbstractCache
 {
-    const DEFAULT_TTL = 86400;
+    const DEFAULT_TTL = 2419200; // 4 weeks
 
     protected $path;
 

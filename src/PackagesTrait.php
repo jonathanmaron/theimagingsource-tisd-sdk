@@ -1,6 +1,6 @@
 <?php
 
-namespace Tisd;
+namespace Tisd\Sdk;
 
 trait PackagesTrait
 {

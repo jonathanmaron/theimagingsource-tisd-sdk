@@ -3,8 +3,8 @@
 namespace TisdTest\Sdk;
 
 use PHPUnit\Framework\TestCase;
-use Tisd\Defaults;
-use Tisd\Sdk;
+use Tisd\Sdk\Defaults\Defaults;
+use Tisd\Sdk\Sdk;
 use Tisd\Sdk\Cache\Cache;
 
 class SdkTest extends TestCase
