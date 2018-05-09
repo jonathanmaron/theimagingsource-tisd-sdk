@@ -27,12 +27,6 @@ class Sdk
 
     protected $version;
 
-    public function test()
-    {
-        return 'hello world';
-    }
-
-
     public function __construct($options = [])
     {
         $defaults = new Defaults();
