@@ -1,5 +1,5 @@
 {
-    "name": "theimagingsource/tisd",
+    "name": "theimagingsource/tisd-sdk",
     "description": "PHP wrapper for The Imaging Source Download System Web API. Authored and supported by The Imaging Source Europe GmbH.",
     "license": "BSD-3-Clause",
     "type": "library",
