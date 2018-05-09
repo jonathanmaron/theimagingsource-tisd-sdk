@@ -67,8 +67,6 @@ class SdkTest extends TestCase
         $actual = $this->sdk->getBuildTime();
 
         $this->assertTrue(is_numeric($actual));
-
-        $this->assertTrue($actual > 1450183000);
     }
 
     public function testSetAndGetCache()

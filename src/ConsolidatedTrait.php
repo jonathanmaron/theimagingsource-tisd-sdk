@@ -27,7 +27,7 @@ trait ConsolidatedTrait
         if (null === $this->consolidated) {
 
             $cache   = $this->getCache();
-            $cacheId = __METHOD__;
+            $cacheId = $this->getLocale() . __METHOD__;
 
             if ($cache->getTtl() > 0) {
                 $cacheId      = $cache->getId($cacheId);
