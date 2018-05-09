@@ -1,20 +1,8 @@
 {
     "name": "theimagingsource/tisd",
-    "description": "PHP wrapper for TIS Download System Web API. Authored and supported by The Imaging Source Europe GmbH."
-    "homepage": "https://github.com/jonathanmaron/theimagingsource-tisd",
+    "description": "PHP wrapper for The Imaging Source Download System Web API. Authored and supported by The Imaging Source Europe GmbH.",
+    "license": "BSD-3-Clause",
     "type": "library",
-    "license": "Apache-2.0",
-    "config": {
-        "optimize-autoloader": true,
-        "classmap-authoritative": true
-    },
-    "authors": [
-        {
-            "name": "Jonathan Maron (The Imaging Source)",
-            "homepage": "https://github.com/jonathanmaron/",
-            "role": "Developer"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Tisd\\Sdk\\": "src/"
