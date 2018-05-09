@@ -4,8 +4,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/jonathanmaron/theimagingsource-tisd-sdk/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonathanmaron/theimagingsource-tisd-sdk?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jonathanmaron/theimagingsource-tisd-sdk/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jonathanmaron/theimagingsource-tisd-sdk/?branch=master)
-[![Total Downloads](https://poser.pugx.org/theimagingsource/tisd/downloads)](https://packagist.org/packages/theimagingsource/tisd)
-[![Latest Stable Version](https://poser.pugx.org/theimagingsource/tisd/v/stable)](https://packagist.org/packages/theimagingsource/tisd)
+[![Total Downloads](https://poser.pugx.org/theimagingsource/tisd-sdk/downloads)](https://packagist.org/packages/theimagingsource/tisd)
+[![Latest Stable Version](https://poser.pugx.org/theimagingsource/tisd-sdk/v/stable)](https://packagist.org/packages/theimagingsource/tisd)
 
 The Imaging Source produces a large number of [downloadable files](http://dl-gui.theimagingsource.com/) (drivers, end-user software, documentation, images etc.). These resources are published at [dl.theimagingsource.com](https://dl.theimagingsource.com/) and are available via a JSON-based API. In addition to encapsulating the functionality of the JSON-based API, this component library provides several helper objects to make access to The Imaging Source downloads as simple and quick as possible.
 
