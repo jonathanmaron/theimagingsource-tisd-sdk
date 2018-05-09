@@ -1,4 +1,4 @@
-![The Imaging Source](http://s1.www.theimagingsource.com/application-0.0.0/img/corporate_id/tis_logo.png)
+![Logo](./data/tis_logo.png)
 
 # PHP Wrapper for The Imaging Source Download System Web API
 
