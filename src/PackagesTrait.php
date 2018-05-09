@@ -20,7 +20,7 @@ trait PackagesTrait
             $packages = $this->filter($packages, 'section_id', $sectionId);
             $packages = $this->filter($packages, 'package_id', $packageId);
 
-            return $packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId];
+            return $packages['children'][$categoryId]['children'][$sectionId]['children'][$packageId] ?? null;
         }
 
         if (null !== $categoryId && null !== $sectionId) {
@@ -28,14 +28,14 @@ trait PackagesTrait
             $packages = $this->filter($packages, 'category_id', $categoryId);
             $packages = $this->filter($packages, 'section_id', $sectionId);
 
-            return $packages['children'][$categoryId]['children'][$sectionId];
+            return $packages['children'][$categoryId]['children'][$sectionId] ?? null;
         }
 
         if (null !== $categoryId) {
 
             $packages = $this->filter($packages, 'category_id', $categoryId);
 
-            return $packages['children'][$categoryId];
+            return $packages['children'][$categoryId] ?? null;
         }
 
         return $packages;
