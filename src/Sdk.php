@@ -53,6 +53,14 @@ class Sdk
 
         $cache = new Cache();
 
+        if (array_key_exists('ttl', $options)) {
+            $ttl = $options['ttl'];
+        } else {
+            $ttl = Defaults::TTL;
+        }
+
+        $cache->setTtl($ttl);
+
         $this->setCache($cache);
     }
 

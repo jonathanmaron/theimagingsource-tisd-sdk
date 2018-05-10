@@ -10,6 +10,6 @@ trait LocalesTrait
     {
         $consolidated = $this->getConsolidated();
 
-        return $consolidated['locales'];
+        return $consolidated['locales'] ?? [];
     }
 }

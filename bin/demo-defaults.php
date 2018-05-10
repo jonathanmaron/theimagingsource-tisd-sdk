@@ -6,8 +6,10 @@ use Tisd\Sdk\Defaults\Defaults;
 use Tisd\Sdk\Sdk;
 
 $sdk = new Sdk([
-    'locale' => 'zh_CN',
-    'context' => Defaults::CONTEXT_MACHINE_VISION
+    'locale'  => 'zh_CN',
+    'context' => Defaults::CONTEXT_MACHINE_VISION,
+    'ttl'     => 10,
+    'timeout' => 50,
 ]);
 
 dump($sdk->getPackages());

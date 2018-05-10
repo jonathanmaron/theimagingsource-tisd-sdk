@@ -10,34 +10,34 @@ trait MetaTrait
     {
         $consolidated = $this->getConsolidated();
 
-        return $consolidated['meta'];
+        return $consolidated['meta'] ?? [];
     }
 
     public function getCategoryCount()
     {
         $meta = $this->getMeta();
 
-        return (int) $meta['category']['count'];
+        return (int) $meta['category']['count'] ?? 0;
     }
 
     public function getSectionCount()
     {
         $meta = $this->getMeta();
 
-        return (int) $meta['section']['count'];
+        return (int) $meta['section']['count'] ?? 0;
     }
 
     public function getPackageCount()
     {
         $meta = $this->getMeta();
 
-        return (int) $meta['package']['count'];
+        return (int) $meta['package']['count'] ?? 0;
     }
 
     public function getBuildTime($type = 'timestamp')
     {
         $meta = $this->getMeta();
 
-        return $meta['build']['time'][$type];
+        return $meta['build']['time'][$type] ?? null;
     }
 }

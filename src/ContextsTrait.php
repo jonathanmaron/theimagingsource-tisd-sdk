@@ -10,6 +10,6 @@ trait ContextsTrait
     {
         $consolidated = $this->getConsolidated();
 
-        return $consolidated['contexts'];
+        return $consolidated['contexts'] ?? [];
     }
 }

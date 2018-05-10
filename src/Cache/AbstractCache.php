@@ -2,19 +2,26 @@
 
 namespace Tisd\Sdk\Cache;
 
+use Tisd\Sdk\Defaults\Defaults;
+
 abstract class AbstractCache
 {
-    const DEFAULT_TTL = 2419200; // 4 weeks
-
     protected $path;
 
     protected $ttl;
 
-    public function __construct()
+    public function __construct($options = [])
     {
-        $this->setPath(sys_get_temp_dir());
+        if (array_key_exists('ttl', $options)) {
+            $ttl = $options['ttl'];
+        } else {
+            $ttl = Defaults::TTL;
+        }
 
-        $this->setTtl(self::DEFAULT_TTL);
+        $this->setTtl($ttl);
+
+        // not configurable
+        $this->setPath(sys_get_temp_dir());
     }
 
     public function getPath()

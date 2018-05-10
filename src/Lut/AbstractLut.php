@@ -46,7 +46,7 @@ class AbstractLut
         return $this->sdk;
     }
 
-    public function setSdk($sdk)
+    public function setSdk(Sdk $sdk)
     {
         $this->sdk = $sdk;
 
@@ -72,7 +72,7 @@ class AbstractLut
                 continue;
             }
 
-            if (!isset($package[$keyName])) {
+            if (!array_key_exists($keyName, $package)) {
                 $format  = "The '%s' does not exist in the package.";
                 $message = sprintf($format, $keyName);
                 throw new RuntimeException($message);
@@ -80,7 +80,7 @@ class AbstractLut
 
             $key = $package[$keyName];
 
-            if (isset($ret[$key])) {
+            if (array_key_exists($key, $ret)) {
                 $format  = "The '%s' is not unique in the LUT. The offending key is '%s'.";
                 $message = sprintf($format, $keyName, $key);
                 throw new RuntimeException($message);

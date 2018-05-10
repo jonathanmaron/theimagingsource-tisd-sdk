@@ -20,17 +20,21 @@ abstract class AbstractDefaults
 
     public const LOCALE                 = 'en_US';
 
-    public const TIMEOUT                = 25;
+    public const TIMEOUT                = 25; // seconds
+
+    public const TTL                    = 2419200; // seconds (4 weeks)
 
     public const VERSION                = '2.5';
 
-    protected static $context;
+    protected $context;
 
-    protected static $hostname;
+    protected $hostname;
 
-    protected static $locale;
+    protected $locale;
 
-    protected static $timeout;
+    protected $timeout;
 
-    protected static $version;
+    protected $ttl;
+
+    protected $version;
 }

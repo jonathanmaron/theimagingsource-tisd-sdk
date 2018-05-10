@@ -10,56 +10,79 @@ class Defaults extends AbstractDefaults
         $this->setHostname(self::HOSTNAME_PRODUCTION);
         $this->setLocale(self::LOCALE);
         $this->setTimeout(self::TIMEOUT);
+        $this->setTtl(self::TTL);
         $this->setVersion(self::VERSION);
-    }
-
-    public function getLocale()
-    {
-        return self::$locale;
-    }
-
-    public function setLocale($locale)
-    {
-        self::$locale = $locale;
     }
 
     public function getContext()
     {
-        return self::$context;
+        return $this->context;
     }
 
     public function setContext($context)
     {
-        self::$context = $context;
+        $this->context = $context;
+
+        return $this;
     }
 
     public function getHostname()
     {
-        return self::$hostname;
+        return $this->hostname;
     }
 
     public function setHostname($hostname)
     {
-        self::$hostname = $hostname;
+        $this->hostname = $hostname;
+
+        return $this;
     }
 
-    public function getVersion()
+    public function getLocale()
     {
-        return self::$version;
+        return $this->locale;
     }
 
-    public function setVersion($version)
+    public function setLocale($locale)
     {
-        self::$version = $version;
+        $this->locale = $locale;
+
+        return $this;
     }
 
     public function getTimeout()
     {
-        return self::$timeout;
+        return $this->timeout;
     }
 
     public function setTimeout($timeout)
     {
-        self::$timeout = $timeout;
+        $this->timeout = $timeout;
+
+        return $this;
+    }
+
+    public function getTtl()
+    {
+        return $this->ttl;
+    }
+
+    public function setTtl($ttl)
+    {
+        $this->ttl = $ttl;
+
+        return $this;
+    }
+
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    public function setVersion($version)
+    {
+        $this->version = $version;
+
+        return $this;
     }
 }
