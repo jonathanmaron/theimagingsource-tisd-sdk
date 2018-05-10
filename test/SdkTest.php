@@ -30,6 +30,7 @@ class SdkTest extends TestCase
     public function testConstructWithOptionsArray()
     {
         $timeout = rand(10, 100);
+        $ttl     = rand(10, 100);
         $locale  = 'de_DE';
 
         $options = [
@@ -38,6 +39,7 @@ class SdkTest extends TestCase
             'hostname' => Defaults::HOSTNAME_PRODUCTION,
             'version'  => Defaults::VERSION,
             'timeout'  => $timeout,
+            'ttl'      => $ttl,
         ];
 
         $sdk = new Sdk($options);
@@ -47,6 +49,7 @@ class SdkTest extends TestCase
         $this->assertEquals(Defaults::HOSTNAME_PRODUCTION, $sdk->getHostname());
         $this->assertEquals(Defaults::VERSION, $sdk->getVersion());
         $this->assertEquals($timeout, $sdk->getTimeout());
+        $this->assertEquals($ttl, $sdk->getCache()->getTtl());
 
         unset($sdk);
     }

@@ -3,8 +3,8 @@
 namespace TisdTest\Sdk\Cache;
 
 use PHPUnit\Framework\TestCase;
-use Tisd\Sdk\Sdk;
 use Tisd\Sdk\Cache\Cache;
+use Tisd\Sdk\Sdk;
 
 class CacheTest extends TestCase
 {
@@ -133,6 +133,15 @@ class CacheTest extends TestCase
         $actual = $this->cache->getTtl();
 
         $this->assertEquals($expected, $actual);
+    }
+
+    public function testSetTtlInConstructor()
+    {
+        $expected = 10;
+
+        $cache = new Cache(['ttl' => $expected]);
+
+        $this->assertEquals($cache->getTtl(), $expected);
     }
 
     public function testWrite()
