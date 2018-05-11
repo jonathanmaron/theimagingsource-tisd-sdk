@@ -3,7 +3,9 @@
 namespace Tisd\Sdk\Exception;
 
 /**
- * Runtime exception
+ * Class RuntimeException
+ *
+ * @package Tisd\Sdk\Exception
  */
 class RuntimeException extends \RuntimeException implements ExceptionInterface
 {

@@ -3,7 +3,9 @@
 namespace Tisd\Sdk\Exception;
 
 /**
- * Invalid argument exception
+ * Class InvalidArgumentException
+ *
+ * @package Tisd\Sdk\Exception
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
 {

@@ -3,7 +3,9 @@
 namespace Tisd\Sdk\Exception;
 
 /**
- * Unexpected value exception
+ * Class UnexpectedValueException
+ *
+ * @package Tisd\Sdk\Exception
  */
 class UnexpectedValueException extends \UnexpectedValueException implements ExceptionInterface
 {
