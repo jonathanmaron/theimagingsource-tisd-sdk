@@ -2,6 +2,7 @@
 
 namespace TisdTest\Sdk;
 
+use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\TestCase;
 use RecursiveArrayIterator;
 use RecursiveIteratorIterator;
@@ -70,7 +71,7 @@ class SdkTest extends TestCase
     {
         $actual = $this->sdk->getBuildTime();
 
-        $this->assertTrue(is_numeric($actual));
+        $this->assertInternalType(IsType::TYPE_INT, $actual);
     }
 
     public function testSetAndGetCache()
@@ -88,7 +89,7 @@ class SdkTest extends TestCase
     {
         $actual = $this->sdk->getCategoryCount();
 
-        $this->assertTrue(is_numeric($actual));
+        $this->assertInternalType(IsType::TYPE_INT, $actual);
 
         $this->assertTrue($actual > 3);
     }
@@ -293,9 +294,9 @@ class SdkTest extends TestCase
 
     public function testGetPackageCount()
     {
-        $actual = $this->sdk->getPackageCount('1ae6bab1d1');
+        $actual = $this->sdk->getPackageCount();
 
-        $this->assertTrue(is_numeric($actual));
+        $this->assertInternalType(IsType::TYPE_INT, $actual);
 
         $this->assertTrue($actual > 0);
     }
@@ -554,7 +555,7 @@ class SdkTest extends TestCase
     {
         $actual = $this->sdk->getSectionCount();
 
-        $this->assertTrue(is_numeric($actual));
+        $this->assertInternalType(IsType::TYPE_INT, $actual);
 
         $this->assertTrue($actual > 30);
     }

@@ -2,39 +2,107 @@
 
 namespace Tisd\Sdk\Defaults;
 
+/**
+ * Class AbstractDefaults
+ *
+ * @package Tisd\Sdk\Defaults
+ */
 abstract class AbstractDefaults
 {
-    public const CONTEXT_ASTRONOMY      = 'astronomy';
+    /**
+     * 'Astronomy' context
+     */
+    public const CONTEXT_ASTRONOMY = 'astronomy';
 
+    /**
+     * 'Machine Vision' context
+     */
     public const CONTEXT_MACHINE_VISION = 'machinevision';
 
-    public const CONTEXT_MICROSCOPY     = 'microscopy';
+    /**
+     * 'Microscopy' context
+     */
+    public const CONTEXT_MICROSCOPY = 'microscopy';
 
-    public const CONTEXT_SCAN2DOCX      = 'scan2docx';
+    /**
+     * 'Scan2Docx' context
+     */
+    public const CONTEXT_SCAN2DOCX = 'scan2docx';
 
-    public const CONTEXT_SCAN2VOICE     = 'scan2voice';
+    /**
+     * 'Scan2Voice' context
+     */
+    public const CONTEXT_SCAN2VOICE = 'scan2voice';
 
-    public const HOSTNAME_DEVELOPMENT   = 'dl.theimagingsource.com.development';
+    /**
+     * Backend hostname (development)
+     */
+    public const HOSTNAME_DEVELOPMENT = 'dl.theimagingsource.com.development';
 
-    public const HOSTNAME_PRODUCTION    = 'dl.theimagingsource.com';
+    /**
+     * Backend hostname (production)
+     */
+    public const HOSTNAME_PRODUCTION = 'dl.theimagingsource.com';
 
-    public const LOCALE                 = 'en_US';
+    /**
+     * Default locale
+     */
+    public const LOCALE = 'en_US';
 
-    public const TIMEOUT                = 25; // seconds
+    /**
+     * Default timeout in seconds
+     */
+    public const TIMEOUT = 25;
 
-    public const TTL                    = 2419200; // seconds (4 weeks)
+    /**
+     * Default time-to-live in seconds (4 weeks)
+     */
+    public const TTL = 2419200;
 
-    public const VERSION                = '2.5';
+    /**
+     * Default version
+     */
+    public const VERSION = '2.5';
 
+    /**
+     * Context
+     *
+     * @var string
+     */
     protected $context;
 
+    /**
+     * Hostname
+     *
+     * @var string
+     */
     protected $hostname;
 
+    /**
+     * Locale
+     *
+     * @var string
+     */
     protected $locale;
 
+    /**
+     * Timeout
+     *
+     * @var integer
+     */
     protected $timeout;
 
+    /**
+     * Time-to-live
+     *
+     * @var integer
+     */
     protected $ttl;
 
+    /**
+     * Version
+     *
+     * @var string
+     */
     protected $version;
 }
