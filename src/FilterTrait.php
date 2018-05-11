@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * The Imaging Source Download System PHP Wrapper
+ *
+ * PHP wrapper for The Imaging Source Download System Web API. Authored and supported by The Imaging Source Europe GmbH.
+ *
+ * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
+ * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
+ * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
+ * @copyright © 2018 The Imaging Source Europe GmbH
+ */
+
 namespace Tisd\Sdk;
 
 /**
@@ -33,35 +44,25 @@ trait FilterTrait
                         continue;
                     }
 
-                    // Fuzzy match: Package value is a string; passed value is a string
-                    // Package value must start with passed value
-
                     if ($fuzzy) {
+                        // Fuzzy match: Package value is a string; passed value is a string
+                        // Package value must start with passed value
                         $string = substr($package[$key], 0, strlen($value));
                         if (0 === strcasecmp($string, $value)) {
                             continue;
                         }
-                    }
-
-                    // Passed value is an array; package value is a string
-
-                    elseif (is_array($value)) {
+                    } elseif (is_array($value)) {
+                        // Passed value is an array; package value is a string
                         if (in_array($package[$key], $value)) {
                             continue;
                         }
-                    }
-
-                    // Package value is an array; passed value is a string
-
-                    elseif (is_array($package[$key])) {
+                    } elseif (is_array($package[$key])) {
+                        // Package value is an array; passed value is a string
                         if (in_array($value, $package[$key])) {
                             continue;
                         }
-                    }
-
-                    // Package value is a string; passed value is a string
-
-                    else {
+                    } else {
+                        // Package value is a string; passed value is a string
                         if ($value == $package[$key]) {
                             continue;
                         }
