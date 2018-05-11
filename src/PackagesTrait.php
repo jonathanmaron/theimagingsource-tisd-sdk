@@ -2,12 +2,41 @@
 
 namespace Tisd\Sdk;
 
+/**
+ * Trait PackagesTrait
+ *
+ * @package Tisd\Sdk
+ */
 trait PackagesTrait
 {
+    /**
+     * Filter the packages by key
+     *
+     * @param array  $packages
+     * @param string $key
+     * @param string $value
+     * @param bool   $fuzzy
+     *
+     * @return mixed
+     */
     abstract protected function filter($packages, $key, $value, $fuzzy = false);
 
+    /**
+     * Get the array of consolidated data
+     *
+     * @return array
+     */
     abstract protected function getConsolidated();
 
+    /**
+     * Get the array of packages data
+     *
+     * @param string|null $categoryId
+     * @param string|null $sectionId
+     * @param string|null $packageId
+     *
+     * @return mixed|null
+     */
     public function getPackages($categoryId = null, $sectionId = null, $packageId = null)
     {
         $consolidated = $this->getConsolidated();
@@ -41,6 +70,13 @@ trait PackagesTrait
         return $packages;
     }
 
+    /**
+     * Get array of package data for the specified product codes
+     *
+     * @param array $productCodes
+     *
+     * @return mixed
+     */
     public function getPackagesByProductCodes($productCodes)
     {
         $consolidated = $this->getConsolidated();
@@ -48,6 +84,13 @@ trait PackagesTrait
         return $this->filter($consolidated['packages'], 'product_code', $productCodes);
     }
 
+    /**
+     * Get array of package data for the specified search term (starting with)
+     *
+     * @param string $q
+     *
+     * @return mixed
+     */
     public function getPackagesByProductCodeSearch($q)
     {
         $consolidated = $this->getConsolidated();

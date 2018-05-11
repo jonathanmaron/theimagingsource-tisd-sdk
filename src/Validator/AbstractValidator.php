@@ -24,7 +24,7 @@ class AbstractValidator
     }
 
     /**
-     * Return the array of valid strings
+     * Get the array of valid strings
      *
      * @return array
      */

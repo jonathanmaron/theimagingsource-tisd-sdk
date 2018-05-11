@@ -2,8 +2,23 @@
 
 namespace Tisd\Sdk;
 
+/**
+ * Trait FilterTrait
+ *
+ * @package Tisd\Sdk
+ */
 trait FilterTrait
 {
+    /**
+     * Filter the packages by key
+     *
+     * @param array  $packages
+     * @param string $key
+     * @param string $value
+     * @param bool   $fuzzy
+     *
+     * @return mixed
+     */
     protected function filter($packages, $key, $value, $fuzzy = false)
     {
         // this approach is faster than recursively.

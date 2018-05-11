@@ -4,10 +4,25 @@ namespace Tisd\Sdk;
 
 use Tisd\Sdk\Exception\InvalidArgumentException;
 
+/**
+ * Trait MetaTrait
+ *
+ * @package Tisd\Sdk
+ */
 trait MetaTrait
 {
+    /**
+     * Get the array of consolidated data
+     *
+     * @return array
+     */
     abstract protected function getConsolidated();
 
+    /**
+     * Get the array of meta-data
+     *
+     * @return array
+     */
     public function getMeta()
     {
         $consolidated = $this->getConsolidated();
@@ -15,6 +30,11 @@ trait MetaTrait
         return $consolidated['meta'] ?? [];
     }
 
+    /**
+     * Get the category count
+     *
+     * @return int
+     */
     public function getCategoryCount()
     {
         $meta = $this->getMeta();
@@ -22,6 +42,11 @@ trait MetaTrait
         return (int) $meta['category']['count'] ?? 0;
     }
 
+    /**
+     * Get the section count
+     *
+     * @return int
+     */
     public function getSectionCount()
     {
         $meta = $this->getMeta();
@@ -29,6 +54,11 @@ trait MetaTrait
         return (int) $meta['section']['count'] ?? 0;
     }
 
+    /**
+     * Get the package count
+     *
+     * @return int
+     */
     public function getPackageCount()
     {
         $meta = $this->getMeta();
@@ -36,6 +66,13 @@ trait MetaTrait
         return (int) $meta['package']['count'] ?? 0;
     }
 
+    /**
+     * Get the build time
+     *
+     * @param string $type
+     *
+     * @return mixed
+     */
     public function getBuildTime($type = 'timestamp')
     {
         $types = [

@@ -4,24 +4,79 @@ namespace Tisd\Sdk;
 
 use Tisd\Sdk\Defaults\Defaults;
 
+/**
+ * Trait ConsolidatedTrait
+ *
+ * @package Tisd\Sdk
+ */
 trait ConsolidatedTrait
 {
+    /**
+     * Array of consolidated data
+     *
+     * @var array
+     */
     private $consolidated;
 
+    /**
+     * Get the Cache instance
+     *
+     * @return string
+     */
     abstract public function getCache();
 
+    /**
+     * Get the context
+     *
+     * @return string
+     */
     abstract public function getContext();
 
+    /**
+     * Get the hostname
+     *
+     * @return string
+     */
     abstract public function getHostname();
 
+    /**
+     * Get the locale
+     *
+     * @return string
+     */
     abstract public function getLocale();
 
+    /**
+     * Get the timeout
+     *
+     * @return int
+     */
     abstract public function getTimeout();
 
+    /**
+     * Get the version
+     *
+     * @return string
+     */
     abstract public function getVersion();
 
+    /**
+     * Filter the packages by key
+     *
+     * @param array  $packages
+     * @param string $key
+     * @param string $value
+     * @param bool   $fuzzy
+     *
+     * @return mixed
+     */
     abstract protected function filter($packages, $key, $value, $fuzzy = false);
 
+    /**
+     * Get the array of consolidated data
+     *
+     * @return array
+     */
     protected function getConsolidated()
     {
         if (null === $this->consolidated) {
@@ -51,6 +106,13 @@ trait ConsolidatedTrait
         return $this->consolidated;
     }
 
+    /**
+     * Set the consolidated data array
+     *
+     * @param array $consolidated
+     *
+     * @return $this
+     */
     protected function setConsolidated($consolidated)
     {
         $this->consolidated = $consolidated;
@@ -58,6 +120,11 @@ trait ConsolidatedTrait
         return $this;
     }
 
+    /**
+     * Download the consolidated data array
+     *
+     * @return array
+     */
     private function downloadConsolidated()
     {
         $format = 'https://%s/api/%s/consolidated/%s.json';

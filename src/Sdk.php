@@ -5,6 +5,11 @@ namespace Tisd\Sdk;
 use Tisd\Sdk\Defaults\Defaults;
 use Tisd\Sdk\Cache\Cache;
 
+/**
+ * Class Sdk
+ *
+ * @package Tisd\Sdk
+ */
 class Sdk
 {
     use ConsolidatedTrait;
@@ -15,18 +20,53 @@ class Sdk
     use PackagesTrait;
     use PackageTrait;
 
+    /**
+     * Cache
+     *
+     * @var string
+     */
     protected $cache;
 
+    /**
+     * Context
+     *
+     * @var string
+     */
     protected $context;
 
+    /**
+     * Hostname
+     *
+     * @var string
+     */
     protected $hostname;
 
+    /**
+     * Locale
+     *
+     * @var string
+     */
     protected $locale;
 
+    /**
+     * Timeout
+     *
+     * @var integer
+     */
     protected $timeout;
 
+    /**
+     * Version
+     *
+     * @var string
+     */
     protected $version;
 
+    /**
+     * Sdk constructor
+     *
+     * @param array $options
+     */
     public function __construct($options = [])
     {
         $defaults = new Defaults();
@@ -64,11 +104,23 @@ class Sdk
         $this->setCache($cache);
     }
 
+    /**
+     * Get the Cache instance
+     *
+     * @return string
+     */
     public function getCache()
     {
         return $this->cache;
     }
 
+    /**
+     * Set the Cache instance
+     *
+     * @param Cache $cache
+     *
+     * @return $this
+     */
     public function setCache(Cache $cache)
     {
         $this->cache = $cache;
@@ -76,11 +128,23 @@ class Sdk
         return $this;
     }
 
+    /**
+     * Get the context
+     *
+     * @return string
+     */
     public function getContext()
     {
         return $this->context;
     }
 
+    /**
+     * Set the context
+     *
+     * @param string $context
+     *
+     * @return $this
+     */
     public function setContext($context)
     {
         $this->context = $context;
@@ -88,11 +152,23 @@ class Sdk
         return $this;
     }
 
+    /**
+     * Get the hostname
+     *
+     * @return string
+     */
     public function getHostname()
     {
         return $this->hostname;
     }
 
+    /**
+     * Set the hostname
+     *
+     * @param string $hostname
+     *
+     * @return $this
+     */
     public function setHostname($hostname)
     {
         $this->hostname = $hostname;
@@ -100,11 +176,23 @@ class Sdk
         return $this;
     }
 
+    /**
+     * Get the locale
+     *
+     * @return string
+     */
     public function getLocale()
     {
         return $this->locale;
     }
 
+    /**
+     * Set the locale
+     *
+     * @param string $locale
+     *
+     * @return $this
+     */
     public function setLocale($locale)
     {
         $this->locale = $locale;
@@ -114,23 +202,47 @@ class Sdk
         return $this;
     }
 
+    /**
+     * Get the timeout
+     *
+     * @return int
+     */
     public function getTimeout()
     {
         return $this->timeout;
     }
 
+    /**
+     * Set the timeout
+     *
+     * @param integer $timeout
+     *
+     * @return $this
+     */
     public function setTimeout($timeout)
     {
-        $this->timeout = $timeout;
+        $this->timeout = (int) $timeout;
 
         return $this;
     }
 
+    /**
+     * Get the version
+     *
+     * @return string
+     */
     public function getVersion()
     {
         return $this->version;
     }
 
+    /**
+     * Set the version
+     *
+     * @param string $version
+     *
+     * @return $this
+     */
     public function setVersion($version)
     {
         $this->version = $version;
