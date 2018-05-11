@@ -2,8 +2,21 @@
 
 namespace Tisd\Sdk\Cache;
 
+/**
+ * Class Cache
+ *
+ * @package Tisd\Sdk\Cache
+ */
 class Cache extends AbstractCache
 {
+    /**
+     * Write data to the cache file
+     *
+     * @param string $cacheId
+     * @param string $data
+     *
+     * @return bool|int
+     */
     public function write($cacheId, $data)
     {
         $filename = $this->getFilename($cacheId);
@@ -19,6 +32,13 @@ class Cache extends AbstractCache
         return $ret;
     }
 
+    /**
+     * Read data from the cache file
+     *
+     * @param $cacheId
+     *
+     * @return bool|mixed
+     */
     public function read($cacheId)
     {
         $ret = false;
@@ -34,6 +54,13 @@ class Cache extends AbstractCache
         return $ret;
     }
 
+    /**
+     * Purge the cache file
+     *
+     * @param string $user
+     *
+     * @return bool|null
+     */
     public function purge($user = null)
     {
         $ret = null;
