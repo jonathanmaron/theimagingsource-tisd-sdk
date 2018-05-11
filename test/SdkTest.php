@@ -7,6 +7,7 @@ use RecursiveArrayIterator;
 use RecursiveIteratorIterator;
 use Tisd\Sdk\Cache\Cache;
 use Tisd\Sdk\Defaults\Defaults;
+use Tisd\Sdk\Exception\InvalidArgumentException;
 use Tisd\Sdk\Sdk;
 
 class SdkTest extends TestCase
@@ -608,5 +609,13 @@ class SdkTest extends TestCase
                 $this->assertContains($context, $package['contexts']);
             }
         }
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testGetBuildTimeThrowsException()
+    {
+        $this->sdk->getBuildTime('invalid');
     }
 }

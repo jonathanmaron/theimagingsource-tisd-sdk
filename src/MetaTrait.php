@@ -2,6 +2,8 @@
 
 namespace Tisd\Sdk;
 
+use Tisd\Sdk\Exception\InvalidArgumentException;
+
 trait MetaTrait
 {
     abstract protected function getConsolidated();
@@ -36,6 +38,18 @@ trait MetaTrait
 
     public function getBuildTime($type = 'timestamp')
     {
+        $types = [
+            'timestamp',
+            'rtf_2822',
+            'iso_8601',
+        ];
+
+        if (!in_array($type, $types)) {
+            $format  = '"type" must be one of %s';
+            $message = sprintf($format, implode(', ', $types));
+            throw new InvalidArgumentException($message);
+        }
+
         $meta = $this->getMeta();
 
         return $meta['build']['time'][$type] ?? null;
