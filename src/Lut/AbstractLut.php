@@ -4,15 +4,35 @@ namespace Tisd\Sdk\Lut;
 
 use RecursiveArrayIterator;
 use RecursiveIteratorIterator;
-use Tisd\Sdk\Sdk;
 use Tisd\Sdk\Exception\RuntimeException;
+use Tisd\Sdk\Sdk;
 
+/**
+ * Class AbstractLut
+ *
+ * @package Tisd\Sdk\Lut
+ */
 class AbstractLut
 {
+    /**
+     * Instance of Sdk
+     *
+     * @var Sdk
+     */
     protected $sdk;
 
+    /**
+     * Look-up-table
+     *
+     * @var array
+     */
     protected $lut;
 
+    /**
+     * AbstractLut constructor
+     *
+     * @param array $options
+     */
     public function __construct($options = [])
     {
         $sdk = new Sdk($options);
@@ -20,16 +40,33 @@ class AbstractLut
         $this->setSdk($sdk);
     }
 
+    /**
+     * Get all keys in the LUT
+     *
+     * @return array
+     */
     public function getKeys()
     {
         return array_keys($this->getValues());
     }
 
+    /**
+     * Get all data in the LUT
+     *
+     * @return array
+     */
     public function getValues()
     {
         return $this->lut;
     }
 
+    /**
+     * Get the value for key in the LUT
+     *
+     * @param string $key
+     *
+     * @return mixed|null
+     */
     public function getValue($key)
     {
         $ret = null;
@@ -41,11 +78,23 @@ class AbstractLut
         return $ret;
     }
 
+    /**
+     * Get an instance of the Sdk
+     *
+     * @return Sdk
+     */
     public function getSdk()
     {
         return $this->sdk;
     }
 
+    /**
+     * Set an instance of the Sdk
+     *
+     * @param Sdk $sdk
+     *
+     * @return $this
+     */
     public function setSdk(Sdk $sdk)
     {
         $this->sdk = $sdk;
@@ -53,6 +102,13 @@ class AbstractLut
         return $this;
     }
 
+    /**
+     * Build the LUT
+     *
+     * @param string $keyName
+     *
+     * @return array
+     */
     protected function buildLut($keyName)
     {
         $ret = [];

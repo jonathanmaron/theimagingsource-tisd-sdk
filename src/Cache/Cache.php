@@ -37,7 +37,7 @@ class Cache extends AbstractCache
      *
      * @param $cacheId
      *
-     * @return bool|mixed
+     * @return bool|array
      */
     public function read($cacheId)
     {

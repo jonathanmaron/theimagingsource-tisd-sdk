@@ -19,7 +19,7 @@ abstract class AbstractCache
     protected $path;
 
     /**
-     * Time-to-live
+     * Time-to-live in seconds
      *
      * @var integer
      */
