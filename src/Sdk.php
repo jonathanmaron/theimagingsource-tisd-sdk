@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace Tisd\Sdk;
 
-use Tisd\Sdk\Defaults\Defaults;
 use Tisd\Sdk\Cache\Cache;
+use Tisd\Sdk\Defaults\Defaults;
 
 /**
  * Class Sdk
@@ -119,9 +119,9 @@ class Sdk
     /**
      * Get the Cache instance
      *
-     * @return string
+     * @return Cache
      */
-    public function getCache()
+    public function getCache(): Cache
     {
         return $this->cache;
     }
@@ -133,7 +133,7 @@ class Sdk
      *
      * @return $this
      */
-    public function setCache(Cache $cache)
+    public function setCache(Cache $cache): self
     {
         $this->cache = $cache;
 
@@ -145,7 +145,7 @@ class Sdk
      *
      * @return string
      */
-    public function getContext()
+    public function getContext(): ?string
     {
         return $this->context;
     }
@@ -157,7 +157,7 @@ class Sdk
      *
      * @return $this
      */
-    public function setContext($context)
+    public function setContext(?string $context): self
     {
         $this->context = $context;
 
@@ -169,7 +169,7 @@ class Sdk
      *
      * @return string
      */
-    public function getHostname()
+    public function getHostname(): ?string
     {
         return $this->hostname;
     }
@@ -181,7 +181,7 @@ class Sdk
      *
      * @return $this
      */
-    public function setHostname($hostname)
+    public function setHostname(string $hostname): self
     {
         $this->hostname = $hostname;
 
@@ -193,7 +193,7 @@ class Sdk
      *
      * @return string
      */
-    public function getLocale()
+    public function getLocale(): ?string
     {
         return $this->locale;
     }
@@ -205,7 +205,7 @@ class Sdk
      *
      * @return $this
      */
-    public function setLocale($locale)
+    public function setLocale(string $locale): self
     {
         $this->locale = $locale;
 
@@ -219,7 +219,7 @@ class Sdk
      *
      * @return int
      */
-    public function getTimeout()
+    public function getTimeout(): ?int
     {
         return $this->timeout;
     }
@@ -231,9 +231,9 @@ class Sdk
      *
      * @return $this
      */
-    public function setTimeout($timeout)
+    public function setTimeout(int $timeout): self
     {
-        $this->timeout = (int) $timeout;
+        $this->timeout = $timeout;
 
         return $this;
     }
@@ -243,7 +243,7 @@ class Sdk
      *
      * @return string
      */
-    public function getVersion()
+    public function getVersion(): string
     {
         return $this->version;
     }
@@ -255,7 +255,7 @@ class Sdk
      *
      * @return $this
      */
-    public function setVersion($version)
+    public function setVersion(string $version): self
     {
         $this->version = $version;
 

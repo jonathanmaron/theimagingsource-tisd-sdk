@@ -302,6 +302,8 @@ class SdkTest extends TestCase
         $this->assertTrue($actual > 0);
     }
 
+    // @codingStandardsIgnoreStart
+
     public function testGetPackagesNoParameters(): void
     {
         $actual = $this->sdk->getPackages();
@@ -551,6 +553,8 @@ class SdkTest extends TestCase
         $this->assertArrayHasKey('contexts',$actual['children']['downloads']['children']['drivers']['children']['icwdm878tis']);
         $this->assertArrayHasKey('versions',$actual['children']['downloads']['children']['drivers']['children']['icwdm878tis']);
     }
+
+    // @codingStandardsIgnoreEnd
 
     public function testGetSectionCount(): void
     {

@@ -46,11 +46,13 @@ trait FilterTrait
                     }
 
                     if ($fuzzy) {
-                        // Fuzzy match: Package value is a string; passed value is a string
-                        // Package value must start with passed value
-                        $string = substr($package[$key], 0, strlen($value));
-                        if (0 === strcasecmp($string, $value)) {
-                            continue;
+                        if (is_string($value)) {
+                            // Fuzzy match: Package value is a string; passed value is a string
+                            // Package value must start with passed value
+                            $string = substr($package[$key], 0, strlen($value));
+                            if (0 === strcasecmp($string, $value)) {
+                                continue;
+                            }
                         }
                     } elseif (is_array($value)) {
                         // Passed value is an array; package value is a string

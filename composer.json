@@ -23,6 +23,6 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "phpcs": "vendor/bin/phpcs data src test --standard=phpcs.xml"
+        "phpcs": "vendor/bin/phpcs src test --standard=phpcs.xml"
     }
 }
