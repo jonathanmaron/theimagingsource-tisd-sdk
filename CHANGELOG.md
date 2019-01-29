@@ -4,7 +4,7 @@
 
 ## dev-master
 
-## 4.2.0 - 2019-01-39
+## 4.2.0 - 2019-01-29
 
 * Added strict typing.
 
