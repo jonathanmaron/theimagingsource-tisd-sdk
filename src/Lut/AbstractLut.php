@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * The Imaging Source Download System PHP Wrapper
@@ -8,7 +9,7 @@
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2018 The Imaging Source Europe GmbH
+ * @copyright © 2019 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk\Lut;
@@ -56,7 +57,7 @@ class AbstractLut
      *
      * @return array
      */
-    public function getKeys()
+    public function getKeys(): array
     {
         return array_keys($this->getValues());
     }
@@ -64,9 +65,9 @@ class AbstractLut
     /**
      * Get all data in the LUT
      *
-     * @return array
+     * @return array|null
      */
-    public function getValues()
+    public function getValues(): ?array
     {
         return $this->lut;
     }
@@ -78,7 +79,7 @@ class AbstractLut
      *
      * @return mixed|null
      */
-    public function getValue($key)
+    public function getValue(string $key)
     {
         $ret = null;
 
@@ -94,7 +95,7 @@ class AbstractLut
      *
      * @return Sdk
      */
-    public function getSdk()
+    public function getSdk(): ?Sdk
     {
         return $this->sdk;
     }
@@ -106,7 +107,7 @@ class AbstractLut
      *
      * @return $this
      */
-    public function setSdk(Sdk $sdk)
+    public function setSdk(Sdk $sdk): self
     {
         $this->sdk = $sdk;
 
@@ -120,7 +121,7 @@ class AbstractLut
      *
      * @return array
      */
-    protected function buildLut($keyName)
+    protected function buildLut(string $keyName): array
     {
         $ret = [];
 

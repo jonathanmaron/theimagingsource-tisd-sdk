@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * The Imaging Source Download System PHP Wrapper
@@ -8,7 +9,7 @@
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2018 The Imaging Source Europe GmbH
+ * @copyright © 2019 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk;
@@ -28,7 +29,7 @@ trait PackageTrait
      *
      * @return array
      */
-    abstract protected function getConsolidated();
+    abstract protected function getConsolidated(): ?array;
 
     /**
      * Get array of package data matching uuid
@@ -37,7 +38,7 @@ trait PackageTrait
      *
      * @return array|null
      */
-    public function getPackageByUuid($uuid)
+    public function getPackageByUuid(string $uuid): ?array
     {
         return $this->getPackageByKeyValue('uuid', $uuid);
     }
@@ -49,7 +50,7 @@ trait PackageTrait
      *
      * @return array|null
      */
-    public function getPackageByProductCodeId($productCodeId)
+    public function getPackageByProductCodeId(string $productCodeId): ?array
     {
         return $this->getPackageByKeyValue('product_code_id', $productCodeId);
     }
@@ -61,7 +62,7 @@ trait PackageTrait
      *
      * @return array|null
      */
-    public function getPackageByPackageId($packageId)
+    public function getPackageByPackageId(string $packageId): ?array
     {
         return $this->getPackageByKeyValue('package_id', $packageId);
     }
@@ -73,7 +74,7 @@ trait PackageTrait
      *
      * @return array|null
      */
-    public function getPackageByProductCode($productCode)
+    public function getPackageByProductCode(string $productCode): ?array
     {
         return $this->getPackageByKeyValue('product_code', $productCode);
     }
@@ -86,7 +87,7 @@ trait PackageTrait
      *
      * @return array|null
      */
-    private function getPackageByKeyValue($key, $value)
+    private function getPackageByKeyValue(string $key, string $value): ?array
     {
         $consolidated = $this->getConsolidated();
 

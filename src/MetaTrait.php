@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * The Imaging Source Download System PHP Wrapper
@@ -8,7 +9,7 @@
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2018 The Imaging Source Europe GmbH
+ * @copyright © 2019 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk;
@@ -27,18 +28,24 @@ trait MetaTrait
      *
      * @return array
      */
-    abstract protected function getConsolidated();
+    abstract protected function getConsolidated(): ?array;
 
     /**
      * Get the array of meta-data
      *
      * @return array
      */
-    public function getMeta()
+    public function getMeta(): array
     {
+        $ret = [];
+
         $consolidated = $this->getConsolidated();
 
-        return $consolidated['meta'] ?? [];
+        if (isset($consolidated['meta'])) {
+            $ret = $consolidated['meta'];
+        }
+
+        return $ret;
     }
 
     /**
@@ -46,11 +53,16 @@ trait MetaTrait
      *
      * @return int
      */
-    public function getCategoryCount()
+    public function getCategoryCount(): int
     {
-        $meta = $this->getMeta();
+        $ret = 0;
 
-        return (int) $meta['category']['count'] ?? 0;
+        $meta = $this->getMeta();
+        if (isset($meta['category']['count'])) {
+            $ret = (int) $meta['category']['count'];
+        }
+
+        return $ret;
     }
 
     /**
@@ -58,11 +70,16 @@ trait MetaTrait
      *
      * @return int
      */
-    public function getSectionCount()
+    public function getSectionCount(): int
     {
-        $meta = $this->getMeta();
+        $ret = 0;
 
-        return (int) $meta['section']['count'] ?? 0;
+        $meta = $this->getMeta();
+        if (isset($meta['section']['count'])) {
+            $ret = $meta['section']['count'];
+        }
+
+        return $ret;
     }
 
     /**
@@ -70,11 +87,16 @@ trait MetaTrait
      *
      * @return int
      */
-    public function getPackageCount()
+    public function getPackageCount(): int
     {
-        $meta = $this->getMeta();
+        $ret = 0;
 
-        return (int) $meta['package']['count'] ?? 0;
+        $meta = $this->getMeta();
+        if (isset($meta['package']['count'])) {
+            $ret = (int) $meta['package']['count'];
+        }
+
+        return $ret;
     }
 
     /**
@@ -84,8 +106,10 @@ trait MetaTrait
      *
      * @return mixed
      */
-    public function getBuildTime($type = 'timestamp')
+    public function getBuildTime(string $type = 'timestamp')
     {
+        $ret = null;
+
         $types = [
             'timestamp',
             'rtf_2822',
@@ -100,6 +124,10 @@ trait MetaTrait
 
         $meta = $this->getMeta();
 
-        return $meta['build']['time'][$type] ?? null;
+        if (isset($meta['build']['time'][$type])) {
+            $ret = $meta['build']['time'][$type];
+        }
+
+        return $ret;
     }
 }

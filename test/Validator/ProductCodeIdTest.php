@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace TisdTest\Sdk\Validator;
 
@@ -9,17 +10,17 @@ class ProductCodeIdTest extends TestCase
 {
     protected $validator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->validator = new Validator();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->validator);
     }
 
-    public function testIsValid()
+    public function testIsValid(): void
     {
         $this->assertFalse($this->validator->isValid('invalid'));
 

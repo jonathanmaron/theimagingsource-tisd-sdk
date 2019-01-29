@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * The Imaging Source Download System PHP Wrapper
@@ -8,7 +9,7 @@
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2018 The Imaging Source Europe GmbH
+ * @copyright © 2019 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk;
@@ -23,21 +24,21 @@ trait PackagesTrait
     /**
      * Filter the packages by key
      *
-     * @param array  $packages
-     * @param string $key
-     * @param string $value
-     * @param bool   $fuzzy
+     * @param array        $packages
+     * @param string       $key
+     * @param array|string $value
+     * @param bool         $fuzzy
      *
      * @return mixed
      */
-    abstract protected function filter($packages, $key, $value, $fuzzy = false);
+    abstract protected function filter(array $packages, string $key, $value, bool $fuzzy = false): array;
 
     /**
      * Get the array of consolidated data
      *
      * @return array
      */
-    abstract protected function getConsolidated();
+    abstract protected function getConsolidated(): ?array;
 
     /**
      * Get the array of packages data
@@ -46,9 +47,9 @@ trait PackagesTrait
      * @param string|null $sectionId
      * @param string|null $packageId
      *
-     * @return mixed|null
+     * @return array
      */
-    public function getPackages($categoryId = null, $sectionId = null, $packageId = null)
+    public function getPackages(?string $categoryId = null, ?string $sectionId = null, ?string $packageId = null): array
     {
         $consolidated = $this->getConsolidated();
 
@@ -86,9 +87,9 @@ trait PackagesTrait
      *
      * @param array $productCodes
      *
-     * @return mixed
+     * @return array
      */
-    public function getPackagesByProductCodes($productCodes)
+    public function getPackagesByProductCodes(array $productCodes): array
     {
         $consolidated = $this->getConsolidated();
 
@@ -100,9 +101,9 @@ trait PackagesTrait
      *
      * @param string $q
      *
-     * @return mixed
+     * @return array
      */
-    public function getPackagesByProductCodeSearch($q)
+    public function getPackagesByProductCodeSearch(string $q): array
     {
         $consolidated = $this->getConsolidated();
 

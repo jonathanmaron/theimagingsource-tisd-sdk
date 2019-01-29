@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace TisdTest\Sdk\Cache;
 
@@ -10,17 +11,17 @@ class CacheTest extends TestCase
 {
     protected $cache;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->cache = new Cache();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->cache);
     }
 
-    public function testGetFilename()
+    public function testGetFilename(): void
     {
         $actual = $this->cache->getFilename('aaa');
 
@@ -29,7 +30,7 @@ class CacheTest extends TestCase
         $this->assertEquals($actual, $expected);
     }
 
-    public function testGetId()
+    public function testGetId(): void
     {
         $actual = $this->cache->getId('https://www.example.com');
 
@@ -38,7 +39,7 @@ class CacheTest extends TestCase
         $this->assertEquals($actual, $expected);
     }
 
-    public function testGetUserApache()
+    public function testGetUserApache(): void
     {
         putenv("APACHE_RUN_USER=apache-user");
 
@@ -47,7 +48,7 @@ class CacheTest extends TestCase
         $this->assertEquals($expected, $this->cache->getUser());
     }
 
-    public function testPurge()
+    public function testPurge(): void
     {
         // ensure there is something in the cache
         // so that it can be purged, and return true
@@ -56,7 +57,7 @@ class CacheTest extends TestCase
         $this->assertTrue($sdk->getCache()->purge());
     }
 
-    public function testRead()
+    public function testRead(): void
     {
         $cacheId  = $this->generateRandomCacheId();
         $expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -68,14 +69,14 @@ class CacheTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    protected function generateRandomCacheId()
+    protected function generateRandomCacheId(): string
     {
-        $cacheId = hash('sha256', rand(0, 9999999999));
+        $cacheId = hash('sha256', (string) random_int(PHP_INT_MIN, PHP_INT_MAX));
 
         return $cacheId;
     }
 
-    public function testReadCacheFileNotReadable()
+    public function testReadCacheFileNotReadable(): void
     {
         $cacheId  = $this->generateRandomCacheId();
         $expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -88,10 +89,10 @@ class CacheTest extends TestCase
 
         $actual = $this->cache->read($cacheId);
 
-        $this->assertFalse($actual);
+        $this->assertNull($actual);
     }
 
-    public function testReadCacheExpired()
+    public function testReadCacheExpired(): void
     {
         $cacheId  = $this->generateRandomCacheId();
         $expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -110,10 +111,10 @@ class CacheTest extends TestCase
 
         $actual = $this->cache->read($cacheId);
 
-        $this->assertFalse($actual);
+        $this->assertNull($actual);
     }
 
-    public function testSetAndGetPath()
+    public function testSetAndGetPath(): void
     {
         $expected = sys_get_temp_dir() . '/test';
 
@@ -124,7 +125,7 @@ class CacheTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    public function testSetAndGetTtl()
+    public function testSetAndGetTtl(): void
     {
         $expected = 100;
 
@@ -135,7 +136,7 @@ class CacheTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    public function testSetTtlInConstructor()
+    public function testSetTtlInConstructor(): void
     {
         $expected = 10;
 
@@ -144,17 +145,17 @@ class CacheTest extends TestCase
         $this->assertEquals($cache->getTtl(), $expected);
     }
 
-    public function testWrite()
+    public function testWrite(): void
     {
         $cacheId = $this->generateRandomCacheId();
         $data    = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         $ret = $this->cache->write($cacheId, $data);
 
-        $this->assertTrue(is_integer($ret));
+        $this->assertTrue($ret);
     }
 
-    public function testWriteUnlinkFile()
+    public function testWriteUnlinkFile(): void
     {
         $cacheId = $this->generateRandomCacheId();
         $data    = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -162,7 +163,7 @@ class CacheTest extends TestCase
         $ret1 = $this->cache->write($cacheId, $data);
         $ret2 = $this->cache->write($cacheId, $data);
 
-        $this->assertTrue(is_integer($ret1));
-        $this->assertTrue(is_integer($ret2));
+        $this->assertTrue($ret1);
+        $this->assertTrue($ret2);
     }
 }

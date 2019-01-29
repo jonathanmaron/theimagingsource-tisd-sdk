@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace TisdTest\Sdk;
 
@@ -15,7 +16,7 @@ class SdkTest extends TestCase
 {
     protected $sdk;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $options = [
             //'hostname' => Defaults::HOSTNAME_DEVELOPMENT,
@@ -24,15 +25,15 @@ class SdkTest extends TestCase
         $this->sdk = new Sdk($options);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->sdk);
     }
 
-    public function testConstructWithOptionsArray()
+    public function testConstructWithOptionsArray(): void
     {
-        $timeout = rand(10, 100);
-        $ttl     = rand(10, 100);
+        $timeout = random_int(10, 100);
+        $ttl     = random_int(10, 100);
         $locale  = 'de_DE';
 
         $options = [
@@ -56,7 +57,7 @@ class SdkTest extends TestCase
         unset($sdk);
     }
 
-    public function testPurgeAndWithDisabledCache()
+    public function testPurgeAndWithDisabledCache(): void
     {
         $this->sdk->getCache()->purge();
 
@@ -67,14 +68,14 @@ class SdkTest extends TestCase
         $this->assertTrue(is_array($actual));
     }
 
-    public function testSetAndGetBuildTime()
+    public function testSetAndGetBuildTime(): void
     {
         $actual = $this->sdk->getBuildTime();
 
-        $this->assertInternalType(IsType::TYPE_INT, $actual);
+        $this->assertTrue(is_int($actual));
     }
 
-    public function testSetAndGetCache()
+    public function testSetAndGetCache(): void
     {
         $cache = new Cache();
 
@@ -85,16 +86,16 @@ class SdkTest extends TestCase
         $this->assertEquals($cache, $actual);
     }
 
-    public function testGetCategoryCount()
+    public function testGetCategoryCount(): void
     {
         $actual = $this->sdk->getCategoryCount();
 
-        $this->assertInternalType(IsType::TYPE_INT, $actual);
+        $this->assertTrue(is_int($actual));
 
         $this->assertTrue($actual > 3);
     }
 
-    public function testSetAndGetContext()
+    public function testSetAndGetContext(): void
     {
         $this->sdk->setContext(Defaults::CONTEXT_MACHINE_VISION);
 
@@ -103,7 +104,7 @@ class SdkTest extends TestCase
         $this->assertEquals(Defaults::CONTEXT_MACHINE_VISION, $actual);
     }
 
-    public function testGetContexts()
+    public function testGetContexts(): void
     {
         $actual = $this->sdk->getContexts();
 
@@ -113,7 +114,7 @@ class SdkTest extends TestCase
         $this->assertContains(Defaults::CONTEXT_ASTRONOMY, $actual);
     }
 
-    public function testSetAndGetHostname()
+    public function testSetAndGetHostname(): void
     {
         $this->sdk->setHostname(Defaults::HOSTNAME_PRODUCTION);
 
@@ -122,7 +123,7 @@ class SdkTest extends TestCase
         $this->assertEquals(Defaults::HOSTNAME_PRODUCTION, $actual);
     }
 
-    public function testSetAndGetLocale()
+    public function testSetAndGetLocale(): void
     {
         $this->sdk->setLocale(Defaults::LOCALE);
 
@@ -131,7 +132,7 @@ class SdkTest extends TestCase
         $this->assertEquals(Defaults::LOCALE, $actual);
     }
 
-    public function testSetAndGetLocales()
+    public function testSetAndGetLocales(): void
     {
         $actual = $this->sdk->getLocales();
 
@@ -148,7 +149,7 @@ class SdkTest extends TestCase
         $this->assertContains('繁體中文', $actual);
     }
 
-    public function testSetAndGetMeta()
+    public function testSetAndGetMeta(): void
     {
         $actual = $this->sdk->getMeta();
 
@@ -159,7 +160,7 @@ class SdkTest extends TestCase
         $this->assertArrayHasKey('build', $actual);
     }
 
-    public function testGetPackageByPackageId()
+    public function testGetPackageByPackageId(): void
     {
         $actual = $this->sdk->getPackageByPackageId('icwdmdcamtis');
 
@@ -190,7 +191,7 @@ class SdkTest extends TestCase
         $this->assertArrayHasKey('pph', $version);
     }
 
-    public function testGetPackageByProductCode()
+    public function testGetPackageByProductCode(): void
     {
         $actual = $this->sdk->getPackageByProductCode('IC WDM DCAM TIS');
 
@@ -221,7 +222,7 @@ class SdkTest extends TestCase
         $this->assertArrayHasKey('pph', $version);
     }
 
-    public function testGetPackageByProductCodeInvalidProductCode()
+    public function testGetPackageByProductCodeInvalidProductCode(): void
     {
         $this->sdk->getCache()->purge();
 
@@ -230,7 +231,7 @@ class SdkTest extends TestCase
         $this->assertNull($actual);
     }
 
-    public function testGetPackageByProductCodeId()
+    public function testGetPackageByProductCodeId(): void
     {
         $actual = $this->sdk->getPackageByProductCodeId('icwdmdcamtis');
 
@@ -261,7 +262,7 @@ class SdkTest extends TestCase
         $this->assertArrayHasKey('pph', $version);
     }
 
-    public function testGetPackageByUuid()
+    public function testGetPackageByUuid(): void
     {
         $actual = $this->sdk->getPackageByUuid('2b5a907d-5eb0-538b-87ff-1a36bb76c92f');
 
@@ -292,16 +293,16 @@ class SdkTest extends TestCase
         $this->assertArrayHasKey('pph', $version);
     }
 
-    public function testGetPackageCount()
+    public function testGetPackageCount(): void
     {
         $actual = $this->sdk->getPackageCount();
 
-        $this->assertInternalType(IsType::TYPE_INT, $actual);
+        $this->assertTrue(is_int($actual));
 
         $this->assertTrue($actual > 0);
     }
 
-    public function testGetPackagesNoParameters()
+    public function testGetPackagesNoParameters(): void
     {
         $actual = $this->sdk->getPackages();
 
@@ -334,7 +335,7 @@ class SdkTest extends TestCase
         $this->assertArrayHasKey('versions', $actual['children']['downloads']['children']['drivers']['children']['icwdmdcamtis']);
     }
 
-    public function testGetPackagesWithCategoryId()
+    public function testGetPackagesWithCategoryId(): void
     {
         $actual = $this->sdk->getPackages('downloads');
 
@@ -363,7 +364,7 @@ class SdkTest extends TestCase
         $this->assertArrayHasKey('versions', $actual['children']['drivers']['children']['icwdmdcamtis']);
     }
 
-    public function testGetPackagesWithCategoryIdAndSectionId()
+    public function testGetPackagesWithCategoryIdAndSectionId(): void
     {
         $actual = $this->sdk->getPackages('downloads', 'drivers');
 
@@ -388,7 +389,7 @@ class SdkTest extends TestCase
         $this->assertArrayHasKey('versions', $actual['children']['icwdmdcamtis']);
     }
 
-    public function testGetPackagesWithCategoryIdAndSectionIdAndPackageId()
+    public function testGetPackagesWithCategoryIdAndSectionIdAndPackageId(): void
     {
         $actual = $this->sdk->getPackages('downloads', 'drivers', 'icwdmdcamtis');
 
@@ -409,7 +410,7 @@ class SdkTest extends TestCase
         $this->assertArrayHasKey('versions', $actual);
     }
 
-    public function testGetPackagesByProductCodes()
+    public function testGetPackagesByProductCodes(): void
     {
         $actual = $this->sdk->getPackagesByProductCodes(['IC WDM DCAM TIS', 'IC WDM GIGE TIS', 'IC WDM 878 TIS']);
 
@@ -480,7 +481,7 @@ class SdkTest extends TestCase
         $this->assertArrayHasKey('versions',$actual['children']['downloads']['children']['drivers']['children']['icwdm878tis']);
     }
 
-    public function testGetPackagesByProductCodeSearch()
+    public function testGetPackagesByProductCodeSearch(): void
     {
         $actual = $this->sdk->getPackagesByProductCodeSearch('IC WDM');
 
@@ -551,16 +552,16 @@ class SdkTest extends TestCase
         $this->assertArrayHasKey('versions',$actual['children']['downloads']['children']['drivers']['children']['icwdm878tis']);
     }
 
-    public function testGetSectionCount()
+    public function testGetSectionCount(): void
     {
         $actual = $this->sdk->getSectionCount();
 
-        $this->assertInternalType(IsType::TYPE_INT, $actual);
+        $this->assertTrue(is_int($actual));
 
         $this->assertTrue($actual > 30);
     }
 
-    public function testSetAndGetTimeout()
+    public function testSetAndGetTimeout(): void
     {
         $this->sdk->setTimeout(Defaults::TIMEOUT);
 
@@ -569,7 +570,7 @@ class SdkTest extends TestCase
         $this->assertEquals(Defaults::TIMEOUT, $actual);
     }
 
-    public function testSetAndGetVersion()
+    public function testSetAndGetVersion(): void
     {
         $this->sdk->setVersion(Defaults::VERSION);
 
@@ -578,7 +579,7 @@ class SdkTest extends TestCase
         $this->assertEquals(Defaults::VERSION, $actual);
     }
 
-    public function testContextReturnsFilteredPackages()
+    public function testContextReturnsFilteredPackages(): void
     {
         $contexts = [
             Defaults::CONTEXT_ASTRONOMY,
@@ -615,7 +616,7 @@ class SdkTest extends TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testGetBuildTimeThrowsException()
+    public function testGetBuildTimeThrowsException(): void
     {
         $this->sdk->getBuildTime('invalid');
     }

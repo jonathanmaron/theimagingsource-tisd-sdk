@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace TisdTest\Sdk\Lut;
 
@@ -10,7 +11,7 @@ class ConcreteLutTest extends TestCase
     /**
      * @expectedException RuntimeException
      */
-    public function testException()
+    public function testException(): void
     {
         $lut = new ConcreteLut();
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * The Imaging Source Download System PHP Wrapper
@@ -8,7 +9,7 @@
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2018 The Imaging Source Europe GmbH
+ * @copyright © 2019 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk\Cache;
@@ -32,7 +33,7 @@ abstract class AbstractCache
     /**
      * Time-to-live in seconds
      *
-     * @var integer
+     * @var int
      */
     protected $ttl;
 
@@ -41,7 +42,7 @@ abstract class AbstractCache
      *
      * @param array $options
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         if (array_key_exists('ttl', $options)) {
             $ttl = $options['ttl'];
@@ -60,7 +61,7 @@ abstract class AbstractCache
      *
      * @return string
      */
-    public function getPath()
+    public function getPath(): ?string
     {
         return $this->path;
     }
@@ -72,7 +73,7 @@ abstract class AbstractCache
      *
      * @return $this
      */
-    public function setPath($path)
+    public function setPath(string $path): self
     {
         $this->path = $path;
 
@@ -84,7 +85,7 @@ abstract class AbstractCache
      *
      * @return int
      */
-    public function getTtl()
+    public function getTtl(): ?int
     {
         return $this->ttl;
     }
@@ -92,13 +93,13 @@ abstract class AbstractCache
     /**
      * Set the time-to-live
      *
-     * @param integer $ttl
+     * @param int $ttl
      *
      * @return $this
      */
-    public function setTtl($ttl)
+    public function setTtl(int $ttl): self
     {
-        $this->ttl = (int) $ttl;
+        $this->ttl = $ttl;
 
         return $this;
     }
@@ -110,7 +111,7 @@ abstract class AbstractCache
      *
      * @return string
      */
-    public function getId($uri)
+    public function getId(string $uri): string
     {
         return hash('sha256', $uri);
     }
@@ -123,7 +124,7 @@ abstract class AbstractCache
      *
      * @return string
      */
-    public function getFilename($cacheId, $user = null)
+    public function getFilename(string $cacheId, ?string $user = null): string
     {
         if (null === $user) {
             $user = $this->getUser();
@@ -137,19 +138,19 @@ abstract class AbstractCache
      *
      * @return string
      */
-    public function getUser()
+    public function getUser(): string
     {
-        $userApache = trim(getenv('APACHE_RUN_USER'));
-        $userCli    = trim(getenv('LOGNAME'));
+        $userApache = getenv('APACHE_RUN_USER');
+        $userCli    = getenv('LOGNAME');
 
-        $ret = 'nouser';
-
-        if (strlen($userApache) > 0) {
-            $ret = $userApache;
-        } elseif (strlen($userCli) > 0) {
-            $ret = $userCli;
+        if (is_string($userApache)) {
+            return trim($userApache);
         }
 
-        return $ret;
+        if (is_string($userCli)) {
+            return trim($userCli);
+        }
+
+        return 'nouser';
     }
 }

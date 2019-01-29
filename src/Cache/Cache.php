@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * The Imaging Source Download System PHP Wrapper
@@ -8,7 +9,7 @@
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2018 The Imaging Source Europe GmbH
+ * @copyright © 2019 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk\Cache;
@@ -24,11 +25,11 @@ class Cache extends AbstractCache
      * Write data to the cache file
      *
      * @param string $cacheId
-     * @param string $data
+     * @param array  $data
      *
-     * @return bool|int
+     * @return bool
      */
-    public function write($cacheId, $data)
+    public function write(string $cacheId, array $data): bool
     {
         $filename = $this->getFilename($cacheId);
 
@@ -38,21 +39,19 @@ class Cache extends AbstractCache
 
         $buffer = sprintf("<?php\n\nreturn %s;\n", var_export($data, true));
 
-        $ret = file_put_contents($filename, $buffer);
-
-        return $ret;
+        return is_int(file_put_contents($filename, $buffer));
     }
 
     /**
      * Read data from the cache file
      *
-     * @param $cacheId
+     * @param string $cacheId
      *
-     * @return bool|array
+     * @return array|null
      */
-    public function read($cacheId)
+    public function read(string $cacheId): ?array
     {
-        $ret = false;
+        $ret = null;
 
         $filename = $this->getFilename($cacheId);
 
@@ -70,11 +69,11 @@ class Cache extends AbstractCache
      *
      * @param string $user
      *
-     * @return bool|null
+     * @return bool
      */
-    public function purge($user = null)
+    public function purge($user = null): bool
     {
-        $ret = null;
+        $ret = false;
 
         if (null === $user) {
             $user = $this->getUser();

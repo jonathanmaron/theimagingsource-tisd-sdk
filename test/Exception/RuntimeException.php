@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace TisdTest\Sdk\Exception;
 
@@ -10,7 +11,7 @@ class RuntimeExceptionTest extends TestCase
     /**
      * @expectedException RuntimeException
      */
-    public function testComingSoon()
+    public function testComingSoon(): void
     {
         throw new RuntimeException('random-string', 100);
     }

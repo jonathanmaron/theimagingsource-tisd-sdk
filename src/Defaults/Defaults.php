@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * The Imaging Source Download System PHP Wrapper
@@ -8,7 +9,7 @@
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2018 The Imaging Source Europe GmbH
+ * @copyright © 2019 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk\Defaults;
@@ -38,7 +39,7 @@ class Defaults extends AbstractDefaults
      *
      * @return string
      */
-    public function getContext()
+    public function getContext(): ?string
     {
         return $this->context;
     }
@@ -50,7 +51,7 @@ class Defaults extends AbstractDefaults
      *
      * @return $this
      */
-    public function setContext($context)
+    public function setContext(?string $context): self
     {
         $this->context = $context;
 
@@ -62,7 +63,7 @@ class Defaults extends AbstractDefaults
      *
      * @return string
      */
-    public function getHostname()
+    public function getHostname(): ?string
     {
         return $this->hostname;
     }
@@ -74,7 +75,7 @@ class Defaults extends AbstractDefaults
      *
      * @return $this
      */
-    public function setHostname($hostname)
+    public function setHostname(string $hostname): self
     {
         $this->hostname = $hostname;
 
@@ -86,7 +87,7 @@ class Defaults extends AbstractDefaults
      *
      * @return string
      */
-    public function getLocale()
+    public function getLocale(): ?string
     {
         return $this->locale;
     }
@@ -98,7 +99,7 @@ class Defaults extends AbstractDefaults
      *
      * @return $this
      */
-    public function setLocale($locale)
+    public function setLocale(string $locale): self
     {
         $this->locale = $locale;
 
@@ -110,7 +111,7 @@ class Defaults extends AbstractDefaults
      *
      * @return int
      */
-    public function getTimeout()
+    public function getTimeout(): ?int
     {
         return $this->timeout;
     }
@@ -118,13 +119,13 @@ class Defaults extends AbstractDefaults
     /**
      * Set the timeout
      *
-     * @param integer $timeout
+     * @param int $timeout
      *
      * @return $this
      */
-    public function setTimeout($timeout)
+    public function setTimeout(int $timeout): self
     {
-        $this->timeout = (int) $timeout;
+        $this->timeout = $timeout;
 
         return $this;
     }
@@ -134,7 +135,7 @@ class Defaults extends AbstractDefaults
      *
      * @return int
      */
-    public function getTtl()
+    public function getTtl(): int
     {
         return $this->ttl;
     }
@@ -142,13 +143,13 @@ class Defaults extends AbstractDefaults
     /**
      * Set the time-to-live
      *
-     * @param integer $ttl
+     * @param int $ttl
      *
      * @return $this
      */
-    public function setTtl($ttl)
+    public function setTtl(int $ttl): self
     {
-        $this->ttl = (int) $ttl;
+        $this->ttl = $ttl;
 
         return $this;
     }
@@ -158,7 +159,7 @@ class Defaults extends AbstractDefaults
      *
      * @return string
      */
-    public function getVersion()
+    public function getVersion(): ?string
     {
         return $this->version;
     }
@@ -170,7 +171,7 @@ class Defaults extends AbstractDefaults
      *
      * @return $this
      */
-    public function setVersion($version)
+    public function setVersion(string $version): self
     {
         $this->version = $version;
 

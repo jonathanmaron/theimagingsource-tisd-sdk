@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * The Imaging Source Download System PHP Wrapper
@@ -8,7 +9,7 @@
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2018 The Imaging Source Europe GmbH
+ * @copyright © 2019 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk;
@@ -62,35 +63,35 @@ trait ConsolidatedTrait
      *
      * @return int
      */
-    abstract public function getTimeout();
+    abstract public function getTimeout(): int;
 
     /**
      * Get the version
      *
      * @return string
      */
-    abstract public function getVersion();
+    abstract public function getVersion(): int;
 
     /**
      * Filter the packages by key
      *
      * @param array  $packages
      * @param string $key
-     * @param string $value
+     * @param array|string $value
      * @param bool   $fuzzy
      *
      * @return mixed
      */
-    abstract protected function filter($packages, $key, $value, $fuzzy = false);
+    abstract protected function filter(array $packages, string $key, $value, bool $fuzzy = false): array;
 
     /**
      * Get the array of consolidated data
      *
      * @return array
      */
-    protected function getConsolidated()
+    protected function getConsolidated(): ?array
     {
-        if (null === $this->consolidated) {
+        if (empty($this->consolidated)) {
 
             $cache   = $this->getCache();
             $cacheId = $this->getLocale() . __METHOD__;
@@ -98,7 +99,7 @@ trait ConsolidatedTrait
             if ($cache->getTtl() > 0) {
                 $cacheId      = $cache->getId($cacheId);
                 $consolidated = $cache->read($cacheId);
-                if (!$consolidated) {
+                if (null === $consolidated) {
                     $consolidated = $this->downloadConsolidated();
                     $cache->write($cacheId, $consolidated);
                 }
@@ -107,7 +108,7 @@ trait ConsolidatedTrait
             }
 
             if (null !== $this->getContext()) {
-                $packages = $this->filter($consolidated['packages'], 'contexts', $this->getContext());
+                $packages                 = $this->filter($consolidated['packages'], 'contexts', $this->getContext());
                 $consolidated['packages'] = $packages;
             }
 
@@ -124,7 +125,7 @@ trait ConsolidatedTrait
      *
      * @return $this
      */
-    protected function setConsolidated($consolidated)
+    protected function setConsolidated(array $consolidated): self
     {
         $this->consolidated = $consolidated;
 
@@ -136,7 +137,7 @@ trait ConsolidatedTrait
      *
      * @return array
      */
-    private function downloadConsolidated()
+    private function downloadConsolidated(): array
     {
         $format = 'https://%s/api/%s/consolidated/%s.json';
         $uri    = sprintf($format, $this->getHostname(), $this->getVersion(), $this->getLocale());
@@ -144,7 +145,7 @@ trait ConsolidatedTrait
         $options = [
             'http' => [
                 'timeout' => $this->getTimeout(),
-                'method'  => "GET",
+                'method'  => 'GET',
                 'header'  => sprintf('User-Agent: TIS Download System SDK (PHP %s)', phpversion()),
             ],
         ];

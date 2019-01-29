@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace TisdTest\Sdk\Lut;
 
@@ -9,17 +10,17 @@ class PackageIdToPackageTest extends TestCase
 {
     protected $lut;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->lut = new Lut();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->lut);
     }
 
-    public function testGetValues()
+    public function testGetValues(): void
     {
         $actual = $this->lut->getValues();
 
@@ -28,7 +29,7 @@ class PackageIdToPackageTest extends TestCase
         $this->assertArrayHasKey('icwdmdcamtis', $actual);
     }
 
-    public function testGetKeys()
+    public function testGetKeys(): void
     {
         $actual = $this->lut->getKeys();
 
@@ -38,7 +39,7 @@ class PackageIdToPackageTest extends TestCase
         $this->assertContains('icwdm878tis', $actual);
     }
 
-    public function testGetValue()
+    public function testGetValue(): void
     {
         $actual = $this->lut->getValue('icwdm1394btis');
 
