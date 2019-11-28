@@ -8,11 +8,10 @@ use Tisd\Sdk\Exception\RuntimeException;
 
 class RuntimeExceptionTest extends TestCase
 {
-    /**
-     * @expectedException RuntimeException
-     */
     public function testComingSoon(): void
     {
+        $this->expectedException(RuntimeException::class);
+
         throw new RuntimeException('random-string', 100);
     }
 }

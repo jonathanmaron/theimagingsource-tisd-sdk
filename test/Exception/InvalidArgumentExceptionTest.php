@@ -8,11 +8,10 @@ use Tisd\Sdk\Exception\InvalidArgumentException;
 
 class InvalidArgumentExceptionTest extends TestCase
 {
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testComingSoon(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         throw new InvalidArgumentException('random-string', 100);
     }
 }

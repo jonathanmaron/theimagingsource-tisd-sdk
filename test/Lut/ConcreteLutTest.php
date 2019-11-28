@@ -8,11 +8,10 @@ use Tisd\Sdk\Exception\RuntimeException;
 
 class ConcreteLutTest extends TestCase
 {
-    /**
-     * @expectedException RuntimeException
-     */
     public function testException(): void
     {
+        $this->expectException(RuntimeException::class);
+
         $lut = new ConcreteLut();
     }
 }

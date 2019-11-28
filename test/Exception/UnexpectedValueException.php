@@ -8,11 +8,10 @@ use Tisd\Sdk\Exception\UnexpectedValueException;
 
 class UnexpectedValueExceptionTest extends TestCase
 {
-    /**
-     * @expectedException UnexpectedValueException
-     */
     public function testComingSoon(): void
     {
+        $this->expectException(UnexpectedValueException::class);
+
         throw new UnexpectedValueException('random-string', 100);
     }
 }

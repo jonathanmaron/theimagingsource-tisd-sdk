@@ -617,11 +617,10 @@ class SdkTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testGetBuildTimeThrowsException(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->sdk->getBuildTime('invalid');
     }
 }
