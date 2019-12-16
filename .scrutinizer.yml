@@ -11,9 +11,9 @@ filter:
 
 build:
     nodes:
-        php71:
+        php74:
             environment:
-                php: '7.1'
+                php: '7.4'
             tests:
                 override:
                     - php-scrutinizer-run
