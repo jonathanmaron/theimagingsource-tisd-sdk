@@ -70,7 +70,7 @@ trait ConsolidatedTrait
      *
      * @return string
      */
-    abstract public function getVersion(): int;
+    abstract public function getVersion(): string;
 
     /**
      * Filter the packages by key

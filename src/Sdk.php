@@ -219,7 +219,7 @@ class Sdk
      *
      * @return int
      */
-    public function getTimeout(): ?int
+    public function getTimeout(): int
     {
         return $this->timeout;
     }
