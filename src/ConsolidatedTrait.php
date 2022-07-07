@@ -9,11 +9,12 @@ declare(strict_types=1);
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2019 The Imaging Source Europe GmbH
+ * @copyright © 2022 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk;
 
+use Tisd\Sdk\Cache\Cache;
 use Tisd\Sdk\Defaults\Defaults;
 
 /**
@@ -28,35 +29,35 @@ trait ConsolidatedTrait
      *
      * @var array
      */
-    private $consolidated;
+    private array $consolidated;
 
     /**
      * Get the Cache instance
      *
-     * @return string
+     * @return Cache
      */
-    abstract public function getCache();
+    abstract public function getCache(): Cache;
 
     /**
      * Get the context
      *
      * @return string
      */
-    abstract public function getContext();
+    abstract public function getContext(): string;
 
     /**
      * Get the hostname
      *
      * @return string
      */
-    abstract public function getHostname();
+    abstract public function getHostname(): string;
 
     /**
      * Get the locale
      *
      * @return string
      */
-    abstract public function getLocale();
+    abstract public function getLocale(): string;
 
     /**
      * Get the timeout
@@ -75,23 +76,23 @@ trait ConsolidatedTrait
     /**
      * Filter the packages by key
      *
-     * @param array  $packages
-     * @param string $key
+     * @param array        $packages
+     * @param string       $key
      * @param array|string $value
-     * @param bool   $fuzzy
+     * @param bool         $fuzzy
      *
-     * @return mixed
+     * @return array
      */
-    abstract protected function filter(array $packages, string $key, $value, bool $fuzzy = false): array;
+    abstract protected function filter(array $packages, string $key, array|string $value, bool $fuzzy = false): array;
 
     /**
      * Get the array of consolidated data
      *
      * @return array
      */
-    protected function getConsolidated(): ?array
+    protected function getConsolidated(): array
     {
-        if (empty($this->consolidated)) {
+        if (0 === count($this->consolidated)) {
 
             $cache   = $this->getCache();
             $cacheId = $this->getLocale() . __METHOD__;
@@ -99,7 +100,7 @@ trait ConsolidatedTrait
             if ($cache->getTtl() > 0) {
                 $cacheId      = $cache->getId($cacheId);
                 $consolidated = $cache->read($cacheId);
-                if (null === $consolidated) {
+                if (0 === count($consolidated)) {
                     $consolidated = $this->downloadConsolidated();
                     $cache->write($cacheId, $consolidated);
                 }
@@ -107,7 +108,8 @@ trait ConsolidatedTrait
                 $consolidated = $this->downloadConsolidated();
             }
 
-            if (null !== $this->getContext()) {
+            if ('' !== $this->getContext()) {
+                assert(is_array($consolidated['packages']));
                 $packages                 = $this->filter($consolidated['packages'], 'contexts', $this->getContext());
                 $consolidated['packages'] = $packages;
             }
@@ -123,7 +125,7 @@ trait ConsolidatedTrait
      *
      * @param array $consolidated
      *
-     * @return $this
+     * @return Sdk
      */
     protected function setConsolidated(array $consolidated): self
     {
@@ -160,8 +162,11 @@ trait ConsolidatedTrait
         $context = stream_context_create($options);
 
         $json = file_get_contents($uri, false, $context);
-        $ret  = json_decode($json, true);
+        assert(is_string($json));
 
-        return $ret;
+        $consolidated = json_decode($json, true);
+        assert(is_array($consolidated));
+
+        return $consolidated;
     }
 }

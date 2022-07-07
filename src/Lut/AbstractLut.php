@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2019 The Imaging Source Europe GmbH
+ * @copyright © 2022 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk\Lut;
@@ -31,21 +31,21 @@ class AbstractLut
      *
      * @var Sdk
      */
-    protected $sdk;
+    protected Sdk $sdk;
 
     /**
      * Look-up-table
      *
      * @var array
      */
-    protected $lut;
+    protected array $lut;
 
     /**
      * AbstractLut constructor
      *
      * @param array $options
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $sdk = new Sdk($options);
 
@@ -65,9 +65,9 @@ class AbstractLut
     /**
      * Get all data in the LUT
      *
-     * @return array|null
+     * @return array
      */
-    public function getValues(): ?array
+    public function getValues(): array
     {
         return $this->lut;
     }
@@ -77,11 +77,11 @@ class AbstractLut
      *
      * @param string $key
      *
-     * @return mixed|null
+     * @return array|string
      */
-    public function getValue(string $key)
+    public function getValue(string $key): array|string
     {
-        $ret = null;
+        $ret = '';
 
         if (isset($this->lut[$key])) {
             $ret = $this->lut[$key];
@@ -95,7 +95,7 @@ class AbstractLut
      *
      * @return Sdk
      */
-    public function getSdk(): ?Sdk
+    public function getSdk(): Sdk
     {
         return $this->sdk;
     }
@@ -151,6 +151,7 @@ class AbstractLut
             if (array_key_exists($key, $ret)) {
                 $format  = "The '%s' is not unique in the LUT. The offending key is '%s'.";
                 $message = sprintf($format, $keyName, $key);
+                //@todo: Fix this by updating repository.
                 throw new RuntimeException($message);
             }
 

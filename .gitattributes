@@ -1,9 +1,6 @@
 .gitattributes export-ignore
 .gitignore export-ignore
-
 .scrutinizer.yml export-ignore
-
 phpunit.xml.dist export-ignore
-
-/test export-ignore
-/vendor export-ignore
+test export-ignore
+vendor export-ignore

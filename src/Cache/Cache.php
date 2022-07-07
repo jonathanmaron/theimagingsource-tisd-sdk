@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2019 The Imaging Source Europe GmbH
+ * @copyright © 2022 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk\Cache;
@@ -47,17 +47,19 @@ class Cache extends AbstractCache
      *
      * @param string $cacheId
      *
-     * @return array|null
+     * @return array
      */
-    public function read(string $cacheId): ?array
+    public function read(string $cacheId): array
     {
-        $ret = null;
+        $ret = [];
 
         $filename = $this->getFilename($cacheId);
 
         if (is_readable($filename)) {
-            if (filemtime($filename) + $this->getTtl() > time()) {
-                $ret = include $filename;
+            $timestamp = filemtime($filename);
+            assert(is_int($timestamp));
+            if ($timestamp + $this->getTtl() > time()) {
+                $ret = (array) include $filename;
             }
         }
 
@@ -71,15 +73,17 @@ class Cache extends AbstractCache
      *
      * @return bool
      */
-    public function purge($user = null): bool
+    public function purge(string $user = ''): bool
     {
         $ret = false;
 
-        if (null === $user) {
+        if ('' === $user) {
             $user = $this->getUser();
         }
 
-        foreach (glob($this->getFilename('*', $user)) as $filename) {
+        $filenames = glob($this->getFilename('*', $user));
+        assert(is_array($filenames));
+        foreach ($filenames as $filename) {
             $ret = unlink($filename);
         }
 

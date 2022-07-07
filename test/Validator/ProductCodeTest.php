@@ -8,7 +8,7 @@ use Tisd\Sdk\Validator\ProductCode as Validator;
 
 class ProductCodeTest extends TestCase
 {
-    protected $validator;
+    protected Validator $validator;
 
 
     protected function setUp(): void
@@ -23,8 +23,8 @@ class ProductCodeTest extends TestCase
 
     public function testIsValid(): void
     {
-        $this->assertFalse($this->validator->isValid('IC INVALID'));
+        self::assertFalse($this->validator->isValid('IC INVALID'));
 
-        $this->assertTrue($this->validator->isValid('IC WDM GIGE TIS'));
+        self::assertTrue($this->validator->isValid('IC WDM GIGE TIS'));
     }
 }

@@ -8,7 +8,7 @@ use Tisd\Sdk\Validator\PackageId as Validator;
 
 class PackageIdTest extends TestCase
 {
-    protected $validator;
+    protected Validator $validator;
 
     protected function setUp(): void
     {
@@ -22,8 +22,8 @@ class PackageIdTest extends TestCase
 
     public function testIsValid(): void
     {
-        $this->assertFalse($this->validator->isValid('invalid'));
+        self::assertFalse($this->validator->isValid('invalid'));
 
-        $this->assertTrue($this->validator->isValid('flhc12142m'));
+        self::assertTrue($this->validator->isValid('flhc12142m'));
     }
 }

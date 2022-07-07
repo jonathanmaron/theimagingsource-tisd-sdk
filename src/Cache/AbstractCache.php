@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2019 The Imaging Source Europe GmbH
+ * @copyright © 2022 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk\Cache;
@@ -28,14 +28,14 @@ abstract class AbstractCache
      *
      * @var string
      */
-    protected $path;
+    protected string $path;
 
     /**
      * Time-to-live in seconds
      *
      * @var int
      */
-    protected $ttl;
+    protected int $ttl;
 
     /**
      * AbstractCache constructor
@@ -61,7 +61,7 @@ abstract class AbstractCache
      *
      * @return string
      */
-    public function getPath(): ?string
+    public function getPath(): string
     {
         return $this->path;
     }
@@ -85,7 +85,7 @@ abstract class AbstractCache
      *
      * @return int
      */
-    public function getTtl(): ?int
+    public function getTtl(): int
     {
         return $this->ttl;
     }
@@ -124,9 +124,9 @@ abstract class AbstractCache
      *
      * @return string
      */
-    public function getFilename(string $cacheId, ?string $user = null): string
+    public function getFilename(string $cacheId, string $user = ''): string
     {
-        if (null === $user) {
+        if ('' === $user) {
             $user = $this->getUser();
         }
 

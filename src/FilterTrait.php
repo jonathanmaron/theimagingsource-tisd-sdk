@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2019 The Imaging Source Europe GmbH
+ * @copyright © 2022 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk;
@@ -24,14 +24,14 @@ trait FilterTrait
     /**
      * Filter the packages by key
      *
-     * @param array  $packages
-     * @param string $key
+     * @param array        $packages
+     * @param string       $key
      * @param array|string $value
-     * @param bool   $fuzzy
+     * @param bool         $fuzzy
      *
-     * @return mixed
+     * @return array
      */
-    protected function filter(array $packages, string $key, $value, bool $fuzzy = false): array
+    protected function filter(array $packages, string $key, array|string $value, bool $fuzzy = false): array
     {
         // this approach is faster than recursively.
 
@@ -56,12 +56,12 @@ trait FilterTrait
                         }
                     } elseif (is_array($value)) {
                         // Passed value is an array; package value is a string
-                        if (in_array($package[$key], $value)) {
+                        if (in_array($package[$key], $value, true)) {
                             continue;
                         }
                     } elseif (is_array($package[$key])) {
                         // Package value is an array; passed value is a string
-                        if (in_array($value, $package[$key])) {
+                        if (in_array($value, $package[$key], true)) {
                             continue;
                         }
                     } else {

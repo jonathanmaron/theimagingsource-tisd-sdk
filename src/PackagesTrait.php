@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2019 The Imaging Source Europe GmbH
+ * @copyright © 2022 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk;
@@ -29,33 +29,33 @@ trait PackagesTrait
      * @param array|string $value
      * @param bool         $fuzzy
      *
-     * @return mixed
+     * @return array
      */
-    abstract protected function filter(array $packages, string $key, $value, bool $fuzzy = false): array;
+    abstract protected function filter(array $packages, string $key, array|string $value, bool $fuzzy = false): array;
 
     /**
      * Get the array of consolidated data
      *
      * @return array
      */
-    abstract protected function getConsolidated(): ?array;
+    abstract protected function getConsolidated(): array;
 
     /**
      * Get the array of packages data
      *
-     * @param string|null $categoryId
-     * @param string|null $sectionId
-     * @param string|null $packageId
+     * @param string $categoryId
+     * @param string $sectionId
+     * @param string $packageId
      *
      * @return array
      */
-    public function getPackages(?string $categoryId = null, ?string $sectionId = null, ?string $packageId = null): array
+    public function getPackages(string $categoryId = '', string $sectionId = '', string $packageId = ''): array
     {
         $consolidated = $this->getConsolidated();
 
         $packages = $consolidated['packages'];
 
-        if (null !== $categoryId && null !== $sectionId && null !== $packageId) {
+        if ('' !== $categoryId && '' !== $sectionId && '' !== $packageId) {
 
             $packages = $this->filter($packages, 'category_id', $categoryId);
             $packages = $this->filter($packages, 'section_id', $sectionId);
@@ -68,7 +68,7 @@ trait PackagesTrait
             return [];
         }
 
-        if (null !== $categoryId && null !== $sectionId) {
+        if ('' !== $categoryId && '' !== $sectionId) {
 
             $packages = $this->filter($packages, 'category_id', $categoryId);
             $packages = $this->filter($packages, 'section_id', $sectionId);
@@ -80,7 +80,7 @@ trait PackagesTrait
             return [];
         }
 
-        if (null !== $categoryId) {
+        if ('' !== $categoryId) {
 
             $packages = $this->filter($packages, 'category_id', $categoryId);
 

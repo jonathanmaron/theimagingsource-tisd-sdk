@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2019 The Imaging Source Europe GmbH
+ * @copyright © 2022 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk;
@@ -35,51 +35,51 @@ class Sdk
     /**
      * Cache
      *
-     * @var string
+     * @var Cache
      */
-    protected $cache;
+    protected Cache $cache;
 
     /**
      * Context
      *
      * @var string
      */
-    protected $context;
+    protected string $context;
 
     /**
      * Hostname
      *
      * @var string
      */
-    protected $hostname;
+    protected string $hostname;
 
     /**
      * Locale
      *
      * @var string
      */
-    protected $locale;
+    protected string $locale;
 
     /**
      * Timeout
      *
      * @var int
      */
-    protected $timeout;
+    protected int $timeout;
 
     /**
      * Version
      *
      * @var string
      */
-    protected $version;
+    protected string $version;
 
     /**
      * Sdk constructor
      *
      * @param array $options
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $defaults = new Defaults();
 
@@ -96,10 +96,12 @@ class Sdk
                 $value = $options[$optionKey];
             } else {
                 $getter = sprintf('get%s', ucfirst($optionKey));
-                $value  = $defaults->$getter();
+                // @phpstan-ignore-next-line
+                $value = $defaults->$getter();
             }
 
             $setter = sprintf('set%s', ucfirst($optionKey));
+            // @phpstan-ignore-next-line
             $this->$setter($value);
         }
 
@@ -145,7 +147,7 @@ class Sdk
      *
      * @return string
      */
-    public function getContext(): ?string
+    public function getContext(): string
     {
         return $this->context;
     }
@@ -157,7 +159,7 @@ class Sdk
      *
      * @return $this
      */
-    public function setContext(?string $context): self
+    public function setContext(string $context): self
     {
         $this->context = $context;
 
@@ -169,7 +171,7 @@ class Sdk
      *
      * @return string
      */
-    public function getHostname(): ?string
+    public function getHostname(): string
     {
         return $this->hostname;
     }
@@ -193,7 +195,7 @@ class Sdk
      *
      * @return string
      */
-    public function getLocale(): ?string
+    public function getLocale(): string
     {
         return $this->locale;
     }

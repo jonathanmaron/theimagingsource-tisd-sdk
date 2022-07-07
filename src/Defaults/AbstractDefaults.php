@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2019 The Imaging Source Europe GmbH
+ * @copyright © 2022 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk\Defaults;
@@ -81,40 +81,40 @@ abstract class AbstractDefaults
      *
      * @var string
      */
-    protected $context;
+    protected string $context;
 
     /**
      * Hostname
      *
      * @var string
      */
-    protected $hostname;
+    protected string $hostname;
 
     /**
      * Locale
      *
      * @var string
      */
-    protected $locale;
+    protected string $locale;
 
     /**
      * Timeout
      *
      * @var int
      */
-    protected $timeout;
+    protected int $timeout;
 
     /**
      * Time-to-live
      *
      * @var int
      */
-    protected $ttl;
+    protected int $ttl;
 
     /**
      * Version
      *
      * @var string
      */
-    protected $version;
+    protected string $version;
 }

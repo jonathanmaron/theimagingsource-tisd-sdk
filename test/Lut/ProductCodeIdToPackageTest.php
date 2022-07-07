@@ -8,7 +8,7 @@ use Tisd\Sdk\Lut\ProductCodeIdToPackage as Lut;
 
 class ProductCodeIdToPackageTest extends TestCase
 {
-    protected $lut;
+    protected Lut $lut;
 
     protected function setUp(): void
     {
@@ -24,28 +24,23 @@ class ProductCodeIdToPackageTest extends TestCase
     {
         $actual = $this->lut->getValues();
 
-        $this->assertTrue(is_array($actual));
-
-        $this->assertArrayHasKey('icwdmdcamtis', $actual);
+        self::assertArrayHasKey('icwdmdcamtis', $actual);
     }
 
     public function testGetKeys(): void
     {
         $actual = $this->lut->getKeys();
 
-        $this->assertTrue(is_array($actual));
-
-        $this->assertContains('icwdm1394btis', $actual);
-        $this->assertContains('icwdm878tis', $actual);
+        self::assertContains('icwdm1394btis', $actual);
+        self::assertContains('icwdm878tis', $actual);
     }
 
     public function testGetValue(): void
     {
         $actual = $this->lut->getValue('icwdm1394btis');
 
-        $this->assertTrue(is_array($actual));
-
-        $this->assertArrayHasKey('uuid', $actual);
-        $this->assertArrayHasKey('versions', $actual);
+        self::assertIsArray($actual);
+        self::assertArrayHasKey('uuid', $actual);
+        self::assertArrayHasKey('versions', $actual);
     }
 }

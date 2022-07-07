@@ -45,4 +45,3 @@ foreach ($package['versions'] as $version) {
 }
 
 $sdk->getCache()->purge();
-

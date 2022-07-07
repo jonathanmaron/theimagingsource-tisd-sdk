@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2019 The Imaging Source Europe GmbH
+ * @copyright © 2022 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk\Defaults;
@@ -26,7 +26,7 @@ class Defaults extends AbstractDefaults
      */
     public function __construct()
     {
-        $this->setContext(null);
+        $this->setContext('');
         $this->setHostname(self::HOSTNAME_PRODUCTION);
         $this->setLocale(self::LOCALE);
         $this->setTimeout(self::TIMEOUT);
@@ -39,7 +39,7 @@ class Defaults extends AbstractDefaults
      *
      * @return string
      */
-    public function getContext(): ?string
+    public function getContext(): string
     {
         return $this->context;
     }
@@ -51,7 +51,7 @@ class Defaults extends AbstractDefaults
      *
      * @return $this
      */
-    public function setContext(?string $context): self
+    public function setContext(string $context): self
     {
         $this->context = $context;
 
@@ -63,7 +63,7 @@ class Defaults extends AbstractDefaults
      *
      * @return string
      */
-    public function getHostname(): ?string
+    public function getHostname(): string
     {
         return $this->hostname;
     }
@@ -87,7 +87,7 @@ class Defaults extends AbstractDefaults
      *
      * @return string
      */
-    public function getLocale(): ?string
+    public function getLocale(): string
     {
         return $this->locale;
     }
@@ -111,7 +111,7 @@ class Defaults extends AbstractDefaults
      *
      * @return int
      */
-    public function getTimeout(): ?int
+    public function getTimeout(): int
     {
         return $this->timeout;
     }
@@ -159,7 +159,7 @@ class Defaults extends AbstractDefaults
      *
      * @return string
      */
-    public function getVersion(): ?string
+    public function getVersion(): string
     {
         return $this->version;
     }

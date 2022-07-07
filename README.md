@@ -14,7 +14,7 @@ The Imaging Source produces a large number of [downloadable files](http://dl-gui
 
 Use [Composer](https://getcomposer.org/doc/00-intro.md#globally) to install the SDK:
 
-```composer require theimagingsource/tisd-sdk ^4.0```
+```composer require theimagingsource/tisd-sdk ^5.0```
 
 ## Sample Endpoints
 

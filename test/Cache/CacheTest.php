@@ -3,13 +3,14 @@ declare(strict_types=1);
 
 namespace TisdTest\Sdk\Cache;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 use Tisd\Sdk\Cache\Cache;
 use Tisd\Sdk\Sdk;
 
 class CacheTest extends TestCase
 {
-    protected $cache;
+    protected Cache $cache;
 
     protected function setUp(): void
     {
@@ -27,7 +28,7 @@ class CacheTest extends TestCase
 
         $expected = sprintf('%s/tisd_sdk_cache_aaa_%s.php', sys_get_temp_dir(), $this->cache->getUser());
 
-        $this->assertEquals($actual, $expected);
+        self::assertEquals($actual, $expected);
     }
 
     public function testGetId(): void
@@ -36,16 +37,18 @@ class CacheTest extends TestCase
 
         $expected = 'cdb4d88dca0bef8defe13d71624a46e7e851750a750a5467d53cb1bf273ab973';
 
-        $this->assertEquals($actual, $expected);
+        self::assertEquals($actual, $expected);
     }
 
     public function testGetUserApache(): void
     {
         putenv("APACHE_RUN_USER=apache-user");
 
-        $expected = trim(getenv('APACHE_RUN_USER'));
+        $apacheRunUser = getenv('APACHE_RUN_USER');
+        assert(is_string($apacheRunUser));
+        $expected = trim($apacheRunUser);
 
-        $this->assertEquals($expected, $this->cache->getUser());
+        self::assertEquals($expected, $this->cache->getUser());
     }
 
     public function testPurge(): void
@@ -54,7 +57,7 @@ class CacheTest extends TestCase
         // so that it can be purged, and return true
         $sdk = new Sdk();
         $sdk->getPackages();
-        $this->assertTrue($sdk->getCache()->purge());
+        self::assertTrue($sdk->getCache()->purge());
     }
 
     public function testRead(): void
@@ -66,14 +69,18 @@ class CacheTest extends TestCase
 
         $actual = $this->cache->read($cacheId);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     protected function generateRandomCacheId(): string
     {
-        $cacheId = hash('sha256', (string) random_int(PHP_INT_MIN, PHP_INT_MAX));
+        try {
+            $string = random_bytes(16);
+        } catch (Exception $e) {
+            $string = '3aa2d8e4-7020-49bc-b722-e290b1e5652a';
+        }
 
-        return $cacheId;
+        return hash('sha256', $string);
     }
 
     public function testReadCacheFileNotReadable(): void
@@ -89,7 +96,7 @@ class CacheTest extends TestCase
 
         $actual = $this->cache->read($cacheId);
 
-        $this->assertNull($actual);
+        self::assertEmpty($actual);
     }
 
     public function testReadCacheExpired(): void
@@ -103,7 +110,8 @@ class CacheTest extends TestCase
 
         $filemtime = filemtime($filename);
 
-        $this->assertLessThanOrEqual($filemtime, time());
+        self::assertIsInt($filemtime);
+        self::assertLessThanOrEqual($filemtime, time());
 
         $this->cache->write($cacheId, $expected);
 
@@ -111,7 +119,7 @@ class CacheTest extends TestCase
 
         $actual = $this->cache->read($cacheId);
 
-        $this->assertNull($actual);
+        self::assertEmpty($actual);
     }
 
     public function testSetAndGetPath(): void
@@ -122,7 +130,7 @@ class CacheTest extends TestCase
 
         $actual = $this->cache->getPath();
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetAndGetTtl(): void
@@ -133,7 +141,7 @@ class CacheTest extends TestCase
 
         $actual = $this->cache->getTtl();
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testSetTtlInConstructor(): void
@@ -142,7 +150,7 @@ class CacheTest extends TestCase
 
         $cache = new Cache(['ttl' => $expected]);
 
-        $this->assertEquals($cache->getTtl(), $expected);
+        self::assertEquals($cache->getTtl(), $expected);
     }
 
     public function testWrite(): void
@@ -152,7 +160,7 @@ class CacheTest extends TestCase
 
         $ret = $this->cache->write($cacheId, $data);
 
-        $this->assertTrue($ret);
+        self::assertTrue($ret);
     }
 
     public function testWriteUnlinkFile(): void
@@ -163,7 +171,7 @@ class CacheTest extends TestCase
         $ret1 = $this->cache->write($cacheId, $data);
         $ret2 = $this->cache->write($cacheId, $data);
 
-        $this->assertTrue($ret1);
-        $this->assertTrue($ret2);
+        self::assertTrue($ret1);
+        self::assertTrue($ret2);
     }
 }

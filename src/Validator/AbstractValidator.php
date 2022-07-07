@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2019 The Imaging Source Europe GmbH
+ * @copyright © 2022 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk\Validator;
@@ -21,18 +21,18 @@ class AbstractValidator
      *
      * @var array
      */
-    protected $haystack;
+    protected array $haystack = [];
 
     /**
      * Return true, if $value is valid. False otherwise.
      *
-     * @param $value
+     * @param string $value
      *
      * @return bool
      */
-    public function isValid($value): bool
+    public function isValid(string $value): bool
     {
-        return in_array($value, $this->getHaystack());
+        return in_array($value, $this->getHaystack(), true);
     }
 
     /**
@@ -40,7 +40,7 @@ class AbstractValidator
      *
      * @return array
      */
-    protected function getHaystack(): ?array
+    protected function getHaystack(): array
     {
         return $this->haystack;
     }

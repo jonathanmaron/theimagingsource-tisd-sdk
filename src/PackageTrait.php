@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      http://dl-gui.theimagingsource.com to learn more about The Imaging Source Download System
  * @link      https://github.com/jonathanmaron/theimagingsource-tisd-sdk for the canonical source repository
  * @license   https://github.com/jonathanmaron/theimagingsource-tisd-sdk/blob/master/LICENSE.md
- * @copyright © 2019 The Imaging Source Europe GmbH
+ * @copyright © 2022 The Imaging Source Europe GmbH
  */
 
 namespace Tisd\Sdk;
@@ -29,16 +29,16 @@ trait PackageTrait
      *
      * @return array
      */
-    abstract protected function getConsolidated(): ?array;
+    abstract protected function getConsolidated(): array;
 
     /**
      * Get array of package data matching uuid
      *
      * @param string $uuid
      *
-     * @return array|null
+     * @return array
      */
-    public function getPackageByUuid(string $uuid): ?array
+    public function getPackageByUuid(string $uuid): array
     {
         return $this->getPackageByKeyValue('uuid', $uuid);
     }
@@ -48,9 +48,9 @@ trait PackageTrait
      *
      * @param string $productCodeId
      *
-     * @return array|null
+     * @return array
      */
-    public function getPackageByProductCodeId(string $productCodeId): ?array
+    public function getPackageByProductCodeId(string $productCodeId): array
     {
         return $this->getPackageByKeyValue('product_code_id', $productCodeId);
     }
@@ -60,9 +60,9 @@ trait PackageTrait
      *
      * @param string $packageId
      *
-     * @return array|null
+     * @return array
      */
-    public function getPackageByPackageId(string $packageId): ?array
+    public function getPackageByPackageId(string $packageId): array
     {
         return $this->getPackageByKeyValue('package_id', $packageId);
     }
@@ -72,9 +72,9 @@ trait PackageTrait
      *
      * @param string $productCode
      *
-     * @return array|null
+     * @return array
      */
-    public function getPackageByProductCode(string $productCode): ?array
+    public function getPackageByProductCode(string $productCode): array
     {
         return $this->getPackageByKeyValue('product_code', $productCode);
     }
@@ -85,9 +85,9 @@ trait PackageTrait
      * @param string $key
      * @param string $value
      *
-     * @return array|null
+     * @return array
      */
-    private function getPackageByKeyValue(string $key, string $value): ?array
+    private function getPackageByKeyValue(string $key, string $value): array
     {
         $consolidated = $this->getConsolidated();
 
@@ -109,6 +109,6 @@ trait PackageTrait
             }
         }
 
-        return null;
+        return [];
     }
 }

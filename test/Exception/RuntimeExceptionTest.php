@@ -10,7 +10,7 @@ class RuntimeExceptionTest extends TestCase
 {
     public function testComingSoon(): void
     {
-        $this->expectedException(RuntimeException::class);
+        $this->expectException(RuntimeException::class);
 
         throw new RuntimeException('random-string', 100);
     }
