@@ -173,16 +173,14 @@ trait ConsolidatedTrait
          * In the case of a download file, added either "windows" or "linux" to the "platform" key.
          * Otherwise, an empty string.
          */
-        foreach ($consolidated as &$packages) {
-            foreach ($packages['children'] as &$categories) {
-                foreach ($categories['children'] as &$sections) {
-                    foreach ($sections['children'] as &$package) {
-                        $package['platform'] = match ($package['category_id']) {
-                            'downloads'       => 'windows',
-                            'downloads-linux' => 'linux',
-                            default           => '',
-                        };
-                    }
+        foreach ($consolidated['packages']['children'] as &$categories) {
+            foreach ($categories['children'] as &$sections) {
+                foreach ($sections['children'] as &$package) {
+                    $package['platform'] = match ($package['category_id']) {
+                        'downloads'       => 'windows',
+                        'downloads-linux' => 'linux',
+                        default           => '',
+                    };
                 }
             }
         }
