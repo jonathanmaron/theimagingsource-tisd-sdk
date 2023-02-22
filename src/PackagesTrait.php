@@ -121,4 +121,17 @@ trait PackagesTrait
 
         return $this->filter($consolidated['packages'], 'product_code', $q, true);
     }
+
+    /**
+     * Get array of package data for the specified platform ID
+     *
+     * @param string $platformId
+     * @return array
+     */
+    public function getPackagesByPlatformId(string $platformId): array
+    {
+        $consolidated = $this->getConsolidated();
+
+        return $this->filter($consolidated['packages'], 'platform_id', $platformId);
+    }
 }

@@ -527,6 +527,15 @@ class SdkTest extends TestCase
         self::assertArrayHasKey('versions',$actual['children']['downloads']['children']['drivers']['children']['icwdm878tis']);
     }
 
+    public function testGetPackagesByPlatformId(): void
+    {
+        $actual = $this->sdk->getPackagesByPlatformId('windows');
+        self::assertTrue(count($actual) > 0);
+
+        $actual = $this->sdk->getPackagesByPlatformId('linux');
+        self::assertTrue(count($actual) > 0);
+    }
+
     // @codingStandardsIgnoreEnd
 
     public function testGetSectionCount(): void
