@@ -2,6 +2,13 @@
 
 # CHANGELOG
 
+## 5.0.6 - 2022-07-08
+
+* Added support for `platform` tag.
+* Added `getPackagesByPlatformId()` to query `platform` tag.
+* Removed workaround for missing `platform` support.
+* Updated to PHPUnit 10.0
+
 ## 5.0.0 - 2022-07-08
 
 * Added support for PHP 8.1.
