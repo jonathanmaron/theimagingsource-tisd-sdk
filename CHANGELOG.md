@@ -2,7 +2,7 @@
 
 # CHANGELOG
 
-## 5.0.6 - 2022-07-08
+## 5.0.7 - 2023-02-22
 
 * Added support for `platform` tag.
 * Added `getPackagesByPlatformId()` to query `platform` tag.
